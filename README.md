@@ -8,7 +8,7 @@
 
 users - таблица пользователей
 
- -  -  -  -  -  -  -  
+
 
 user_id AUTOINCREMENT, 
 user_login NOT NULL, 
@@ -21,7 +21,7 @@ user_isAdmin NOT NULL - является ли пользователь адми�
 
 territories - таблица территорий (то есть точек земной поверхности)
 
- -  -  -  -  -  -  -  
+
   
 territorie_id AUTOINCREMENT, 
 territorie_coord_x NOT NULL, - широта территории
@@ -32,7 +32,7 @@ territorie_coord_z NOT NULL - высота территории над уров�
 
 soils
 
- -  -  -  -  -  -  -  
+
   
 soil_id AUTOINCREMENT, 
 soil_name NOT NULL, 
@@ -45,7 +45,7 @@ soil_profile - профиль почвы
 
 grounds
 
- -  -  -  -  -  -  -  
+
   
 ground_id AUTOINCREMENT, 
 ground_name NOT NULL, 
@@ -58,7 +58,7 @@ ground_hardness_Moos - жёсткость грунта по шкале Моос�
 
 plants
 
- -  -  -  -  -  -  -  
+
   
 plant_id AUTOINCREMENT, 
 plant_name NOT NULL, 
@@ -84,7 +84,7 @@ plant_species - вид
 
 animals
 
- -  -  -  -  -  -  -  
+
   
 animal_id AUTOINCREMENT, 
 animal_name NOT NULL, 
@@ -101,7 +101,7 @@ animal_species - вид
 
 connection_connection_territories_soils - таблица-связка для территорий и почв (в какой точке земной поверхности какая почва)
 
- -  -  -  -  -  -  -  
+
   
 connection_territories_soils_id AUTOINCREMENT,
 connection_territorie_id NOT NULL,
@@ -111,7 +111,7 @@ connection_soil_id NOT NULL
 
 connection_soils_grounds - таблица-связка для почв и грунтов (для каких почв характерны какие грунты)
 
- -  -  -  -  -  -  -  
+
   
 connection_soils_grounds_id AUTOINCREMENT, 
 connection_soil_id NOT NULL, 
@@ -121,7 +121,7 @@ connection_ground_id NOT NULL
 
 connection_soils_plants - таблица-связка для почв и растений (на какой почве как растут какие растения)
 
- -  -  -  -  -  -  -  
+
   
 connection_soils_plants_id AUTOINCREMENT, 
 connection_soil_id NOT NULL, 
@@ -132,7 +132,7 @@ connection_soils_plants_isGood
 
 connection_plants_animals - таблица-связка для растений и животных (какие животные питаются какими растениями)
 
- -  -  -  -  -  -  -  
+
   
 connection_plants_animals_id AUTOINCREMENT, 
 connection_plant_id NOT NULL, 
