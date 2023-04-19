@@ -1,10 +1,10 @@
 # VRK_Barchelor_LandscapeDesign
 
-#Установка
-```pip install -r .\requirements.txt```
-```flask run```
-#Использование
-```http://127.0.0.1:5000/api/docs/```
+#Установка  
+```pip install -r .\requirements.txt```  
+```flask run```  
+#Использование  
+```http://127.0.0.1:5000/api/docs/```  
 ------------------------------------------------------------------------------------------
 
 **ТАБЛИЦЫ**  
