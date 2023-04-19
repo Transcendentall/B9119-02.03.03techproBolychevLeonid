@@ -1,1 +1,5 @@
 flask-swagger-ui
+flask_cors
+numpy
+pandas
+flask
