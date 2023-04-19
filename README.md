@@ -8,12 +8,12 @@
 <details>
   <summary>Таблица пользователей</summary>
   ```
-  user_id AUTOINCREMENT,  
-  user_login NOT NULL,  
-  user_password NOT NULL, - пароль (пока не захешированный)  
-  user_FIO NOT NULL,  
-  user_email NOT NULL,  
-  user_isAdmin NOT NULL - является ли пользователь админом
+  -user_id AUTOINCREMENT,  
+  -user_login NOT NULL,  
+  -user_password NOT NULL, - пароль (пока не захешированный)  
+  -user_FIO NOT NULL,  
+  -user_email NOT NULL,  
+  -user_isAdmin NOT NULL - является ли пользователь админом
   ```
 </details>
 **users - таблица пользователей**  
