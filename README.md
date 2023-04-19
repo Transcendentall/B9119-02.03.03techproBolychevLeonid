@@ -8,18 +8,12 @@
 <details>
   <summary>Таблица пользователей</summary>
   
-  ### Heading
-  1. Foo
-  2. Bar
-     * Baz
-     * Qux
-
-  ### Some Code
-  ```js
-  function logSomething(something) {
-    console.log('Something', something);
-  }
-  ```
+  user_id AUTOINCREMENT,  
+  user_login NOT NULL,  
+  user_password NOT NULL, - пароль (пока не захешированный)  
+  user_FIO NOT NULL,  
+  user_email NOT NULL,  
+  user_isAdmin NOT NULL - является ли пользователь админом
 </details>
 **users - таблица пользователей**  
 
