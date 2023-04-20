@@ -22,7 +22,7 @@ swaggerui_blueprint = get_swaggerui_blueprint(
     #    'additionalQueryStringParams': {'test': "hello"}
     # }
 )
-
+# test
 app.register_blueprint(swaggerui_blueprint)
 
 CORS(app)
