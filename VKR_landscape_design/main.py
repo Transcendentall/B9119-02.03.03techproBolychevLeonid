@@ -30,7 +30,7 @@ print(get_plants(con))
 print(get_soils(con))
 print(get_territories(con))
 print(get_users(con))
-print()
+print(get_animals(con))
 print()
 print()
 

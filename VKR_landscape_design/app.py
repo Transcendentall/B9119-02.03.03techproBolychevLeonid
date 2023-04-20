@@ -23,6 +23,7 @@ swaggerui_blueprint = get_swaggerui_blueprint(
     # }
 )
 # test
+# test 2
 app.register_blueprint(swaggerui_blueprint)
 
 CORS(app)
