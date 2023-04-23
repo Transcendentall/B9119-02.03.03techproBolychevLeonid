@@ -9,10 +9,14 @@ con.executescript('''
 
 CREATE TABLE IF NOT EXISTS users(
     user_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_login VARCHAR(20) NOT NULL,
-    user_password VARCHAR(30) NOT NULL,
-    user_FIO VARCHAR(50) NOT NULL,
+    user_login VARCHAR(20) NOT NULL UNIQUE,
+    user_password VARCHAR(30) NOT NULL UNIQUE,
     user_email VARCHAR(30) NOT NULL,
+    user_surname VARCHAR(20),
+    user_name VARCHAR(20),
+    user_fathername VARCHAR(20),
+    user_isFemale BOOLEAN,
+    user_picture VARCHAR,
     user_isAdmin BOOLEAN NOT NULL
  );
 
@@ -25,30 +29,32 @@ CREATE TABLE IF NOT EXISTS territories(
 CREATE TABLE IF NOT EXISTS soils(
     soil_id INTEGER PRIMARY KEY AUTOINCREMENT,
     soil_name VARCHAR(30) NOT NULL,
-    soil_description VARCHAR(250) NOT NULL,
+    soil_description VARCHAR NOT NULL,
     soil_acidity REAL,
     soil_minerals VARCHAR(50),
-    soil_profile VARCHAR(50)
+    soil_profile VARCHAR(50),
+    soil_picture VARCHAR
  );
 CREATE TABLE IF NOT EXISTS grounds(
     ground_id INTEGER PRIMARY KEY AUTOINCREMENT,
     ground_name VARCHAR(50) NOT NULL,
-    ground_description VARCHAR(500) NOT NULL,
+    ground_description VARCHAR NOT NULL,
     ground_density REAL,
     ground_humidity REAL,
-    ground_hardness_Moos REAL
+    ground_hardness_Moos REAL,
+    ground_picture VARCHAR
  );
 CREATE TABLE IF NOT EXISTS plants(
     plant_id INTEGER PRIMARY KEY AUTOINCREMENT,
     plant_name VARCHAR(30) NOT NULL,
-    plant_description VARCHAR(500) NOT NULL,
+    plant_description VARCHAR NOT NULL,
     plant_isFodder BOOLEAN NOT NULL,
     plant_isExactingToTheLight BOOLEAN,
     plant_isOneYear BOOLEAN,
     plant_isTwoYears BOOLEAN,
     plant_isManyYears BOOLEAN,
     plant_climat VARCHAR(30),
-    plant_required_minerals_and_trace_elements VARCHAR(100),
+    plant_required_minerals_and_trace_elements VARCHAR,
     plant_temperature_min INTEGER,
     plant_temperature_max INTEGER,
     plant_kingdom VARCHAR(20),
@@ -57,19 +63,21 @@ CREATE TABLE IF NOT EXISTS plants(
     plant_order VARCHAR(20),
     plant_family VARCHAR(20),
     plant_genus VARCHAR(20),
-    plant_species VARCHAR(20)
+    plant_species VARCHAR(20),
+    plant_picture VARCHAR
  );
 CREATE TABLE IF NOT EXISTS animals(
     animal_id INTEGER PRIMARY KEY AUTOINCREMENT,
     animal_name VARCHAR(30) NOT NULL,
-    animal_description VARCHAR(250) NOT NULL,
+    animal_description VARCHAR NOT NULL,
     animal_kingdom VARCHAR(20),
     animal_philum VARCHAR(20),
     animal_class VARCHAR(20),
     animal_order VARCHAR(20),
     animal_family VARCHAR(20),
     animal_genus VARCHAR(20),
-    animal_species VARCHAR(20)
+    animal_species VARCHAR(20),
+    animal_picture VARCHAR
  );
 
 CREATE TABLE IF NOT EXISTS connection_territories_soils(
@@ -96,12 +104,13 @@ CREATE TABLE IF NOT EXISTS connection_plants_animals(
 
 
 
-INSERT INTO users (user_login, user_password, user_FIO, user_email, user_isAdmin)
+INSERT INTO users (user_login, user_password, user_email, user_surname, user_name, user_fathername, user_isFemale, user_isAdmin)
 VALUES
-('root', 'samyyslozhnyyparolvmire12345!!!', 'Иванов Пётр Сидорович', 'superadmin@yandex.ru', True),
-('vanek2002', '12345abcde', 'Иванов Иван Иванович', 'vanya@yandex.ru', False),
-('petrpervuy', '!qwerty15', 'Петров Пётр Петрович', 'petrpervuy@gmail.com', False),
-('lutiysidor', 'abracadabra123', 'Сидоров Сидр Сидорович', 'supersid@mail.ru', False);
+('root', 'samyyslozhnyyparolvmire12345!!!', 'Иванов', 'Пётр', 'Сидорович', 'superadmin@yandex.ru', False, True),
+('vanek2002', '12345abcde', 'Иванов', 'Иван', 'Иванович', 'vanya@yandex.ru', False, False),
+('petrpervuy', '!qwerty15', 'Петров', 'Пётр', 'Петрович', 'petrpervuy@gmail.com', False, False),
+('mashapupkina', 'йцукен', 'Пупкина', 'Мария', 'Игоревна', 'pupkinama@gmail.com', True, False),
+('lutiysidor', 'abracadabra123', 'Сидоров', 'Сидр', 'Сидорович', 'supersid@mail.ru', False, False);
 
 
 INSERT INTO territories (territorie_coord_x, territorie_coord_y, territorie_coord_z)
