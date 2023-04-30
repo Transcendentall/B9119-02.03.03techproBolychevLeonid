@@ -34,11 +34,15 @@ print(get_users_without_password(con))
 print(get_users_without_password_admins(con))
 print(get_users_without_password_noadmins(con))
 print()
+print('--------------------')
 print()
-#insert_user(con, 'a', 'b', 'c', False)
-#delete_user(con, 4)
-#update_user_login(con, 5, 'IVAN!')
-print(get_users(con))
+
+#print(get_plants(con))
+#insert_plant(con, 'qqq', 'www', 'eee')
+#delete_plant(con, 6)
+#update_plant_name(con, 7, 'IVAN!')
+#print(get_plants(con))
+
 
 
 print()
