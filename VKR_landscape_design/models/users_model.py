@@ -40,7 +40,6 @@ def delete_user(conn, user_user_id):
         ''', {"useriddelete": user_user_id})
     conn.commit()
 
-
 def update_user_login(conn, user_user_id, user_user_login):
     cur = conn.cursor()
     cur.execute('''
@@ -48,5 +47,77 @@ def update_user_login(conn, user_user_id, user_user_login):
         SET user_login = :userlogin 
         WHERE user_id = :useridupdate
         ''', {"useridupdate": user_user_id, "userlogin": user_user_login})
+    conn.commit()
+
+def update_user_password(conn, user_user_id, user_user_password):
+    cur = conn.cursor()
+    cur.execute('''
+        UPDATE users 
+        SET user_password = :userpassword 
+        WHERE user_id = :useridupdate
+        ''', {"useridupdate": user_user_id, "userpassword": user_user_password})
+    conn.commit()
+
+def update_user_email(conn, user_user_id, user_user_email):
+    cur = conn.cursor()
+    cur.execute('''
+        UPDATE users 
+        SET user_email = :useremail 
+        WHERE user_id = :useridupdate
+        ''', {"useridupdate": user_user_id, "useremail": user_user_email})
+    conn.commit()
+
+def update_user_surname(conn, user_user_id, user_user_surname):
+    cur = conn.cursor()
+    cur.execute('''
+        UPDATE users 
+        SET user_surname = :usersurname 
+        WHERE user_id = :useridupdate
+        ''', {"useridupdate": user_user_id, "usersurname": user_user_surname})
+    conn.commit()
+
+def update_user_name(conn, user_user_id, user_user_name):
+    cur = conn.cursor()
+    cur.execute('''
+        UPDATE users 
+        SET user_name = :username 
+        WHERE user_id = :useridupdate
+        ''', {"useridupdate": user_user_id, "username": user_user_name})
+    conn.commit()
+
+def update_user_fathername(conn, user_user_id, user_user_fathername):
+    cur = conn.cursor()
+    cur.execute('''
+        UPDATE users 
+        SET user_fathername = :userfathername 
+        WHERE user_id = :useridupdate
+        ''', {"useridupdate": user_user_id, "userfathername": user_user_fathername})
+    conn.commit()
+
+def update_user_isFemale(conn, user_user_id, user_user_isFemale):
+    cur = conn.cursor()
+    cur.execute('''
+        UPDATE users 
+        SET user_isFemale = :userisFemale 
+        WHERE user_id = :useridupdate
+        ''', {"useridupdate": user_user_id, "userisFemale": user_user_isFemale})
+    conn.commit()
+
+def update_user_picture(conn, user_user_id, user_user_picture):
+    cur = conn.cursor()
+    cur.execute('''
+        UPDATE users 
+        SET user_picture = :userpicture 
+        WHERE user_id = :useridupdate
+        ''', {"useridupdate": user_user_id, "userpicture": user_user_picture})
+    conn.commit()
+
+def update_user_isAdmin(conn, user_user_id, user_user_isAdmin):
+    cur = conn.cursor()
+    cur.execute('''
+        UPDATE users 
+        SET user_isAdmin = :userisAdmin 
+        WHERE user_id = :useridupdate
+        ''', {"useridupdate": user_user_id, "userisAdmin": user_user_isAdmin})
     conn.commit()
 
