@@ -74,3 +74,4 @@ def update_soil_picture(conn, user_soil_id, user_soil_picture):
         WHERE soil_id = :usersoilid
         ''', {"usersoilid": user_soil_id, "usersoilpicture": user_soil_picture})
     conn.commit()
+

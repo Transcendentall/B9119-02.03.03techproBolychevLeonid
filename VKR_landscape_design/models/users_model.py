@@ -26,11 +26,11 @@ def get_users_without_password_noadmins(conn):
     WHERE user_isAdmin = FALSE
     ''', conn)
 
-def insert_user(conn, user_user_login, user_user_password, user_user_email, user_user_isAdmin):
+def insert_user(conn, user_user_login, user_user_password, user_user_email):
     cur = conn.cursor()
     cur.execute('''
-        INSERT INTO users(user_login, user_password, user_email, user_isAdmin) VALUES (:userlogin, :userpassword, :useremail, :userisadmin)
-        ''', {"userlogin": user_user_login, "userpassword": user_user_password, "useremail": user_user_email, "userisadmin": user_user_isAdmin})
+        INSERT INTO users(user_login, user_password, user_email, user_isAdmin) VALUES (:userlogin, :userpassword, :useremail, FALSE)
+        ''', {"userlogin": user_user_login, "userpassword": user_user_password, "useremail": user_user_email})
     conn.commit()
 
 def delete_user(conn, user_user_id):

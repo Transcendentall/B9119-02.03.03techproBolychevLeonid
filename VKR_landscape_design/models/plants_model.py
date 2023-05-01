@@ -6,6 +6,20 @@ def get_plants(conn):
     FROM plants
     ''', conn)
 
+def get_plants_isFodder(conn):
+    return pandas.read_sql('''
+    SELECT * 
+    FROM plants
+    WHERE plant_isFodder = True
+    ''', conn)
+
+def get_plants_isNoFodder(conn):
+    return pandas.read_sql('''
+    SELECT * 
+    FROM plants
+    WHERE plant_isFodder = False
+    ''', conn)
+
 def insert_plant(conn, user_plant_name, user_plant_description, user_plant_isFodder):
     cur = conn.cursor()
     cur.execute('''
