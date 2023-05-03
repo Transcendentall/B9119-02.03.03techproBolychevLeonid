@@ -108,8 +108,8 @@ paths:
         \u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044F"
       parameters:
       - in: query
-        name: user_password
-        description: user_password
+        name: user_login
+        description: user_login
         schema:
           type: string
           example: test
@@ -122,8 +122,8 @@ paths:
           example: test
         required: true
       - in: query
-        name: user_login
-        description: user_login
+        name: user_password
+        description: user_password
         schema:
           type: string
           example: test
@@ -152,18 +152,18 @@ paths:
         \u0430 \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044F"
       parameters:
       - in: query
-        name: user_id
-        description: user_id
-        schema:
-          type: integer
-          example: 1
-        required: true
-      - in: query
         name: user_login
         description: user_login
         schema:
           type: string
           example: test
+        required: true
+      - in: query
+        name: user_id
+        description: user_id
+        schema:
+          type: integer
+          example: 1
         required: true
       responses:
         '200':
@@ -229,18 +229,18 @@ paths:
         \u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044F"
       parameters:
       - in: query
-        name: user_id
-        description: user_id
-        schema:
-          type: integer
-          example: 1
-        required: true
-      - in: query
         name: user_email
         description: user_email
         schema:
           type: string
           example: test
+        required: true
+      - in: query
+        name: user_id
+        description: user_id
+        schema:
+          type: integer
+          example: 1
         required: true
       responses:
         '200':
@@ -269,18 +269,18 @@ paths:
         \u044F"
       parameters:
       - in: query
-        name: user_id
-        description: user_id
-        schema:
-          type: integer
-          example: 1
-        required: true
-      - in: query
         name: user_surname
         description: user_surname
         schema:
           type: string
           example: test
+        required: true
+      - in: query
+        name: user_id
+        description: user_id
+        schema:
+          type: integer
+          example: 1
         required: true
       responses:
         '200':
@@ -307,18 +307,18 @@ paths:
         \ \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044F"
       parameters:
       - in: query
-        name: user_id
-        description: user_id
-        schema:
-          type: integer
-          example: 1
-        required: true
-      - in: query
         name: user_name
         description: user_name
         schema:
           type: string
           example: test
+        required: true
+      - in: query
+        name: user_id
+        description: user_id
+        schema:
+          type: integer
+          example: 1
         required: true
       responses:
         '200':
@@ -346,18 +346,18 @@ paths:
         \u043B\u044F"
       parameters:
       - in: query
-        name: user_id
-        description: user_id
-        schema:
-          type: integer
-          example: 1
-        required: true
-      - in: query
         name: user_fathername
         description: user_fathername
         schema:
           type: string
           example: test
+        required: true
+      - in: query
+        name: user_id
+        description: user_id
+        schema:
+          type: integer
+          example: 1
         required: true
       responses:
         '200':
@@ -384,18 +384,18 @@ paths:
         \u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044F"
       parameters:
       - in: query
+        name: user_isFemale
+        description: user_isFemale
+        schema:
+          type: boolean
+          example: false
+        required: true
+      - in: query
         name: user_id
         description: user_id
         schema:
           type: integer
           example: 1
-        required: true
-      - in: query
-        name: user_isFemale
-        description: user_isFemale
-        schema:
-          type: boolean
-          example: test
         required: true
       responses:
         '200':
@@ -475,7 +475,7 @@ paths:
         description: user_isAdmin
         schema:
           type: boolean
-          example: test
+          example: false
         required: true
       responses:
         '200':
@@ -555,15 +555,15 @@ paths:
           example: '1'
         required: true
       - in: query
-        name: territorie_coord_x
-        description: territorie_coord_x
+        name: territorie_coord_y
+        description: territorie_coord_y
         schema:
           type: number
           example: '1'
         required: true
       - in: query
-        name: territorie_coord_y
-        description: territorie_coord_y
+        name: territorie_coord_x
+        description: territorie_coord_x
         schema:
           type: number
           example: '1'
@@ -754,15 +754,15 @@ paths:
         \u0440\u0443\u043D\u0442\u0430"
       parameters:
       - in: query
-        name: ground_name
-        description: ground_name
+        name: ground_description
+        description: ground_description
         schema:
           type: string
           example: test
         required: true
       - in: query
-        name: ground_description
-        description: ground_description
+        name: ground_name
+        description: ground_name
         schema:
           type: string
           example: test
@@ -791,18 +791,18 @@ paths:
         \u043D\u0438\u044F \u0433\u0440\u0443\u043D\u0442\u0430"
       parameters:
       - in: query
-        name: ground_id
-        description: ground_id
-        schema:
-          type: integer
-          example: 1
-        required: true
-      - in: query
         name: ground_name
         description: ground_name
         schema:
           type: string
           example: test
+        required: true
+      - in: query
+        name: ground_id
+        description: ground_id
+        schema:
+          type: integer
+          example: 1
         required: true
       responses:
         '200':
@@ -828,18 +828,18 @@ paths:
         \u043D\u0438\u044F \u0433\u0440\u0443\u043D\u0442\u0430"
       parameters:
       - in: query
-        name: ground_id
-        description: ground_id
-        schema:
-          type: integer
-          example: 1
-        required: true
-      - in: query
         name: ground_description
         description: ground_description
         schema:
           type: string
           example: test
+        required: true
+      - in: query
+        name: ground_id
+        description: ground_id
+        schema:
+          type: integer
+          example: 1
         required: true
       responses:
         '200':
@@ -865,18 +865,18 @@ paths:
         \u043E\u0441\u0442\u0438 \u0433\u0440\u0443\u043D\u0442\u0430"
       parameters:
       - in: query
-        name: ground_id
-        description: ground_id
-        schema:
-          type: integer
-          example: 1
-        required: true
-      - in: query
         name: ground_density
         description: ground_density
         schema:
           type: string
           example: test
+        required: true
+      - in: query
+        name: ground_id
+        description: ground_id
+        schema:
+          type: integer
+          example: 1
         required: true
       responses:
         '200':
@@ -942,18 +942,18 @@ paths:
         \ \u041C\u043E\u043E\u0441\u0443"
       parameters:
       - in: query
-        name: ground_id
-        description: ground_id
-        schema:
-          type: integer
-          example: 1
-        required: true
-      - in: query
         name: ground_hardness_Moos
         description: ground_hardness_Moos
         schema:
           type: string
           example: test
+        required: true
+      - in: query
+        name: ground_id
+        description: ground_id
+        schema:
+          type: integer
+          example: 1
         required: true
       responses:
         '200':
@@ -981,18 +981,18 @@ paths:
         \u043D\u043A\u0438 \u0433\u0440\u0443\u043D\u0442\u0430"
       parameters:
       - in: query
-        name: ground_id
-        description: ground_id
-        schema:
-          type: integer
-          example: 1
-        required: true
-      - in: query
         name: ground_picture
         description: ground_picture
         schema:
           type: string
           example: test
+        required: true
+      - in: query
+        name: ground_id
+        description: ground_id
+        schema:
+          type: integer
+          example: 1
         required: true
       responses:
         '200':
@@ -1100,18 +1100,18 @@ paths:
         \u043D\u0438\u044F \u043F\u043E\u0447\u0432\u044B"
       parameters:
       - in: query
-        name: soil_id
-        description: soil_id
-        schema:
-          type: integer
-          example: 1
-        required: true
-      - in: query
         name: soil_name
         description: soil_name
         schema:
           type: string
           example: test
+        required: true
+      - in: query
+        name: soil_id
+        description: soil_id
+        schema:
+          type: integer
+          example: 1
         required: true
       responses:
         '200':
@@ -1213,18 +1213,18 @@ paths:
         \u0430 \u043F\u043E\u0447\u0432\u044B"
       parameters:
       - in: query
-        name: soil_id
-        description: soil_id
-        schema:
-          type: integer
-          example: 1
-        required: true
-      - in: query
         name: soil_minerals
         description: soil_minerals
         schema:
           type: string
           example: test
+        required: true
+      - in: query
+        name: soil_id
+        description: soil_id
+        schema:
+          type: integer
+          example: 1
         required: true
       responses:
         '200':
@@ -1288,18 +1288,18 @@ paths:
         \u043D\u043A\u0438 \u043F\u043E\u0447\u0432\u044B"
       parameters:
       - in: query
-        name: soil_id
-        description: soil_id
-        schema:
-          type: integer
-          example: 1
-        required: true
-      - in: query
         name: soil_picture
         description: soil_picture
         schema:
           type: string
           example: test
+        required: true
+      - in: query
+        name: soil_id
+        description: soil_id
+        schema:
+          type: integer
+          example: 1
         required: true
       responses:
         '200':
@@ -1407,18 +1407,18 @@ paths:
         \u043D\u0438\u044F \u0436\u0438\u0432\u043E\u0442\u043D\u043E\u0433\u043E"
       parameters:
       - in: query
-        name: animal_name
-        description: animal_name
-        schema:
-          type: string
-          example: test
-        required: true
-      - in: query
         name: animal_id
         description: animal_id
         schema:
           type: integer
           example: 1
+        required: true
+      - in: query
+        name: animal_name
+        description: animal_name
+        schema:
+          type: string
+          example: test
         required: true
       responses:
         '200':
@@ -1475,6 +1475,308 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AnimalErrorSchemaUpdateDescription'
+      tags:
+      - Animals
+  /api/animals/update/kingdom:
+    post:
+      summary: "\u0410\u043F\u0434\u0435\u0439\u0442 \u0446\u0430\u0440\u0441\u0442\
+        \u0432\u0430 \u0436\u0438\u0432\u043E\u0442\u043D\u043E\u0433\u043E"
+      parameters:
+      - in: query
+        name: animal_id
+        description: animal_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      - in: query
+        name: animal_kingdom
+        description: animal_kingdom
+        schema:
+          type: string
+          example: test
+        required: true
+      responses:
+        '200':
+          description: "\u0418\u0437\u043C\u0435\u043D\u044F\u0435\u0442 \u0446\u0430\
+            \u0440\u0441\u0442\u0432\u043E \u0436\u0438\u0432\u043E\u0442\u043D\u043E\
+            \u0433\u043E"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnimalOutputSchemaUpdateKingdom'
+        '400':
+          description: "\u041D\u0435 \u043F\u0435\u0440\u0435\u0434\u0430\u043D\u044B\
+            \ \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0435\
+            \ \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnimalErrorSchemaUpdateKingdom'
+      tags:
+      - Animals
+  /api/animals/update/philum:
+    post:
+      summary: "\u0410\u043F\u0434\u0435\u0439\u0442 \u0442\u0438\u043F\u0430 \u0436\
+        \u0438\u0432\u043E\u0442\u043D\u043E\u0433\u043E"
+      parameters:
+      - in: query
+        name: animal_id
+        description: animal_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      - in: query
+        name: animal_philum
+        description: animal_philum
+        schema:
+          type: string
+          example: test
+        required: true
+      responses:
+        '200':
+          description: "\u0418\u0437\u043C\u0435\u043D\u044F\u0435\u0442 \u0442\u0438\
+            \u043F \u0436\u0438\u0432\u043E\u0442\u043D\u043E\u0433\u043E"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnimalOutputSchemaUpdatePhilum'
+        '400':
+          description: "\u041D\u0435 \u043F\u0435\u0440\u0435\u0434\u0430\u043D\u044B\
+            \ \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0435\
+            \ \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnimalErrorSchemaUpdatePhilum'
+      tags:
+      - Animals
+  /api/animals/update/class:
+    post:
+      summary: "\u0410\u043F\u0434\u0435\u0439\u0442 \u043A\u043B\u0430\u0441\u0441\
+        \u0430 \u0436\u0438\u0432\u043E\u0442\u043D\u043E\u0433\u043E"
+      parameters:
+      - in: query
+        name: animal_class
+        description: animal_class
+        schema:
+          type: string
+          example: test
+        required: true
+      - in: query
+        name: animal_id
+        description: animal_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      responses:
+        '200':
+          description: "\u0418\u0437\u043C\u0435\u043D\u044F\u0435\u0442 \u043A\u043B\
+            \u0430\u0441\u0441 \u0436\u0438\u0432\u043E\u0442\u043D\u043E\u0433\u043E"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnimalOutputSchemaUpdateClass'
+        '400':
+          description: "\u041D\u0435 \u043F\u0435\u0440\u0435\u0434\u0430\u043D\u044B\
+            \ \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0435\
+            \ \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnimalErrorSchemaUpdateClass'
+      tags:
+      - Animals
+  /api/animals/update/order:
+    post:
+      summary: "\u0410\u043F\u0434\u0435\u0439\u0442 \u043F\u043E\u0440\u044F\u0434\
+        \u043A\u0430 \u0436\u0438\u0432\u043E\u0442\u043D\u043E\u0433\u043E"
+      parameters:
+      - in: query
+        name: animal_id
+        description: animal_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      - in: query
+        name: animal_order
+        description: animal_order
+        schema:
+          type: string
+          example: test
+        required: true
+      responses:
+        '200':
+          description: "\u0418\u0437\u043C\u0435\u043D\u044F\u0435\u0442 \u043F\u043E\
+            \u0440\u044F\u0434\u043E\u043A \u0436\u0438\u0432\u043E\u0442\u043D\u043E\
+            \u0433\u043E"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnimalOutputSchemaUpdateOrder'
+        '400':
+          description: "\u041D\u0435 \u043F\u0435\u0440\u0435\u0434\u0430\u043D\u044B\
+            \ \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0435\
+            \ \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnimalErrorSchemaUpdateOrder'
+      tags:
+      - Animals
+  /api/animals/update/family:
+    post:
+      summary: "\u0410\u043F\u0434\u0435\u0439\u0442 \u0441\u0435\u043C\u0435\u0439\
+        \u0441\u0442\u0432\u0430 \u0436\u0438\u0432\u043E\u0442\u043D\u043E\u0433\u043E"
+      parameters:
+      - in: query
+        name: animal_id
+        description: animal_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      - in: query
+        name: animal_family
+        description: animal_family
+        schema:
+          type: string
+          example: test
+        required: true
+      responses:
+        '200':
+          description: "\u0418\u0437\u043C\u0435\u043D\u044F\u0435\u0442 \u0441\u0435\
+            \u043C\u0435\u0439\u0441\u0442\u0432\u043E \u0436\u0438\u0432\u043E\u0442\
+            \u043D\u043E\u0433\u043E"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnimalOutputSchemaUpdateFamily'
+        '400':
+          description: "\u041D\u0435 \u043F\u0435\u0440\u0435\u0434\u0430\u043D\u044B\
+            \ \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0435\
+            \ \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnimalErrorSchemaUpdateFamily'
+      tags:
+      - Animals
+  /api/animals/update/genus:
+    post:
+      summary: "\u0410\u043F\u0434\u0435\u0439\u0442 \u0440\u043E\u0434\u0430 \u0436\
+        \u0438\u0432\u043E\u0442\u043D\u043E\u0433\u043E"
+      parameters:
+      - in: query
+        name: animal_id
+        description: animal_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      - in: query
+        name: animal_genus
+        description: animal_genus
+        schema:
+          type: string
+          example: test
+        required: true
+      responses:
+        '200':
+          description: "\u0418\u0437\u043C\u0435\u043D\u044F\u0435\u0442 \u0440\u043E\
+            \u0434 \u0436\u0438\u0432\u043E\u0442\u043D\u043E\u0433\u043E"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnimalOutputSchemaUpdateGenus'
+        '400':
+          description: "\u041D\u0435 \u043F\u0435\u0440\u0435\u0434\u0430\u043D\u044B\
+            \ \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0435\
+            \ \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnimalErrorSchemaUpdateGenus'
+      tags:
+      - Animals
+  /api/animals/update/species:
+    post:
+      summary: "\u0410\u043F\u0434\u0435\u0439\u0442 \u0432\u0438\u0434\u0430 \u0436\
+        \u0438\u0432\u043E\u0442\u043D\u043E\u0433\u043E"
+      parameters:
+      - in: query
+        name: animal_id
+        description: animal_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      - in: query
+        name: animal_species
+        description: animal_species
+        schema:
+          type: string
+          example: test
+        required: true
+      responses:
+        '200':
+          description: "\u0418\u0437\u043C\u0435\u043D\u044F\u0435\u0442 \u0432\u0438\
+            \u0434\u043E\u0432\u0443\u044E \u043F\u0440\u0438\u043D\u0430\u0434\u043B\
+            \u0435\u0436\u043D\u043E\u0441\u0442\u044C \u0436\u0438\u0432\u043E\u0442\
+            \u043D\u043E\u0433\u043E"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnimalOutputSchemaUpdateSpecies'
+        '400':
+          description: "\u041D\u0435 \u043F\u0435\u0440\u0435\u0434\u0430\u043D\u044B\
+            \ \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0435\
+            \ \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnimalErrorSchemaUpdateSpecies'
+      tags:
+      - Animals
+  /api/animals/update/picture:
+    post:
+      summary: "\u0410\u043F\u0434\u0435\u0439\u0442 \u043A\u0430\u0440\u0442\u0438\
+        \u043D\u043A\u0438 \u0436\u0438\u0432\u043E\u0442\u043D\u043E\u0433\u043E"
+      parameters:
+      - in: query
+        name: animal_id
+        description: animal_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      - in: query
+        name: animal_picture
+        description: animal_picture
+        schema:
+          type: string
+          example: test
+        required: true
+      responses:
+        '200':
+          description: "\u0418\u0437\u043C\u0435\u043D\u044F\u0435\u0442 \u043A\u0430\
+            \u0440\u0442\u0438\u043D\u043A\u0443 \u0436\u0438\u0432\u043E\u0442\u043D\
+            \u043E\u0433\u043E"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnimalOutputSchemaUpdatePicture'
+        '400':
+          description: "\u041D\u0435 \u043F\u0435\u0440\u0435\u0434\u0430\u043D\u044B\
+            \ \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0435\
+            \ \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnimalErrorSchemaUpdatePicture'
       tags:
       - Animals
   /api/plants:
@@ -1566,11 +1868,11 @@ paths:
         \u0430\u0441\u0442\u0435\u043D\u0438\u044F"
       parameters:
       - in: query
-        name: plant_name
-        description: plant_name
+        name: plant_isFodder
+        description: plant_isFodder
         schema:
-          type: string
-          example: test
+          type: boolean
+          example: true
         required: true
       - in: query
         name: plant_description
@@ -1580,11 +1882,11 @@ paths:
           example: test
         required: true
       - in: query
-        name: plant_isFodder
-        description: plant_isFodder
+        name: plant_name
+        description: plant_name
         schema:
-          type: boolean
-          example: 'True'
+          type: string
+          example: test
         required: true
       responses:
         '200':
@@ -1610,18 +1912,18 @@ paths:
         \u043D\u0438\u044F \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u044F"
       parameters:
       - in: query
-        name: plant_name
-        description: plant_name
-        schema:
-          type: string
-          example: test
-        required: true
-      - in: query
         name: plant_id
         description: plant_id
         schema:
           type: integer
           example: 1
+        required: true
+      - in: query
+        name: plant_name
+        description: plant_name
+        schema:
+          type: string
+          example: test
         required: true
       responses:
         '200':
@@ -1648,18 +1950,18 @@ paths:
         \u043D\u0438\u044F \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u044F"
       parameters:
       - in: query
-        name: plant_description
-        description: plant_description
-        schema:
-          type: string
-          example: test
-        required: true
-      - in: query
         name: plant_id
         description: plant_id
         schema:
           type: integer
           example: 1
+        required: true
+      - in: query
+        name: plant_description
+        description: plant_description
+        schema:
+          type: string
+          example: test
         required: true
       responses:
         '200':
@@ -1678,6 +1980,583 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PlantErrorSchemaUpdateDescription'
+      tags:
+      - Plants
+  /api/plants/update/isFodder:
+    post:
+      summary: "\u0410\u043F\u0434\u0435\u0439\u0442 \u043A\u043E\u0440\u043C\u043E\
+        \u0432\u043E\u0441\u0442\u0438 \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u044F"
+      parameters:
+      - in: query
+        name: plant_id
+        description: plant_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      - in: query
+        name: plant_isFodder
+        description: plant_isFodder
+        schema:
+          type: boolean
+          example: true
+        required: true
+      responses:
+        '200':
+          description: "\u0418\u0437\u043C\u0435\u043D\u044F\u0435\u0442, \u044F\u0432\
+            \u043B\u044F\u0435\u0442\u0441\u044F \u043B\u0438 \u0440\u0430\u0441\u0442\
+            \u0435\u043D\u0438\u0435 \u043A\u043E\u0440\u043C\u043E\u0432\u044B\u043C"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlantOutputSchemaUpdateIsFodder'
+        '400':
+          description: "\u041D\u0435 \u043F\u0435\u0440\u0435\u0434\u0430\u043D\u044B\
+            \ \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0435\
+            \ \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlantErrorSchemaUpdateIsFodder'
+      tags:
+      - Plants
+  /api/plants/update/isExactingToTheLight:
+    post:
+      summary: "\u0410\u043F\u0434\u0435\u0439\u0442 \u0442\u0440\u0435\u0431\u043E\
+        \u0432\u0430\u0442\u0435\u043B\u044C\u043D\u043E\u0441\u0442\u0438 \u043A\
+        \ \u0441\u0432\u0435\u0442\u0443 \u0440\u0430\u0441\u0442\u0435\u043D\u0438\
+        \u044F"
+      parameters:
+      - in: query
+        name: plant_id
+        description: plant_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      - in: query
+        name: plant_isExactingToTheLight
+        description: plant_isExactingToTheLight
+        schema:
+          type: boolean
+          example: true
+        required: true
+      responses:
+        '200':
+          description: "\u0418\u0437\u043C\u0435\u043D\u044F\u0435\u0442 \u0442\u0440\
+            \u0435\u0431\u043E\u0432\u0430\u0442\u0435\u043B\u044C\u043D\u043E\u0441\
+            \u0442\u044C \u043A \u0441\u0432\u0435\u0442\u0443 \u0440\u0430\u0441\u0442\
+            \u0435\u043D\u0438\u044F"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlantOutputSchemaUpdateIsExactingToTheLight'
+        '400':
+          description: "\u041D\u0435 \u043F\u0435\u0440\u0435\u0434\u0430\u043D\u044B\
+            \ \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0435\
+            \ \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlantErrorSchemaUpdateIsExactingToTheLight'
+      tags:
+      - Plants
+  /api/plants/update/isOneYear:
+    post:
+      summary: "\u0410\u043F\u0434\u0435\u0439\u0442 \u043E\u0434\u043D\u043E\u043B\
+        \u0435\u0442\u043D\u0435\u0441\u0442\u0438 \u0440\u0430\u0441\u0442\u0435\u043D\
+        \u0438\u044F"
+      parameters:
+      - in: query
+        name: plant_id
+        description: plant_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      - in: query
+        name: plant_isOneYear
+        description: plant_isOneYear
+        schema:
+          type: boolean
+          example: true
+        required: true
+      responses:
+        '200':
+          description: "\u0418\u0437\u043C\u0435\u043D\u044F\u0435\u0442, \u044F\u0432\
+            \u043B\u044F\u0435\u0442\u0441\u044F \u043B\u0438 \u0440\u0430\u0441\u0442\
+            \u0435\u043D\u0438\u0435 \u043E\u0434\u043D\u043E\u043B\u0435\u0442\u043D\
+            \u0438\u043C"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlantOutputSchemaUpdateIsOneYear'
+        '400':
+          description: "\u041D\u0435 \u043F\u0435\u0440\u0435\u0434\u0430\u043D\u044B\
+            \ \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0435\
+            \ \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlantErrorSchemaUpdateIsOneYear'
+      tags:
+      - Plants
+  /api/plants/update/isTwoYears:
+    post:
+      summary: "\u0410\u043F\u0434\u0435\u0439\u0442 \u0434\u0432\u0443\u0445\u043B\
+        \u0435\u0442\u043D\u0435\u0441\u0442\u0438 \u0440\u0430\u0441\u0442\u0435\u043D\
+        \u0438\u044F"
+      parameters:
+      - in: query
+        name: plant_id
+        description: plant_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      - in: query
+        name: plant_isTwoYears
+        description: plant_isTwoYears
+        schema:
+          type: boolean
+          example: true
+        required: true
+      responses:
+        '200':
+          description: "\u0418\u0437\u043C\u0435\u043D\u044F\u0435\u0442, \u044F\u0432\
+            \u043B\u044F\u0435\u0442\u0441\u044F \u043B\u0438 \u0440\u0430\u0441\u0442\
+            \u0435\u043D\u0438\u0435 \u0434\u0432\u0443\u0445\u043B\u0435\u0442\u043D\
+            \u0438\u043C"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlantOutputSchemaUpdateIsTwoYears'
+        '400':
+          description: "\u041D\u0435 \u043F\u0435\u0440\u0435\u0434\u0430\u043D\u044B\
+            \ \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0435\
+            \ \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlantErrorSchemaUpdateIsTwoYears'
+      tags:
+      - Plants
+  /api/plants/update/isManyYears:
+    post:
+      summary: "\u0410\u043F\u0434\u0435\u0439\u0442 \u043C\u043D\u043E\u0433\u043E\
+        \u043B\u0435\u0442\u043D\u0435\u0441\u0442\u0438 \u0440\u0430\u0441\u0442\u0435\
+        \u043D\u0438\u044F"
+      parameters:
+      - in: query
+        name: plant_id
+        description: plant_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      - in: query
+        name: plant_isManyYears
+        description: plant_isManyYears
+        schema:
+          type: boolean
+          example: true
+        required: true
+      responses:
+        '200':
+          description: "\u0418\u0437\u043C\u0435\u043D\u044F\u0435\u0442, \u044F\u0432\
+            \u043B\u044F\u0435\u0442\u0441\u044F \u043B\u0438 \u0440\u0430\u0441\u0442\
+            \u0435\u043D\u0438\u0435 \u043C\u043D\u043E\u0433\u043E\u043B\u0435\u0442\
+            \u043D\u0438\u043C"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlantOutputSchemaUpdateIsManyYears'
+        '400':
+          description: "\u041D\u0435 \u043F\u0435\u0440\u0435\u0434\u0430\u043D\u044B\
+            \ \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0435\
+            \ \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlantErrorSchemaUpdateIsManyYears'
+      tags:
+      - Plants
+  /api/plants/update/climat:
+    post:
+      summary: "\u0410\u043F\u0434\u0435\u0439\u0442 \u043D\u0430\u0437\u0432\u0430\
+        \u043D\u0438\u044F \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u044F"
+      parameters:
+      - in: query
+        name: plant_id
+        description: plant_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      - in: query
+        name: plant_climat
+        description: plant_climat
+        schema:
+          type: string
+          example: test
+        required: true
+      responses:
+        '200':
+          description: "\u0418\u0437\u043C\u0435\u043D\u044F\u0435\u0442 \u043D\u0430\
+            \u0437\u0432\u0430\u043D\u0438\u0435 \u0440\u0430\u0441\u0442\u0435\u043D\
+            \u0438\u044F"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlantOutputSchemaUpdateClimat'
+        '400':
+          description: "\u041D\u0435 \u043F\u0435\u0440\u0435\u0434\u0430\u043D\u044B\
+            \ \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0435\
+            \ \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlantErrorSchemaUpdateClimat'
+      tags:
+      - Plants
+  /api/plants/update/RequiredMineralsAndTraceElements:
+    post:
+      summary: "\u0410\u043F\u0434\u0435\u0439\u0442 \u043D\u0430\u0437\u0432\u0430\
+        \u043D\u0438\u044F \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u044F"
+      parameters:
+      - in: query
+        name: plant_id
+        description: plant_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      - in: query
+        name: plant_required_minerals_and_trace_elements
+        description: plant_required_minerals_and_trace_elements
+        schema:
+          type: string
+          example: test
+        required: true
+      responses:
+        '200':
+          description: "\u0418\u0437\u043C\u0435\u043D\u044F\u0435\u0442 \u043D\u0430\
+            \u0437\u0432\u0430\u043D\u0438\u0435 \u0440\u0430\u0441\u0442\u0435\u043D\
+            \u0438\u044F"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlantOutputSchemaUpdateRequiredMineralsAndTraceElements'
+        '400':
+          description: "\u041D\u0435 \u043F\u0435\u0440\u0435\u0434\u0430\u043D\u044B\
+            \ \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0435\
+            \ \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlantErrorSchemaUpdateRequiredMineralsAndTraceElements'
+      tags:
+      - Plants
+  /api/plants/update/kingdom:
+    post:
+      summary: "\u0410\u043F\u0434\u0435\u0439\u0442 \u0446\u0430\u0440\u0441\u0442\
+        \u0432\u0430 \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u044F"
+      parameters:
+      - in: query
+        name: plant_id
+        description: plant_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      - in: query
+        name: plant_kingdom
+        description: plant_kingdom
+        schema:
+          type: string
+          example: test
+        required: true
+      responses:
+        '200':
+          description: "\u0418\u0437\u043C\u0435\u043D\u044F\u0435\u0442 \u0446\u0430\
+            \u0440\u0441\u0442\u0432\u043E \u0440\u0430\u0441\u0442\u0435\u043D\u0438\
+            \u044F"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlantOutputSchemaUpdateKingdom'
+        '400':
+          description: "\u041D\u0435 \u043F\u0435\u0440\u0435\u0434\u0430\u043D\u044B\
+            \ \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0435\
+            \ \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlantErrorSchemaUpdateKingdom'
+      tags:
+      - Plants
+  /api/plants/update/philum:
+    post:
+      summary: "\u0410\u043F\u0434\u0435\u0439\u0442 \u0442\u0438\u043F\u0430 \u0440\
+        \u0430\u0441\u0442\u0435\u043D\u0438\u044F"
+      parameters:
+      - in: query
+        name: plant_id
+        description: plant_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      - in: query
+        name: plant_philum
+        description: plant_philum
+        schema:
+          type: string
+          example: test
+        required: true
+      responses:
+        '200':
+          description: "\u0418\u0437\u043C\u0435\u043D\u044F\u0435\u0442 \u0442\u0438\
+            \u043F \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u044F"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlantOutputSchemaUpdatePhilum'
+        '400':
+          description: "\u041D\u0435 \u043F\u0435\u0440\u0435\u0434\u0430\u043D\u044B\
+            \ \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0435\
+            \ \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlantErrorSchemaUpdatePhilum'
+      tags:
+      - Plants
+  /api/plants/update/class:
+    post:
+      summary: "\u0410\u043F\u0434\u0435\u0439\u0442 \u043A\u043B\u0430\u0441\u0441\
+        \u0430 \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u044F"
+      parameters:
+      - in: query
+        name: plant_id
+        description: plant_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      - in: query
+        name: plant_class
+        description: plant_class
+        schema:
+          type: string
+          example: test
+        required: true
+      responses:
+        '200':
+          description: "\u0418\u0437\u043C\u0435\u043D\u044F\u0435\u0442 \u043A\u043B\
+            \u0430\u0441\u0441 \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u044F"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlantOutputSchemaUpdateClass'
+        '400':
+          description: "\u041D\u0435 \u043F\u0435\u0440\u0435\u0434\u0430\u043D\u044B\
+            \ \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0435\
+            \ \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlantErrorSchemaUpdateClass'
+      tags:
+      - Plants
+  /api/plants/update/order:
+    post:
+      summary: "\u0410\u043F\u0434\u0435\u0439\u0442 \u043F\u043E\u0440\u044F\u0434\
+        \u043A\u0430 \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u044F"
+      parameters:
+      - in: query
+        name: plant_id
+        description: plant_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      - in: query
+        name: plant_order
+        description: plant_order
+        schema:
+          type: string
+          example: test
+        required: true
+      responses:
+        '200':
+          description: "\u0418\u0437\u043C\u0435\u043D\u044F\u0435\u0442 \u043F\u043E\
+            \u0440\u044F\u0434\u043E\u043A \u0440\u0430\u0441\u0442\u0435\u043D\u0438\
+            \u044F"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlantOutputSchemaUpdateOrder'
+        '400':
+          description: "\u041D\u0435 \u043F\u0435\u0440\u0435\u0434\u0430\u043D\u044B\
+            \ \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0435\
+            \ \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlantErrorSchemaUpdateOrder'
+      tags:
+      - Plants
+  /api/plants/update/family:
+    post:
+      summary: "\u0410\u043F\u0434\u0435\u0439\u0442 \u0441\u0435\u043C\u0435\u0439\
+        \u0441\u0442\u0432\u0430 \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u044F"
+      parameters:
+      - in: query
+        name: plant_id
+        description: plant_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      - in: query
+        name: plant_family
+        description: plant_family
+        schema:
+          type: string
+          example: test
+        required: true
+      responses:
+        '200':
+          description: "\u0418\u0437\u043C\u0435\u043D\u044F\u0435\u0442 \u0441\u0435\
+            \u043C\u0435\u0439\u0441\u0442\u0432\u043E \u0440\u0430\u0441\u0442\u0435\
+            \u043D\u0438\u044F"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlantOutputSchemaUpdateFamily'
+        '400':
+          description: "\u041D\u0435 \u043F\u0435\u0440\u0435\u0434\u0430\u043D\u044B\
+            \ \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0435\
+            \ \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlantErrorSchemaUpdateFamily'
+      tags:
+      - Plants
+  /api/plants/update/genus:
+    post:
+      summary: "\u0410\u043F\u0434\u0435\u0439\u0442 \u0440\u043E\u0434\u0430 \u0440\
+        \u0430\u0441\u0442\u0435\u043D\u0438\u044F"
+      parameters:
+      - in: query
+        name: plant_id
+        description: plant_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      - in: query
+        name: plant_genus
+        description: plant_genus
+        schema:
+          type: string
+          example: test
+        required: true
+      responses:
+        '200':
+          description: "\u0418\u0437\u043C\u0435\u043D\u044F\u0435\u0442 \u0440\u043E\
+            \u0434 \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u044F"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlantOutputSchemaUpdateGenus'
+        '400':
+          description: "\u041D\u0435 \u043F\u0435\u0440\u0435\u0434\u0430\u043D\u044B\
+            \ \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0435\
+            \ \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlantErrorSchemaUpdateGenus'
+      tags:
+      - Plants
+  /api/plants/update/species:
+    post:
+      summary: "\u0410\u043F\u0434\u0435\u0439\u0442 \u0432\u0438\u0434\u0430 \u0440\
+        \u0430\u0441\u0442\u0435\u043D\u0438\u044F"
+      parameters:
+      - in: query
+        name: plant_id
+        description: plant_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      - in: query
+        name: plant_species
+        description: plant_species
+        schema:
+          type: string
+          example: test
+        required: true
+      responses:
+        '200':
+          description: "\u0418\u0437\u043C\u0435\u043D\u044F\u0435\u0442 \u0432\u0438\
+            \u0434\u043E\u0432\u0443\u044E \u043F\u0440\u0438\u043D\u0430\u0434\u043B\
+            \u0435\u0436\u043D\u043E\u0441\u0442\u044C \u0440\u0430\u0441\u0442\u0435\
+            \u043D\u0438\u044F"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlantOutputSchemaUpdateSpecies'
+        '400':
+          description: "\u041D\u0435 \u043F\u0435\u0440\u0435\u0434\u0430\u043D\u044B\
+            \ \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0435\
+            \ \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlantErrorSchemaUpdateSpecies'
+      tags:
+      - Plants
+  /api/plants/update/picture:
+    post:
+      summary: "\u0410\u043F\u0434\u0435\u0439\u0442 \u043A\u0430\u0440\u0442\u0438\
+        \u043D\u043A\u0438 \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u044F"
+      parameters:
+      - in: query
+        name: plant_id
+        description: plant_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      - in: query
+        name: plant_picture
+        description: plant_picture
+        schema:
+          type: string
+          example: test
+        required: true
+      responses:
+        '200':
+          description: "\u0418\u0437\u043C\u0435\u043D\u044F\u0435\u0442 \u043A\u0430\
+            \u0440\u0442\u0438\u043D\u043A\u0443 \u0440\u0430\u0441\u0442\u0435\u043D\
+            \u0438\u044F"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlantOutputSchemaUpdatePicture'
+        '400':
+          description: "\u041D\u0435 \u043F\u0435\u0440\u0435\u0434\u0430\u043D\u044B\
+            \ \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0435\
+            \ \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlantErrorSchemaUpdatePicture'
       tags:
       - Plants
   /swagger: {}
@@ -2443,6 +3322,158 @@ components:
           example: Invalid input parameter number
       required:
       - error
+    AnimalOutputSchemaUpdateKingdom:
+      type: object
+      properties:
+        result:
+          type: integer
+          description: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+          example: 25
+      required:
+      - result
+    AnimalErrorSchemaUpdateKingdom:
+      type: object
+      properties:
+        error:
+          type: string
+          description: "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u043E\
+            \u0431 \u043E\u0448\u0438\u0431\u043A\u0435"
+          example: Invalid input parameter number
+      required:
+      - error
+    AnimalOutputSchemaUpdatePhilum:
+      type: object
+      properties:
+        result:
+          type: integer
+          description: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+          example: 25
+      required:
+      - result
+    AnimalErrorSchemaUpdatePhilum:
+      type: object
+      properties:
+        error:
+          type: string
+          description: "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u043E\
+            \u0431 \u043E\u0448\u0438\u0431\u043A\u0435"
+          example: Invalid input parameter number
+      required:
+      - error
+    AnimalOutputSchemaUpdateClass:
+      type: object
+      properties:
+        result:
+          type: integer
+          description: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+          example: 25
+      required:
+      - result
+    AnimalErrorSchemaUpdateClass:
+      type: object
+      properties:
+        error:
+          type: string
+          description: "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u043E\
+            \u0431 \u043E\u0448\u0438\u0431\u043A\u0435"
+          example: Invalid input parameter number
+      required:
+      - error
+    AnimalOutputSchemaUpdateOrder:
+      type: object
+      properties:
+        result:
+          type: integer
+          description: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+          example: 25
+      required:
+      - result
+    AnimalErrorSchemaUpdateOrder:
+      type: object
+      properties:
+        error:
+          type: string
+          description: "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u043E\
+            \u0431 \u043E\u0448\u0438\u0431\u043A\u0435"
+          example: Invalid input parameter number
+      required:
+      - error
+    AnimalOutputSchemaUpdateFamily:
+      type: object
+      properties:
+        result:
+          type: integer
+          description: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+          example: 25
+      required:
+      - result
+    AnimalErrorSchemaUpdateFamily:
+      type: object
+      properties:
+        error:
+          type: string
+          description: "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u043E\
+            \u0431 \u043E\u0448\u0438\u0431\u043A\u0435"
+          example: Invalid input parameter number
+      required:
+      - error
+    AnimalOutputSchemaUpdateGenus:
+      type: object
+      properties:
+        result:
+          type: integer
+          description: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+          example: 25
+      required:
+      - result
+    AnimalErrorSchemaUpdateGenus:
+      type: object
+      properties:
+        error:
+          type: string
+          description: "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u043E\
+            \u0431 \u043E\u0448\u0438\u0431\u043A\u0435"
+          example: Invalid input parameter number
+      required:
+      - error
+    AnimalOutputSchemaUpdateSpecies:
+      type: object
+      properties:
+        result:
+          type: integer
+          description: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+          example: 25
+      required:
+      - result
+    AnimalErrorSchemaUpdateSpecies:
+      type: object
+      properties:
+        error:
+          type: string
+          description: "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u043E\
+            \u0431 \u043E\u0448\u0438\u0431\u043A\u0435"
+          example: Invalid input parameter number
+      required:
+      - error
+    AnimalOutputSchemaUpdatePicture:
+      type: object
+      properties:
+        result:
+          type: integer
+          description: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+          example: 25
+      required:
+      - result
+    AnimalErrorSchemaUpdatePicture:
+      type: object
+      properties:
+        error:
+          type: string
+          description: "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u043E\
+            \u0431 \u043E\u0448\u0438\u0431\u043A\u0435"
+          example: Invalid input parameter number
+      required:
+      - error
     PlantOutput:
       type: object
       properties:
@@ -2519,6 +3550,291 @@ components:
       required:
       - result
     PlantErrorSchemaUpdateDescription:
+      type: object
+      properties:
+        error:
+          type: string
+          description: "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u043E\
+            \u0431 \u043E\u0448\u0438\u0431\u043A\u0435"
+          example: Invalid input parameter number
+      required:
+      - error
+    PlantOutputSchemaUpdateIsFodder:
+      type: object
+      properties:
+        result:
+          type: integer
+          description: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+          example: 25
+      required:
+      - result
+    PlantErrorSchemaUpdateIsFodder:
+      type: object
+      properties:
+        error:
+          type: string
+          description: "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u043E\
+            \u0431 \u043E\u0448\u0438\u0431\u043A\u0435"
+          example: Invalid input parameter number
+      required:
+      - error
+    PlantOutputSchemaUpdateIsExactingToTheLight:
+      type: object
+      properties:
+        result:
+          type: integer
+          description: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+          example: 25
+      required:
+      - result
+    PlantErrorSchemaUpdateIsExactingToTheLight:
+      type: object
+      properties:
+        error:
+          type: string
+          description: "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u043E\
+            \u0431 \u043E\u0448\u0438\u0431\u043A\u0435"
+          example: Invalid input parameter number
+      required:
+      - error
+    PlantOutputSchemaUpdateIsOneYear:
+      type: object
+      properties:
+        result:
+          type: integer
+          description: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+          example: 25
+      required:
+      - result
+    PlantErrorSchemaUpdateIsOneYear:
+      type: object
+      properties:
+        error:
+          type: string
+          description: "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u043E\
+            \u0431 \u043E\u0448\u0438\u0431\u043A\u0435"
+          example: Invalid input parameter number
+      required:
+      - error
+    PlantOutputSchemaUpdateIsTwoYears:
+      type: object
+      properties:
+        result:
+          type: integer
+          description: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+          example: 25
+      required:
+      - result
+    PlantErrorSchemaUpdateIsTwoYears:
+      type: object
+      properties:
+        error:
+          type: string
+          description: "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u043E\
+            \u0431 \u043E\u0448\u0438\u0431\u043A\u0435"
+          example: Invalid input parameter number
+      required:
+      - error
+    PlantOutputSchemaUpdateIsManyYears:
+      type: object
+      properties:
+        result:
+          type: integer
+          description: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+          example: 25
+      required:
+      - result
+    PlantErrorSchemaUpdateIsManyYears:
+      type: object
+      properties:
+        error:
+          type: string
+          description: "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u043E\
+            \u0431 \u043E\u0448\u0438\u0431\u043A\u0435"
+          example: Invalid input parameter number
+      required:
+      - error
+    PlantOutputSchemaUpdateClimat:
+      type: object
+      properties:
+        result:
+          type: integer
+          description: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+          example: 25
+      required:
+      - result
+    PlantErrorSchemaUpdateClimat:
+      type: object
+      properties:
+        error:
+          type: string
+          description: "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u043E\
+            \u0431 \u043E\u0448\u0438\u0431\u043A\u0435"
+          example: Invalid input parameter number
+      required:
+      - error
+    PlantOutputSchemaUpdateRequiredMineralsAndTraceElements:
+      type: object
+      properties:
+        result:
+          type: integer
+          description: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+          example: 25
+      required:
+      - result
+    PlantErrorSchemaUpdateRequiredMineralsAndTraceElements:
+      type: object
+      properties:
+        error:
+          type: string
+          description: "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u043E\
+            \u0431 \u043E\u0448\u0438\u0431\u043A\u0435"
+          example: Invalid input parameter number
+      required:
+      - error
+    PlantOutputSchemaUpdateKingdom:
+      type: object
+      properties:
+        result:
+          type: integer
+          description: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+          example: 25
+      required:
+      - result
+    PlantErrorSchemaUpdateKingdom:
+      type: object
+      properties:
+        error:
+          type: string
+          description: "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u043E\
+            \u0431 \u043E\u0448\u0438\u0431\u043A\u0435"
+          example: Invalid input parameter number
+      required:
+      - error
+    PlantOutputSchemaUpdatePhilum:
+      type: object
+      properties:
+        result:
+          type: integer
+          description: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+          example: 25
+      required:
+      - result
+    PlantErrorSchemaUpdatePhilum:
+      type: object
+      properties:
+        error:
+          type: string
+          description: "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u043E\
+            \u0431 \u043E\u0448\u0438\u0431\u043A\u0435"
+          example: Invalid input parameter number
+      required:
+      - error
+    PlantOutputSchemaUpdateClass:
+      type: object
+      properties:
+        result:
+          type: integer
+          description: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+          example: 25
+      required:
+      - result
+    PlantErrorSchemaUpdateClass:
+      type: object
+      properties:
+        error:
+          type: string
+          description: "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u043E\
+            \u0431 \u043E\u0448\u0438\u0431\u043A\u0435"
+          example: Invalid input parameter number
+      required:
+      - error
+    PlantOutputSchemaUpdateOrder:
+      type: object
+      properties:
+        result:
+          type: integer
+          description: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+          example: 25
+      required:
+      - result
+    PlantErrorSchemaUpdateOrder:
+      type: object
+      properties:
+        error:
+          type: string
+          description: "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u043E\
+            \u0431 \u043E\u0448\u0438\u0431\u043A\u0435"
+          example: Invalid input parameter number
+      required:
+      - error
+    PlantOutputSchemaUpdateFamily:
+      type: object
+      properties:
+        result:
+          type: integer
+          description: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+          example: 25
+      required:
+      - result
+    PlantErrorSchemaUpdateFamily:
+      type: object
+      properties:
+        error:
+          type: string
+          description: "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u043E\
+            \u0431 \u043E\u0448\u0438\u0431\u043A\u0435"
+          example: Invalid input parameter number
+      required:
+      - error
+    PlantOutputSchemaUpdateGenus:
+      type: object
+      properties:
+        result:
+          type: integer
+          description: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+          example: 25
+      required:
+      - result
+    PlantErrorSchemaUpdateGenus:
+      type: object
+      properties:
+        error:
+          type: string
+          description: "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u043E\
+            \u0431 \u043E\u0448\u0438\u0431\u043A\u0435"
+          example: Invalid input parameter number
+      required:
+      - error
+    PlantOutputSchemaUpdateSpecies:
+      type: object
+      properties:
+        result:
+          type: integer
+          description: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+          example: 25
+      required:
+      - result
+    PlantErrorSchemaUpdateSpecies:
+      type: object
+      properties:
+        error:
+          type: string
+          description: "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u043E\
+            \u0431 \u043E\u0448\u0438\u0431\u043A\u0435"
+          example: Invalid input parameter number
+      required:
+      - error
+    PlantOutputSchemaUpdatePicture:
+      type: object
+      properties:
+        result:
+          type: integer
+          description: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+          example: 25
+      required:
+      - result
+    PlantErrorSchemaUpdatePicture:
       type: object
       properties:
         error:

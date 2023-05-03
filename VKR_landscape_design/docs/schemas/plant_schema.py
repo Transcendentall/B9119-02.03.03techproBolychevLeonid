@@ -16,7 +16,7 @@ class PlantErrorSchemaDelete(Schema):
 class PlantInputSchemaInsert(Schema):
     plant_name = fields.Str(description="plant_name", required=True, example='test')
     plant_description = fields.Str(description="plant_description", required=True, example='test')
-    plant_isFodder = fields.Bool(description="plant_isFodder", required=True, example='True')
+    plant_isFodder = fields.Bool(description="plant_isFodder", required=True, example=True)
 class PlantOutputSchemaInsert(Schema):
     result = fields.Int(description="Результат", required=True, example=25)
 class PlantErrorSchemaInsert(Schema):
@@ -42,7 +42,7 @@ class PlantErrorSchemaUpdateDescription(Schema):
 
 class PlantInputSchemaUpdateIsFodder(Schema):
     plant_id = fields.Int(description="plant_id", required=True, example=1)
-    plant_isFodder = fields.Bool(description="plant_isFodder", required=True, example='True')
+    plant_isFodder = fields.Bool(description="plant_isFodder", required=True, example=True)
 class PlantOutputSchemaUpdateIsFodder(Schema):
     result = fields.Int(description="Результат", required=True, example=25)
 class PlantErrorSchemaUpdateIsFodder(Schema):
@@ -50,7 +50,7 @@ class PlantErrorSchemaUpdateIsFodder(Schema):
 
 class PlantInputSchemaUpdateIsExactingToTheLight(Schema):
     plant_id = fields.Int(description="plant_id", required=True, example=1)
-    plant_isExactingToTheLight = fields.Bool(description="plant_isExactingToTheLight", required=True, example='True')
+    plant_isExactingToTheLight = fields.Bool(description="plant_isExactingToTheLight", required=True, example=True)
 class PlantOutputSchemaUpdateIsExactingToTheLight(Schema):
     result = fields.Int(description="Результат", required=True, example=25)
 class PlantErrorSchemaUpdateIsExactingToTheLight(Schema):
@@ -58,7 +58,7 @@ class PlantErrorSchemaUpdateIsExactingToTheLight(Schema):
 
 class PlantInputSchemaUpdateIsOneYear(Schema):
     plant_id = fields.Int(description="plant_id", required=True, example=1)
-    plant_isOneYear = fields.Bool(description="plant_isOneYear", required=True, example='True')
+    plant_isOneYear = fields.Bool(description="plant_isOneYear", required=True, example=True)
 class PlantOutputSchemaUpdateIsOneYear(Schema):
     result = fields.Int(description="Результат", required=True, example=25)
 class PlantErrorSchemaUpdateIsOneYear(Schema):
@@ -66,7 +66,7 @@ class PlantErrorSchemaUpdateIsOneYear(Schema):
 
 class PlantInputSchemaUpdateIsTwoYears(Schema):
     plant_id = fields.Int(description="plant_id", required=True, example=1)
-    plant_isTwoYears = fields.Bool(description="plant_isTwoYears", required=True, example='True')
+    plant_isTwoYears = fields.Bool(description="plant_isTwoYears", required=True, example=True)
 class PlantOutputSchemaUpdateIsTwoYears(Schema):
     result = fields.Int(description="Результат", required=True, example=25)
 class PlantErrorSchemaUpdateIsTwoYears(Schema):
@@ -74,7 +74,7 @@ class PlantErrorSchemaUpdateIsTwoYears(Schema):
 
 class PlantInputSchemaUpdateIsManyYears(Schema):
     plant_id = fields.Int(description="plant_id", required=True, example=1)
-    plant_isManyYears = fields.Bool(description="plant_isManyYears", required=True, example='True')
+    plant_isManyYears = fields.Bool(description="plant_isManyYears", required=True, example=True)
 class PlantOutputSchemaUpdateIsManyYears(Schema):
     result = fields.Int(description="Результат", required=True, example=25)
 class PlantErrorSchemaUpdateIsManyYears(Schema):
@@ -98,7 +98,7 @@ class PlantErrorSchemaUpdateRequiredMineralsAndTraceElements(Schema):
 
 class PlantInputSchemaUpdateTemperatureMin(Schema):
     plant_id = fields.Int(description="plant_id", required=True, example=1)
-    plant_temperature_min = fields.Str(description="plant_temperature_min", required=True, example='test')
+    plant_temperature_min = fields.Int(description="plant_temperature_min", required=True, example=1)
 class PlantOutputSchemaUpdateTemperatureMin(Schema):
     result = fields.Int(description="Результат", required=True, example=25)
 class PlantErrorSchemaUpdateTemperatureMin(Schema):
@@ -106,7 +106,7 @@ class PlantErrorSchemaUpdateTemperatureMin(Schema):
 
 class PlantInputSchemaUpdateTemperatureMax(Schema):
     plant_id = fields.Int(description="plant_id", required=True, example=1)
-    plant_temperature_max = fields.Str(description="plant_temperature_max", required=True, example='test')
+    plant_temperature_max = fields.Int(description="plant_temperature_max", required=True, example=1)
 class PlantOutputSchemaUpdateTemperatureMax(Schema):
     result = fields.Int(description="Результат", required=True, example=25)
 class PlantErrorSchemaUpdateTemperatureMax(Schema):

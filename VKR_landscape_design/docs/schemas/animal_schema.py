@@ -103,3 +103,4 @@ class AnimalOutputSchemaUpdatePicture(Schema):
     result = fields.Int(description="Результат", required=True, example=25)
 class AnimalErrorSchemaUpdatePicture(Schema):
     error = fields.Str(description="Сообщение об ошибке", required=True, example='Invalid input parameter number')
+
