@@ -134,6 +134,15 @@ def update_plant_temperature_max(conn, user_plant_id, user_plant_temperature_max
         ''', {"userplantid": user_plant_id, "userplanttemperature_max": user_plant_temperature_max})
     conn.commit()
 
+def update_plant_kingdom(conn, user_plant_id, user_plant_kingdom):
+    cur = conn.cursor()
+    cur.execute('''
+        UPDATE plants 
+        SET plant_kingdom = :userplantkingdom 
+        WHERE plant_id = :userplantid
+        ''', {"userplantid": user_plant_id, "userplantkingdom": user_plant_kingdom})
+    conn.commit()
+
 def update_plant_philum(conn, user_plant_id, user_plant_philum):
     cur = conn.cursor()
     cur.execute('''

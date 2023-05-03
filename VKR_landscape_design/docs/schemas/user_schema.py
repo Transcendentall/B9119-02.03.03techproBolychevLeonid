@@ -79,7 +79,7 @@ class UserErrorSchemaUpdateFathername(Schema):
 
 class UserInputSchemaUpdateIsFemale(Schema):
     user_id = fields.Int(description="user_id", required=True, example=1)
-    user_isFemale = fields.Bool(description="user_isFemale", required=True, example='test')
+    user_isFemale = fields.Bool(description="user_isFemale", required=True, example=False)
 class UserOutputSchemaUpdateIsFemale(Schema):
     result = fields.Int(description="Результат", required=True, example=25)
 class UserErrorSchemaUpdateIsFemale(Schema):
@@ -97,7 +97,7 @@ class UserErrorSchemaUpdatePicture(Schema):
 
 class UserInputSchemaUpdateIsAdmin(Schema):
     user_id = fields.Int(description="user_id", required=True, example=1)
-    user_isAdmin = fields.Bool(description="user_isAdmin", required=True, example='test')
+    user_isAdmin = fields.Bool(description="user_isAdmin", required=True, example=False)
 class UserOutputSchemaIsAdmin(Schema):
     result = fields.Int(description="Результат", required=True, example=25)
 class UserErrorSchemaIsAdmin(Schema):

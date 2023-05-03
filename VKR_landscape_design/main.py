@@ -43,6 +43,10 @@ print()
 #update_plant_name(con, 7, 'IVAN!')
 #print(get_plants(con))
 
+print(get_users(con))
+delete_user(con, 2)
+print(get_users(con))
+
 
 
 print()

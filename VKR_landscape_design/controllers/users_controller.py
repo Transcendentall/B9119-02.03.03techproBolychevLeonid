@@ -92,7 +92,7 @@ def users_post_delete():
       post:
         summary: Удаление пользователя
         parameters:
-          - in: query
+          - in: body
             schema: UserInputSchemaDelete
         responses:
           '200':
@@ -109,7 +109,8 @@ def users_post_delete():
           - Users
       """
     conn = get_db_connection()
-    x = delete_user(conn, request.get_json()['user_user_id'])
+    print(request.get_json()['user_id'])
+    x = delete_user(conn, request.get_json()['user_id'])
     return json.dumps({'message': "success"})
 
 
