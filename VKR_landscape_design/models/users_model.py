@@ -8,20 +8,20 @@ def get_users(conn):
 
 def get_users_without_password(conn):
     return pandas.read_sql('''
-    SELECT user_login, user_email, user_surname, user_name, user_fathername, user_age, user_isFemale, user_picture, user_isAdmin
+    SELECT user_id, user_login, user_email, user_surname, user_name, user_fathername, user_age, user_isFemale, user_picture, user_isAdmin
     FROM users
     ''', conn)
 
 def get_users_without_password_admins(conn):
     return pandas.read_sql('''
-    SELECT user_login, user_email, user_surname, user_name, user_fathername, user_age, user_isFemale, user_picture
+    SELECT user_id, user_login, user_email, user_surname, user_name, user_fathername, user_age, user_isFemale, user_picture
     FROM users
     WHERE user_isAdmin = TRUE
     ''', conn)
 
 def get_users_without_password_noadmins(conn):
     return pandas.read_sql('''
-    SELECT user_login, user_email, user_surname, user_name, user_fathername, user_age, user_isFemale, user_picture
+    SELECT user_id, user_login, user_email, user_surname, user_name, user_fathername, user_age, user_isFemale, user_picture
     FROM users
     WHERE user_isAdmin = FALSE
     ''', conn)
@@ -34,7 +34,7 @@ def get_one_user(conn, user_user_id):
 
 def get_one_user_without_password(conn, user_user_id):
     return pandas.read_sql('''
-    SELECT user_login, user_email, user_surname, user_name, user_fathername, user_age, user_isFemale, user_picture, user_isAdmin 
+    SELECT user_id, user_login, user_email, user_surname, user_name, user_fathername, user_age, user_isFemale, user_picture, user_isAdmin 
     FROM users 
     WHERE user_id = ''' + str(user_user_id), conn)
 
