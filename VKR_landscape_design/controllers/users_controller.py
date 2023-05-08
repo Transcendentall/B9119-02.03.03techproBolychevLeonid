@@ -1,6 +1,6 @@
 import json
 from utils import get_db_connection
-from flask import Blueprint, current_app, json, request
+from flask import Blueprint, current_app, json, request, Response
 from models.users_model import *
 from docs.schemas.user_schema import *
 
@@ -91,7 +91,7 @@ def users_get_one_user():
       get:
         summary: Получение данных о пользователе
         parameters:
-          - in: body
+          - in: query
             schema: UserInputSchemaGetOneUser
         responses:
           '200':
@@ -107,8 +107,9 @@ def users_get_one_user():
         tags:
           - Users
       """
+    args = request.args
     conn = get_db_connection()
-    x = get_one_user(conn)
+    x = get_one_user(conn, args.get('user_id'))
     return json.dumps(x.to_dict(orient="records"))
 
 
@@ -136,7 +137,7 @@ def users_get_one_user_without_password():
           - Users
       """
     conn = get_db_connection()
-    x = get_one_user_without_password(conn)
+    x = get_one_user_without_password(conn, request.get_json()['user_id'])
     return json.dumps(x.to_dict(orient="records"))
 
 
@@ -147,7 +148,7 @@ def users_post_authorisation():
       post:
         summary: Авторизация пользователя
         parameters:
-          - in: query
+          - in: bodyg
             schema: UserInputSchemaAuthorisation
         responses:
           '200':
@@ -164,7 +165,9 @@ def users_post_authorisation():
           - Users
       """
     conn = get_db_connection()
-    x = authorisation(conn, request.get_json()['user_user_login', 'user_user_password'])
+    x = authorisation(conn, request.get_json()['login'], request.get_json()['password'])
+    if len(x) == 0:
+        return Response("{'message':'Неправильный логин или пароль'}", status=405)
     return json.dumps(x.to_dict(orient="records"))
 
 @blueprint_user.route('/api/users/delete', methods=['POST'])
