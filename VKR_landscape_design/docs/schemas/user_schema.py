@@ -5,6 +5,13 @@ class UserOutputSchema(Schema):
     result = fields.Int(description="Результат", required=True, example=25)
 
 
+class UserInputSchemaGetOneUser(Schema):
+    user_id = fields.Int(description="user_id", required=True, example=1)
+class UserOutputSchemaGetOneUser(Schema):
+    result = fields.Int(description="Результат", required=True, example=25)
+class UserErrorSchemaGetOneUser(Schema):
+    error = fields.Str(description="Сообщение об ошибке", required=True, example='Invalid input parameter number')
+
 class UserInputSchemaDelete(Schema):
     user_id = fields.Int(description="user_id", required=True, example=1)
 class UserOutputSchemaDelete(Schema):
@@ -20,6 +27,15 @@ class UserInputSchemaInsert(Schema):
 class UserOutputSchemaInsert(Schema):
     result = fields.Int(description="Результат", required=True, example=25)
 class UserErrorSchemaInsert(Schema):
+    error = fields.Str(description="Сообщение об ошибке", required=True, example='Invalid input parameter number')
+
+
+class UserInputSchemaAuthorisation(Schema):
+    user_login = fields.Str(description="user_login", required=True, example='test')
+    user_password = fields.Str(description="user_password", required=True, example='test')
+class UserOutputSchemaAuthorisation(Schema):
+    result = fields.Int(description="Результат", required=True, example=25)
+class UserErrorSchemaAuthorisation(Schema):
     error = fields.Str(description="Сообщение об ошибке", required=True, example='Invalid input parameter number')
 
 

@@ -84,6 +84,88 @@ def users_get_select_all_without_password_noadmins():
     x = get_users_without_password_noadmins(conn)
     return json.dumps(x.to_dict(orient="records"))
 
+@blueprint_user.route('/api/users/getoneuser', methods=['GET'])
+def users_get_one_user():
+    """
+      ---
+      get:
+        summary: Получение данных о пользователе
+        parameters:
+          - in: body
+            schema: UserInputSchemaGetOneUser
+        responses:
+          '200':
+            description: Выводит все данные об одном конкретном пользователе
+            content:
+              application/json:
+                schema: UserOutputSchemaGetOneUser
+          '400':
+            description: Не передан обязательный параметр
+            content:
+              application/json:
+                schema: UserErrorSchemaGetOneUser
+        tags:
+          - Users
+      """
+    conn = get_db_connection()
+    x = get_one_user(conn)
+    return json.dumps(x.to_dict(orient="records"))
+
+
+@blueprint_user.route('/api/users/getoneuserwithoutpassword', methods=['GET'])
+def users_get_one_user_without_password():
+    """
+      ---
+      get:
+        summary: Получение данных о пользователе без пароля
+        parameters:
+          - in: body
+            schema: UserInputSchemaGetOneUser
+        responses:
+          '200':
+            description: Выводит все данные об одном конкретном пользователе, кроме его пароля
+            content:
+              application/json:
+                schema: UserOutputSchemaGetOneUser
+          '400':
+            description: Не передан обязательный параметр
+            content:
+              application/json:
+                schema: UserErrorSchemaGetOneUser
+        tags:
+          - Users
+      """
+    conn = get_db_connection()
+    x = get_one_user_without_password(conn)
+    return json.dumps(x.to_dict(orient="records"))
+
+
+@blueprint_user.route('/api/users/authorisation', methods=['POST'])
+def users_post_authorisation():
+    """
+      ---
+      post:
+        summary: Авторизация пользователя
+        parameters:
+          - in: query
+            schema: UserInputSchemaAuthorisation
+        responses:
+          '200':
+            description: Авторизирует пользователя
+            content:
+              application/json:
+                schema: UserOutputSchemaAuthorisation
+          '400':
+            description: Не переданы обязательные параметры
+            content:
+              application/json:
+                schema: UserErrorSchemaAuthorisation
+        tags:
+          - Users
+      """
+    conn = get_db_connection()
+    x = authorisation(conn, request.get_json()['user_user_login', 'user_user_password'])
+    return json.dumps({'message': "success"})
 
 @blueprint_user.route('/api/users/delete', methods=['POST'])
 def users_post_delete():

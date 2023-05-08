@@ -47,6 +47,10 @@ print()
 #update_plant_name(con, 7, 'IVAN!')
 #print(get_plants(con))
 
+print(get_one_user(con, 1))
+print(get_one_user_without_password(con, 1))
+print(authorisation(con, 'lutiysidor', 'abracadabra123'))
+
 print(get_soils_grounds_plants_animals_for_territories(con, 43.03, 131.88))
 
 
