@@ -7,6 +7,10 @@ from models.plants_model import *
 from models.soils_model import *
 from models.territories_model import *
 from models.users_model import *
+from models.connection_territories_soils_model import *
+from models.connection_soils_grounds_model import *
+from models.connection_soils_plants_model import *
+from models.connection_plants_animals_model import *
 pd.options.display.max_rows = 100
 pd.options.display.max_columns = 100
 
@@ -43,10 +47,7 @@ print()
 #update_plant_name(con, 7, 'IVAN!')
 #print(get_plants(con))
 
-print(get_users(con))
-delete_user(con, 2)
-print(get_users(con))
-
+print(get_soils_grounds_plants_animals_for_territories(con, 43.03, 131.88))
 
 
 print()

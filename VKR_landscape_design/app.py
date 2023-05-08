@@ -7,6 +7,10 @@ from controllers.grounds_controller import blueprint_ground
 from controllers.soils_controller import blueprint_soil
 from controllers.animals_controller import blueprint_animal
 from controllers.plants_controller import blueprint_plant
+from controllers.connection_plants_animals_controller import blueprint_connection_plants_animals
+from controllers.connection_soils_grounds_controller import blueprint_connection_soils_grounds
+from controllers.connection_territories_soils_controller import blueprint_connection_territories_soils
+from controllers.connection_soils_plants_controller import blueprint_connection_soils_plants
 from utilities.swagger import swagger_ui_blueprint, SWAGGER_URL
 
 app = Flask(__name__)
@@ -18,6 +22,10 @@ app.register_blueprint(blueprint_ground)
 app.register_blueprint(blueprint_soil)
 app.register_blueprint(blueprint_animal)
 app.register_blueprint(blueprint_plant)
+app.register_blueprint(blueprint_connection_plants_animals)
+app.register_blueprint(blueprint_connection_soils_grounds)
+app.register_blueprint(blueprint_connection_territories_soils)
+app.register_blueprint(blueprint_connection_soils_plants)
 
 
 @app.route('/swagger')

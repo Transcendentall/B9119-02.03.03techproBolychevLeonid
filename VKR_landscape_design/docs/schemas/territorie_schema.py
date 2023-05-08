@@ -23,6 +23,14 @@ class TerritorieErrorSchemaInsert(Schema):
     error = fields.Str(description="Сообщение об ошибке", required=True, example='Invalid input parameter number')
 
 
+class TerritorieInputSchemaGetSoilsGroundsPlantsAnimalsForTerritories(Schema):
+    territorie_coord_x = fields.Float(description="territorie_coord_x", required=True, example='1')
+    territorie_coord_y = fields.Float(description="territorie_coord_y", required=True, example='1')
+class TerritorieOutputSchemaGetSoilsGroundsPlantsAnimalsForTerritories(Schema):
+    result = fields.Int(description="Результат", required=True, example=25)
+class TerritorieErrorSchemaGetSoilsGroundsPlantsAnimalsForTerritories(Schema):
+    error = fields.Str(description="Сообщение об ошибке", required=True, example='Invalid input parameter number')
+
 class TerritorieInputSchemaUpdateCoordX(Schema):
     territorie_id = fields.Int(description="territorie_id", required=True, example=1)
     territorie_coord_x = fields.Float(description="territorie_coord_x", required=True, example='1')

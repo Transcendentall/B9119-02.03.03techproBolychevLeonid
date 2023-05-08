@@ -103,7 +103,7 @@ def plants_post_insert():
             schema: PlantInputSchemaInsert
         responses:
           '200':
-            description: Растение добавлено
+            description: Добавляет растение
             content:
               application/json:
                 schema: PlantOutputSchemaInsert
