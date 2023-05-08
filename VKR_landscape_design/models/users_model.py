@@ -8,20 +8,20 @@ def get_users(conn):
 
 def get_users_without_password(conn):
     return pandas.read_sql('''
-    SELECT user_login, user_email, user_surname, user_name, user_fathername, user_isFemale, user_picture, user_isAdmin
+    SELECT user_login, user_email, user_surname, user_name, user_fathername, user_age, user_isFemale, user_picture, user_isAdmin
     FROM users
     ''', conn)
 
 def get_users_without_password_admins(conn):
     return pandas.read_sql('''
-    SELECT user_login, user_email, user_surname, user_name, user_fathername, user_isFemale, user_picture
+    SELECT user_login, user_email, user_surname, user_name, user_fathername, user_age, user_isFemale, user_picture
     FROM users
     WHERE user_isAdmin = TRUE
     ''', conn)
 
 def get_users_without_password_noadmins(conn):
     return pandas.read_sql('''
-    SELECT user_login, user_email, user_surname, user_name, user_fathername, user_isFemale, user_picture
+    SELECT user_login, user_email, user_surname, user_name, user_fathername, user_age, user_isFemale, user_picture
     FROM users
     WHERE user_isAdmin = FALSE
     ''', conn)
@@ -92,6 +92,15 @@ def update_user_fathername(conn, user_user_id, user_user_fathername):
         SET user_fathername = :userfathername 
         WHERE user_id = :useridupdate
         ''', {"useridupdate": user_user_id, "userfathername": user_user_fathername})
+    conn.commit()
+
+def update_user_age(conn, user_user_id, user_user_age):
+    cur = conn.cursor()
+    cur.execute('''
+        UPDATE users 
+        SET user_age = :userage 
+        WHERE user_id = :useridupdate
+        ''', {"useridupdate": user_user_id, "userage": user_user_age})
     conn.commit()
 
 def update_user_isFemale(conn, user_user_id, user_user_isFemale):

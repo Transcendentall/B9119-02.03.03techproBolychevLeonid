@@ -64,7 +64,7 @@ def soils_post_insert():
             schema: SoilInputSchemaInsert
         responses:
           '200':
-            description: Почва добавлена
+            description: Добавляет почву
             content:
               application/json:
                 schema: SoilOutputSchemaInsert

@@ -77,6 +77,16 @@ class UserErrorSchemaUpdateFathername(Schema):
     error = fields.Str(description="Сообщение об ошибке", required=True, example='Invalid input parameter number')
 
 
+class UserInputSchemaUpdateAge(Schema):
+    user_id = fields.Int(description="user_id", required=True, example=1)
+    user_age = fields.Str(description="user_age", required=True, example='test')
+class UserOutputSchemaUpdateAge(Schema):
+    result = fields.Int(description="Результат", required=True, example=25)
+class UserErrorSchemaUpdateAge(Schema):
+    error = fields.Str(description="Сообщение об ошибке", required=True, example='Invalid input parameter number')
+
+
+
 class UserInputSchemaUpdateIsFemale(Schema):
     user_id = fields.Int(description="user_id", required=True, example=1)
     user_isFemale = fields.Bool(description="user_isFemale", required=True, example=False)

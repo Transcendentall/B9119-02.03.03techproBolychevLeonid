@@ -64,7 +64,7 @@ def animals_post_insert():
             schema: AnimalInputSchemaInsert
         responses:
           '200':
-            description: Животное добавлена
+            description: Добавляет животное
             content:
               application/json:
                 schema: AnimalOutputSchemaInsert

@@ -6,6 +6,23 @@ def get_territories(conn):
     FROM territories
     ''', conn)
 
+def get_soils_grounds_plants_animals_for_territories(conn, user_territorie_coord_x, user_territorie_coord_y):
+    err = 0.01
+    return pandas.read_sql('''
+    SELECT soil_id, soil_name, soil_description, soil_picture, plant_id, plant_name, plant_description, plant_climat, plant_temperature_min, plant_temperature_max, connection_soils_plants_isGood, plant_picture, animal_id, animal_name, animal_description, animal_picture
+    FROM territories 
+    JOIN connection_territories_soils ON (territories.territorie_id = connection_territories_soils.connection_territorie_id) 
+    JOIN soils ON (connection_territories_soils.connection_soil_id = soils.soil_id) 
+    JOIN connection_soils_plants ON (soils.soil_id = connection_soils_plants.connection_soil_id) 
+    JOIN plants ON (connection_soils_plants.connection_plant_id = plants.plant_id) 
+    JOIN connection_plants_animals ON (plants.plant_id = connection_plants_animals.connection_plant_id) 
+    JOIN animals ON (connection_plants_animals.connection_animal_id = animals.animal_id)
+    WHERE territorie_coord_x <= ''' + str(user_territorie_coord_x + err) +
+    ' AND territorie_coord_x >=  ' + str(user_territorie_coord_x - err) +
+    ' AND territorie_coord_y <=  ' + str(user_territorie_coord_y + err) +
+    ' AND territorie_coord_y >=  ' + str(user_territorie_coord_y - err)
+                           , conn)
+
 def insert_territorie(conn, user_territorie_coord_x, user_territorie_coord_y, user_territorie_coord_z):
     cur = conn.cursor()
     cur.execute('''

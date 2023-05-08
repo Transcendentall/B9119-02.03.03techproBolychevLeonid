@@ -26,6 +26,34 @@ def territories_get_select_all():
     return json.dumps(x.to_dict(orient="records"))
 
 
+@blueprint_territorie.route('/api/territories/GetSoilsGroundsPlantsAnimalsForTerritories', methods=['GET'])
+def territories_get_soils_grounds_plants_animals_for_territories():
+    """
+      ---
+      get:
+        summary: Получение всех почв, грунтов, растений и животных
+        parameters:
+          - in: query
+            schema: TerritorieInputSchemaGetSoilsGroundsPlantsAnimalsForTerritories
+        responses:
+          '200':
+            description: Получение списка всех почв, грунтов, растений и животных для данной территории
+            content:
+              application/json:
+                schema: TerritorieOutputSchemaGetSoilsGroundsPlantsAnimalsForTerritories
+          '400':
+            description: Не передан обязательный параметр
+            content:
+              application/json:
+                schema: TerritorieErrorSchemaGetSoilsGroundsPlantsAnimalsForTerritories
+        tags:
+          - Territories
+      """
+    conn = get_db_connection()
+    x = get_soils_grounds_plants_animals_for_territories(conn, request.get_json()['user_territorie_coord_x', 'user_territorie_coord_y'])
+    return json.dumps({'message': "success"})
+
+
 @blueprint_territorie.route('/api/territories/delete', methods=['POST'])
 def territories_post_delete():
     """
@@ -64,7 +92,7 @@ def territories_post_insert():
             schema: TerritorieInputSchemaInsert
         responses:
           '200':
-            description: Территория добавлена
+            description: Добавляет территорию
             content:
               application/json:
                 schema: TerritorieOutputSchemaInsert

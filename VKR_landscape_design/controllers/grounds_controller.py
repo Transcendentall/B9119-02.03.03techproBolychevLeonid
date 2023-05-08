@@ -64,7 +64,7 @@ def grounds_post_insert():
             schema: GroundInputSchemaInsert
         responses:
           '200':
-            description: Грунт добавлен
+            description: Добавляет грунт
             content:
               application/json:
                 schema: GroundOutputSchemaInsert

@@ -115,23 +115,23 @@ paths:
           example: test
         required: true
       - in: query
-        name: user_email
-        description: user_email
-        schema:
-          type: string
-          example: test
-        required: true
-      - in: query
         name: user_password
         description: user_password
         schema:
           type: string
           example: test
         required: true
+      - in: query
+        name: user_email
+        description: user_email
+        schema:
+          type: string
+          example: test
+        required: true
       responses:
         '200':
-          description: "\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\
-            \u043B\u044C \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D"
+          description: "\u0414\u043E\u0431\u0430\u0432\u043B\u044F\u0435\u0442 \u043F\
+            \u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044F"
           content:
             application/json:
               schema:
@@ -378,17 +378,18 @@ paths:
                 $ref: '#/components/schemas/UserErrorSchemaUpdateFathername'
       tags:
       - Users
-  /api/users/update/isFemale:
+  /api/users/update/age:
     post:
-      summary: "\u0410\u043F\u0434\u0435\u0439\u0442 \u043F\u043E\u043B\u0430 \u043F\
-        \u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044F"
+      summary: "\u0410\u043F\u0434\u0435\u0439\u0442 \u0432\u043E\u0437\u0440\u0430\
+        \u0441\u0442\u0430 \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\
+        \u043B\u044F"
       parameters:
       - in: query
-        name: user_isFemale
-        description: user_isFemale
+        name: user_age
+        description: user_age
         schema:
-          type: boolean
-          example: false
+          type: string
+          example: test
         required: true
       - in: query
         name: user_id
@@ -396,6 +397,44 @@ paths:
         schema:
           type: integer
           example: 1
+        required: true
+      responses:
+        '200':
+          description: "\u0418\u0437\u043C\u0435\u043D\u044F\u0435\u0442 \u0432\u043E\
+            \u0437\u0440\u0430\u0441\u0442 \u043F\u043E\u043B\u044C\u0437\u043E\u0432\
+            \u0430\u0442\u0435\u043B\u044F"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserOutputSchemaUpdateAge'
+        '400':
+          description: "\u041D\u0435 \u043F\u0435\u0440\u0435\u0434\u0430\u043D\u044B\
+            \ \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0435\
+            \ \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserErrorSchemaUpdateAge'
+      tags:
+      - Users
+  /api/users/update/isFemale:
+    post:
+      summary: "\u0410\u043F\u0434\u0435\u0439\u0442 \u043F\u043E\u043B\u0430 \u043F\
+        \u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044F"
+      parameters:
+      - in: query
+        name: user_id
+        description: user_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      - in: query
+        name: user_isFemale
+        description: user_isFemale
+        schema:
+          type: boolean
+          example: false
         required: true
       responses:
         '200':
@@ -464,18 +503,18 @@ paths:
         \ \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044F"
       parameters:
       - in: query
-        name: user_id
-        description: user_id
-        schema:
-          type: integer
-          example: 1
-        required: true
-      - in: query
         name: user_isAdmin
         description: user_isAdmin
         schema:
           type: boolean
           example: false
+        required: true
+      - in: query
+        name: user_id
+        description: user_id
+        schema:
+          type: integer
+          example: 1
         required: true
       responses:
         '200':
@@ -510,6 +549,49 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TerritorieOutput'
+      tags:
+      - Territories
+  /api/territories/GetSoilsGroundsPlantsAnimalsForTerritories:
+    get:
+      summary: "\u041F\u043E\u043B\u0443\u0447\u0435\u043D\u0438\u0435 \u0432\u0441\
+        \u0435\u0445 \u043F\u043E\u0447\u0432, \u0433\u0440\u0443\u043D\u0442\u043E\
+        \u0432, \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u0439 \u0438 \u0436\u0438\
+        \u0432\u043E\u0442\u043D\u044B\u0445"
+      parameters:
+      - in: query
+        name: territorie_coord_x
+        description: territorie_coord_x
+        schema:
+          type: number
+          example: '1'
+        required: true
+      - in: query
+        name: territorie_coord_y
+        description: territorie_coord_y
+        schema:
+          type: number
+          example: '1'
+        required: true
+      responses:
+        '200':
+          description: "\u041F\u043E\u043B\u0443\u0447\u0435\u043D\u0438\u0435 \u0441\
+            \u043F\u0438\u0441\u043A\u0430 \u0432\u0441\u0435\u0445 \u043F\u043E\u0447\
+            \u0432, \u0433\u0440\u0443\u043D\u0442\u043E\u0432, \u0440\u0430\u0441\
+            \u0442\u0435\u043D\u0438\u0439 \u0438 \u0436\u0438\u0432\u043E\u0442\u043D\
+            \u044B\u0445 \u0434\u043B\u044F \u0434\u0430\u043D\u043D\u043E\u0439 \u0442\
+            \u0435\u0440\u0440\u0438\u0442\u043E\u0440\u0438\u0438"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TerritorieOutputSchemaGetSoilsGroundsPlantsAnimalsForTerritories'
+        '400':
+          description: "\u041D\u0435 \u043F\u0435\u0440\u0435\u0434\u0430\u043D \u043E\
+            \u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0439 \u043F\
+            \u0430\u0440\u0430\u043C\u0435\u0442\u0440"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TerritorieErrorSchemaGetSoilsGroundsPlantsAnimalsForTerritories'
       tags:
       - Territories
   /api/territories/delete:
@@ -555,23 +637,23 @@ paths:
           example: '1'
         required: true
       - in: query
-        name: territorie_coord_y
-        description: territorie_coord_y
-        schema:
-          type: number
-          example: '1'
-        required: true
-      - in: query
         name: territorie_coord_x
         description: territorie_coord_x
         schema:
           type: number
           example: '1'
         required: true
+      - in: query
+        name: territorie_coord_y
+        description: territorie_coord_y
+        schema:
+          type: number
+          example: '1'
+        required: true
       responses:
         '200':
-          description: "\u0422\u0435\u0440\u0440\u0438\u0442\u043E\u0440\u0438\u044F\
-            \ \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0430"
+          description: "\u0414\u043E\u0431\u0430\u0432\u043B\u044F\u0435\u0442 \u0442\
+            \u0435\u0440\u0440\u0438\u0442\u043E\u0440\u0438\u044E"
           content:
             application/json:
               schema:
@@ -754,23 +836,23 @@ paths:
         \u0440\u0443\u043D\u0442\u0430"
       parameters:
       - in: query
-        name: ground_description
-        description: ground_description
-        schema:
-          type: string
-          example: test
-        required: true
-      - in: query
         name: ground_name
         description: ground_name
         schema:
           type: string
           example: test
         required: true
+      - in: query
+        name: ground_description
+        description: ground_description
+        schema:
+          type: string
+          example: test
+        required: true
       responses:
         '200':
-          description: "\u0413\u0440\u0443\u043D\u0442 \u0434\u043E\u0431\u0430\u0432\
-            \u043B\u0435\u043D"
+          description: "\u0414\u043E\u0431\u0430\u0432\u043B\u044F\u0435\u0442 \u0433\
+            \u0440\u0443\u043D\u0442"
           content:
             application/json:
               schema:
@@ -1078,8 +1160,8 @@ paths:
         required: true
       responses:
         '200':
-          description: "\u041F\u043E\u0447\u0432\u0430 \u0434\u043E\u0431\u0430\u0432\
-            \u043B\u0435\u043D\u0430"
+          description: "\u0414\u043E\u0431\u0430\u0432\u043B\u044F\u0435\u0442 \u043F\
+            \u043E\u0447\u0432\u0443"
           content:
             application/json:
               schema:
@@ -1100,18 +1182,18 @@ paths:
         \u043D\u0438\u044F \u043F\u043E\u0447\u0432\u044B"
       parameters:
       - in: query
-        name: soil_name
-        description: soil_name
-        schema:
-          type: string
-          example: test
-        required: true
-      - in: query
         name: soil_id
         description: soil_id
         schema:
           type: integer
           example: 1
+        required: true
+      - in: query
+        name: soil_name
+        description: soil_name
+        schema:
+          type: string
+          example: test
         required: true
       responses:
         '200':
@@ -1137,18 +1219,18 @@ paths:
         \u043D\u0438\u044F \u043F\u043E\u0447\u0432\u044B"
       parameters:
       - in: query
-        name: soil_description
-        description: soil_description
-        schema:
-          type: string
-          example: test
-        required: true
-      - in: query
         name: soil_id
         description: soil_id
         schema:
           type: integer
           example: 1
+        required: true
+      - in: query
+        name: soil_description
+        description: soil_description
+        schema:
+          type: string
+          example: test
         required: true
       responses:
         '200':
@@ -1213,18 +1295,18 @@ paths:
         \u0430 \u043F\u043E\u0447\u0432\u044B"
       parameters:
       - in: query
-        name: soil_minerals
-        description: soil_minerals
-        schema:
-          type: string
-          example: test
-        required: true
-      - in: query
         name: soil_id
         description: soil_id
         schema:
           type: integer
           example: 1
+        required: true
+      - in: query
+        name: soil_minerals
+        description: soil_minerals
+        schema:
+          type: string
+          example: test
         required: true
       responses:
         '200':
@@ -1251,18 +1333,18 @@ paths:
         \u043B\u044F \u043F\u043E\u0447\u0432\u044B"
       parameters:
       - in: query
-        name: soil_id
-        description: soil_id
-        schema:
-          type: integer
-          example: 1
-        required: true
-      - in: query
         name: soil_profile
         description: soil_profile
         schema:
           type: string
           example: test
+        required: true
+      - in: query
+        name: soil_id
+        description: soil_id
+        schema:
+          type: integer
+          example: 1
         required: true
       responses:
         '200':
@@ -1385,8 +1467,8 @@ paths:
         required: true
       responses:
         '200':
-          description: "\u0416\u0438\u0432\u043E\u0442\u043D\u043E\u0435 \u0434\u043E\
-            \u0431\u0430\u0432\u043B\u0435\u043D\u0430"
+          description: "\u0414\u043E\u0431\u0430\u0432\u043B\u044F\u0435\u0442 \u0436\
+            \u0438\u0432\u043E\u0442\u043D\u043E\u0435"
           content:
             application/json:
               schema:
@@ -1445,18 +1527,18 @@ paths:
         \u043D\u0438\u044F \u0436\u0438\u0432\u043E\u0442\u043D\u043E\u0433\u043E"
       parameters:
       - in: query
-        name: animal_description
-        description: animal_description
-        schema:
-          type: string
-          example: test
-        required: true
-      - in: query
         name: animal_id
         description: animal_id
         schema:
           type: integer
           example: 1
+        required: true
+      - in: query
+        name: animal_description
+        description: animal_description
+        schema:
+          type: string
+          example: test
         required: true
       responses:
         '200':
@@ -1558,18 +1640,18 @@ paths:
         \u0430 \u0436\u0438\u0432\u043E\u0442\u043D\u043E\u0433\u043E"
       parameters:
       - in: query
-        name: animal_class
-        description: animal_class
-        schema:
-          type: string
-          example: test
-        required: true
-      - in: query
         name: animal_id
         description: animal_id
         schema:
           type: integer
           example: 1
+        required: true
+      - in: query
+        name: animal_class
+        description: animal_class
+        schema:
+          type: string
+          example: test
         required: true
       responses:
         '200':
@@ -1671,18 +1753,18 @@ paths:
         \u0438\u0432\u043E\u0442\u043D\u043E\u0433\u043E"
       parameters:
       - in: query
-        name: animal_id
-        description: animal_id
-        schema:
-          type: integer
-          example: 1
-        required: true
-      - in: query
         name: animal_genus
         description: animal_genus
         schema:
           type: string
           example: test
+        required: true
+      - in: query
+        name: animal_id
+        description: animal_id
+        schema:
+          type: integer
+          example: 1
         required: true
       responses:
         '200':
@@ -1890,8 +1972,8 @@ paths:
         required: true
       responses:
         '200':
-          description: "\u0420\u0430\u0441\u0442\u0435\u043D\u0438\u0435 \u0434\u043E\
-            \u0431\u0430\u0432\u043B\u0435\u043D\u043E"
+          description: "\u0414\u043E\u0431\u0430\u0432\u043B\u044F\u0435\u0442 \u0440\
+            \u0430\u0441\u0442\u0435\u043D\u0438\u0435"
           content:
             application/json:
               schema:
@@ -1950,18 +2032,18 @@ paths:
         \u043D\u0438\u044F \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u044F"
       parameters:
       - in: query
-        name: plant_id
-        description: plant_id
-        schema:
-          type: integer
-          example: 1
-        required: true
-      - in: query
         name: plant_description
         description: plant_description
         schema:
           type: string
           example: test
+        required: true
+      - in: query
+        name: plant_id
+        description: plant_id
+        schema:
+          type: integer
+          example: 1
         required: true
       responses:
         '200':
@@ -1988,18 +2070,18 @@ paths:
         \u0432\u043E\u0441\u0442\u0438 \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u044F"
       parameters:
       - in: query
-        name: plant_id
-        description: plant_id
-        schema:
-          type: integer
-          example: 1
-        required: true
-      - in: query
         name: plant_isFodder
         description: plant_isFodder
         schema:
           type: boolean
           example: true
+        required: true
+      - in: query
+        name: plant_id
+        description: plant_id
+        schema:
+          type: integer
+          example: 1
         required: true
       responses:
         '200':
@@ -2108,18 +2190,18 @@ paths:
         \u0438\u044F"
       parameters:
       - in: query
-        name: plant_id
-        description: plant_id
-        schema:
-          type: integer
-          example: 1
-        required: true
-      - in: query
         name: plant_isTwoYears
         description: plant_isTwoYears
         schema:
           type: boolean
           example: true
+        required: true
+      - in: query
+        name: plant_id
+        description: plant_id
+        schema:
+          type: integer
+          example: 1
         required: true
       responses:
         '200':
@@ -2263,18 +2345,18 @@ paths:
         \u0432\u0430 \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u044F"
       parameters:
       - in: query
-        name: plant_id
-        description: plant_id
-        schema:
-          type: integer
-          example: 1
-        required: true
-      - in: query
         name: plant_kingdom
         description: plant_kingdom
         schema:
           type: string
           example: test
+        required: true
+      - in: query
+        name: plant_id
+        description: plant_id
+        schema:
+          type: integer
+          example: 1
         required: true
       responses:
         '200':
@@ -2301,18 +2383,18 @@ paths:
         \u0430\u0441\u0442\u0435\u043D\u0438\u044F"
       parameters:
       - in: query
-        name: plant_id
-        description: plant_id
-        schema:
-          type: integer
-          example: 1
-        required: true
-      - in: query
         name: plant_philum
         description: plant_philum
         schema:
           type: string
           example: test
+        required: true
+      - in: query
+        name: plant_id
+        description: plant_id
+        schema:
+          type: integer
+          example: 1
         required: true
       responses:
         '200':
@@ -2338,18 +2420,18 @@ paths:
         \u0430 \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u044F"
       parameters:
       - in: query
-        name: plant_id
-        description: plant_id
-        schema:
-          type: integer
-          example: 1
-        required: true
-      - in: query
         name: plant_class
         description: plant_class
         schema:
           type: string
           example: test
+        required: true
+      - in: query
+        name: plant_id
+        description: plant_id
+        schema:
+          type: integer
+          example: 1
         required: true
       responses:
         '200':
@@ -2375,18 +2457,18 @@ paths:
         \u043A\u0430 \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u044F"
       parameters:
       - in: query
-        name: plant_id
-        description: plant_id
-        schema:
-          type: integer
-          example: 1
-        required: true
-      - in: query
         name: plant_order
         description: plant_order
         schema:
           type: string
           example: test
+        required: true
+      - in: query
+        name: plant_id
+        description: plant_id
+        schema:
+          type: integer
+          example: 1
         required: true
       responses:
         '200':
@@ -2413,18 +2495,18 @@ paths:
         \u0441\u0442\u0432\u0430 \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u044F"
       parameters:
       - in: query
-        name: plant_id
-        description: plant_id
-        schema:
-          type: integer
-          example: 1
-        required: true
-      - in: query
         name: plant_family
         description: plant_family
         schema:
           type: string
           example: test
+        required: true
+      - in: query
+        name: plant_id
+        description: plant_id
+        schema:
+          type: integer
+          example: 1
         required: true
       responses:
         '200':
@@ -2488,18 +2570,18 @@ paths:
         \u0430\u0441\u0442\u0435\u043D\u0438\u044F"
       parameters:
       - in: query
-        name: plant_id
-        description: plant_id
-        schema:
-          type: integer
-          example: 1
-        required: true
-      - in: query
         name: plant_species
         description: plant_species
         schema:
           type: string
           example: test
+        required: true
+      - in: query
+        name: plant_id
+        description: plant_id
+        schema:
+          type: integer
+          example: 1
         required: true
       responses:
         '200':
@@ -2527,18 +2609,18 @@ paths:
         \u043D\u043A\u0438 \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u044F"
       parameters:
       - in: query
-        name: plant_id
-        description: plant_id
-        schema:
-          type: integer
-          example: 1
-        required: true
-      - in: query
         name: plant_picture
         description: plant_picture
         schema:
           type: string
           example: test
+        required: true
+      - in: query
+        name: plant_id
+        description: plant_id
+        schema:
+          type: integer
+          example: 1
         required: true
       responses:
         '200':
@@ -2559,6 +2641,779 @@ paths:
                 $ref: '#/components/schemas/PlantErrorSchemaUpdatePicture'
       tags:
       - Plants
+  /api/connectionplantsanimals:
+    get:
+      summary: "\u041F\u043E\u043B\u0443\u0447\u0435\u043D\u0438\u0435 \u0432\u0441\
+        \u0435\u0445 \u0441\u0432\u044F\u0437\u0435\u0439 \u043C\u0435\u0436\u0434\
+        \u0443 \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u044F\u043C\u0438 \u0438\
+        \ \u0436\u0438\u0432\u043E\u0442\u043D\u044B\u043C\u0438"
+      responses:
+        '200':
+          description: "\u041F\u043E\u043B\u0443\u0447\u0435\u043D\u0438\u0435 \u0441\
+            \u043F\u0438\u0441\u043A\u0430, \u043A\u0430\u043A\u0438\u0435 \u0440\u0430\
+            \u0441\u0442\u0435\u043D\u0438\u044F \u043F\u043E\u0434\u0445\u043E\u0434\
+            \u044F\u0442 \u0434\u043B\u044F \u0432\u044B\u043F\u0430\u0441\u0430 \u043A\
+            \u0430\u043A\u0438\u0445 \u0436\u0438\u0432\u043E\u0442\u043D\u044B\u0445"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionPlantsAnimalsOutput'
+      tags:
+      - "\u0421onnectionPlantsAnimals"
+  /api/connectionplantsanimals/delete:
+    post:
+      summary: "\u0423\u0434\u0430\u043B\u0435\u043D\u0438\u0435 \u0441\u0432\u044F\
+        \u0437\u0438 \u043C\u0435\u0436\u0434\u0443 \u0440\u0430\u0441\u0442\u0435\
+        \u043D\u0438\u0435\u043C \u0438 \u0436\u0438\u0432\u043E\u0442\u043D\u044B\
+        \u043C"
+      parameters:
+      - in: query
+        name: connection_plants_animals_id
+        description: connection_plants_animals_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      responses:
+        '200':
+          description: "\u0423\u0434\u0430\u043B\u044F\u0435\u0442 \u0441\u0432\u044F\
+            \u0437\u044C \u043C\u0435\u0436\u0434\u0443 \u0440\u0430\u0441\u0442\u0435\
+            \u043D\u0438\u0435\u043C \u0438 \u0436\u0438\u0432\u043E\u0442\u043D\u044B\
+            \u043C \u043F\u043E \u0435\u0451 ID"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionPlantsAnimalsOutputSchemaDelete'
+        '400':
+          description: "\u041D\u0435 \u043F\u0435\u0440\u0435\u0434\u0430\u043D \u043E\
+            \u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0439 \u043F\
+            \u0430\u0440\u0430\u043C\u0435\u0442\u0440"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionPlantsAnimalsErrorSchemaDelete'
+      tags:
+      - "\u0421onnectionPlantsAnimals"
+  /api/connectionplantsanimals/insert:
+    post:
+      summary: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u0435 \u0441\
+        \u0432\u044F\u0437\u0438 \u043C\u0435\u0436\u0434\u0443 \u0440\u0430\u0441\
+        \u0442\u0435\u043D\u0438\u0435\u043C \u0438 \u0436\u0438\u0432\u043E\u0442\
+        \u043D\u044B\u043C"
+      parameters:
+      - in: query
+        name: connection_animal_id
+        description: connection_animal_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      - in: query
+        name: connection_plant_id
+        description: connection_plant_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      responses:
+        '200':
+          description: "\u0414\u043E\u0431\u0430\u0432\u043B\u044F\u0435\u0442 \u0441\
+            \u0432\u044F\u0437\u044C, \u043A\u0430\u043A\u043E\u0435 \u0440\u0430\u0441\
+            \u0442\u0435\u043D\u0438\u0435 \u043F\u043E\u0434\u0445\u043E\u0434\u0438\
+            \u0442 \u0434\u043B\u044F \u0432\u044B\u043F\u0430\u0441\u0430 \u0434\u0430\
+            \u043D\u043D\u043E\u0433\u043E \u0436\u0438\u0432\u043E\u0442\u043D\u043E\
+            \u0433\u043E"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionPlantsAnimalsOutputSchemaInsert'
+        '400':
+          description: "\u041D\u0435 \u043F\u0435\u0440\u0435\u0434\u0430\u043D\u044B\
+            \ \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0435\
+            \ \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionPlantsAnimalsErrorSchemaInsert'
+      tags:
+      - "\u0421onnectionPlantsAnimals"
+  /api/connectionplantsanimals/update/plantid:
+    post:
+      summary: "\u0410\u043F\u0434\u0435\u0439\u0442 ID \u0440\u0430\u0441\u0442\u0435\
+        \u043D\u0438\u044F \u0432 \u0441\u0432\u044F\u0437\u0438 \u043C\u0435\u0436\
+        \u0434\u0443 \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u0435\u043C \u0438\
+        \ \u0436\u0438\u0432\u043E\u0442\u043D\u044B\u043C"
+      parameters:
+      - in: query
+        name: connection_plants_animals_id
+        description: connection_plants_animals_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      - in: query
+        name: connection_plant_id
+        description: connection_plant_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      responses:
+        '200':
+          description: "\u0418\u0437\u043C\u0435\u043D\u044F\u0435\u0442 ID \u0440\
+            \u0430\u0441\u0442\u0435\u043D\u0438\u044F \u0432 \u043A\u043E\u043D\u043A\
+            \u0440\u0435\u0442\u043D\u043E\u0439 \u0441\u0432\u044F\u0437\u0438 \u043C\
+            \u0435\u0436\u0434\u0443 \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u0435\
+            \u043C \u0438 \u0436\u0438\u0432\u043E\u0442\u043D\u044B\u043C (\u043F\
+            \u043E ID \u044D\u0442\u043E\u0439 \u0441\u0432\u044F\u0437\u0438)"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionPlantsAnimalsOutputSchemaUpdatePlantID'
+        '400':
+          description: "\u041D\u0435 \u043F\u0435\u0440\u0435\u0434\u0430\u043D\u044B\
+            \ \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0435\
+            \ \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionPlantsAnimalsErrorSchemaUpdatePlantID'
+      tags:
+      - "\u0421onnectionPlantsAnimals"
+  /api/connectionplantsanimals/update/animalid:
+    post:
+      summary: "\u0410\u043F\u0434\u0435\u0439\u0442 ID \u0436\u0438\u0432\u043E\u0442\
+        \u043D\u043E\u0433\u043E \u0432 \u0441\u0432\u044F\u0437\u0438 \u043C\u0435\
+        \u0436\u0434\u0443 \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u0435\u043C\
+        \ \u0438 \u0436\u0438\u0432\u043E\u0442\u043D\u044B\u043C"
+      parameters:
+      - in: query
+        name: connection_plants_animals_id
+        description: connection_plants_animals_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      - in: query
+        name: connection_animal_id
+        description: connection_animal_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      responses:
+        '200':
+          description: "\u0418\u0437\u043C\u0435\u043D\u044F\u0435\u0442 ID \u0436\
+            \u0438\u0432\u043E\u0442\u043D\u043E\u0433\u043E \u0432 \u043A\u043E\u043D\
+            \u043A\u0440\u0435\u0442\u043D\u043E\u0439 \u0441\u0432\u044F\u0437\u0438\
+            \ \u043C\u0435\u0436\u0434\u0443 \u0440\u0430\u0441\u0442\u0435\u043D\u0438\
+            \u0435\u043C \u0438 \u0436\u0438\u0432\u043E\u0442\u043D\u044B\u043C (\u043F\
+            \u043E ID \u044D\u0442\u043E\u0439 \u0441\u0432\u044F\u0437\u0438)"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionPlantsAnimalsOutputSchemaUpdateAnimalID'
+        '400':
+          description: "\u041D\u0435 \u043F\u0435\u0440\u0435\u0434\u0430\u043D\u044B\
+            \ \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0435\
+            \ \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionPlantsAnimalsErrorSchemaUpdateAnimalID'
+      tags:
+      - "\u0421onnectionPlantsAnimals"
+  /api/connectionsoilsgrounds:
+    get:
+      summary: "\u041F\u043E\u043B\u0443\u0447\u0435\u043D\u0438\u0435 \u0432\u0441\
+        \u0435\u0445 \u0441\u0432\u044F\u0437\u0435\u0439 \u043C\u0435\u0436\u0434\
+        \u0443 \u043F\u043E\u0447\u0432\u0430\u043C\u0438 \u0438 \u0433\u0440\u0443\
+        \u043D\u0442\u0430\u043C\u0438"
+      responses:
+        '200':
+          description: "\u041F\u043E\u043B\u0443\u0447\u0435\u043D\u0438\u0435 \u0441\
+            \u043F\u0438\u0441\u043A\u0430, \u043A\u0430\u043A\u0438\u0435 \u0433\u0440\
+            \u0443\u043D\u0442\u044B \u0432\u0441\u0442\u0440\u0435\u0447\u0430\u044E\
+            \u0442\u0441\u044F \u043D\u0430 \u043A\u0430\u043A\u0438\u0445 \u043F\u043E\
+            \u0447\u0432\u0430\u0445"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionSoilsGroundsOutput'
+      tags:
+      - "\u0421onnectionSoilsGrounds"
+  /api/connectionsoilsgrounds/delete:
+    post:
+      summary: "\u0423\u0434\u0430\u043B\u0435\u043D\u0438\u0435 \u0441\u0432\u044F\
+        \u0437\u0438 \u043C\u0435\u0436\u0434\u0443 \u043F\u043E\u0447\u0432\u043E\
+        \u0439 \u0438 \u0433\u0440\u0443\u043D\u0442\u043E\u043C"
+      parameters:
+      - in: query
+        name: connection_soils_grounds_id
+        description: connection_soils_grounds_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      responses:
+        '200':
+          description: "\u0423\u0434\u0430\u043B\u044F\u0435\u0442 \u0441\u0432\u044F\
+            \u0437\u044C \u043C\u0435\u0436\u0434\u0443 \u043F\u043E\u0447\u0432\u043E\
+            \u0439 \u0438 \u0433\u0440\u0443\u043D\u0442\u043E\u043C \u043F\u043E\
+            \ \u0435\u0451 ID"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionSoilsGroundsOutputSchemaDelete'
+        '400':
+          description: "\u041D\u0435 \u043F\u0435\u0440\u0435\u0434\u0430\u043D \u043E\
+            \u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0439 \u043F\
+            \u0430\u0440\u0430\u043C\u0435\u0442\u0440"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionSoilsGroundsErrorSchemaDelete'
+      tags:
+      - "\u0421onnectionSoilsGrounds"
+  /api/connectionsoilsgrounds/insert:
+    post:
+      summary: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u0435 \u0441\
+        \u0432\u044F\u0437\u0438 \u043C\u0435\u0436\u0434\u0443 \u043F\u043E\u0447\
+        \u0432\u043E\u0439 \u0438 \u0433\u0440\u0443\u043D\u0442\u043E\u043C"
+      parameters:
+      - in: query
+        name: connection_soil_id
+        description: connection_soil_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      - in: query
+        name: connection_ground_id
+        description: connection_ground_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      responses:
+        '200':
+          description: "\u0414\u043E\u0431\u0430\u0432\u043B\u044F\u0435\u0442 \u0441\
+            \u0432\u044F\u0437\u044C, \u043A\u0430\u043A\u043E\u0439 \u0433\u0440\u0443\
+            \u043D\u0442 \u0432\u0441\u0442\u0440\u0435\u0447\u0430\u0435\u0442\u0441\
+            \u044F \u043D\u0430 \u0434\u0430\u043D\u043D\u043E\u0439 \u043F\u043E\u0447\
+            \u0432\u0435"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionSoilsGroundsOutputSchemaInsert'
+        '400':
+          description: "\u041D\u0435 \u043F\u0435\u0440\u0435\u0434\u0430\u043D\u044B\
+            \ \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0435\
+            \ \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionSoilsGroundsErrorSchemaInsert'
+      tags:
+      - "\u0421onnectionSoilsGrounds"
+  /api/connectionsoilsgrounds/update/soilid:
+    post:
+      summary: "\u0410\u043F\u0434\u0435\u0439\u0442 ID \u043F\u043E\u0447\u0432\u044B\
+        \ \u0432 \u0441\u0432\u044F\u0437\u0438 \u043C\u0435\u0436\u0434\u0443 \u043F\
+        \u043E\u0447\u0432\u043E\u0439 \u0438 \u0433\u0440\u0443\u043D\u0442\u043E\
+        \u043C"
+      parameters:
+      - in: query
+        name: connection_soils_grounds_id
+        description: connection_soils_grounds_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      - in: query
+        name: connection_soil_id
+        description: connection_soil_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      responses:
+        '200':
+          description: "\u0418\u0437\u043C\u0435\u043D\u044F\u0435\u0442 ID \u043F\
+            \u043E\u0447\u0432\u044B \u0432 \u043A\u043E\u043D\u043A\u0440\u0435\u0442\
+            \u043D\u043E\u0439 \u0441\u0432\u044F\u0437\u0438 \u043C\u0435\u0436\u0434\
+            \u0443 \u043F\u043E\u0447\u0432\u043E\u0439 \u0438 \u0433\u0440\u0443\u043D\
+            \u0442\u043E\u043C (\u043F\u043E ID \u044D\u0442\u043E\u0439 \u0441\u0432\
+            \u044F\u0437\u0438)"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionSoilsGroundsOutputSchemaUpdateSoilID'
+        '400':
+          description: "\u041D\u0435 \u043F\u0435\u0440\u0435\u0434\u0430\u043D\u044B\
+            \ \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0435\
+            \ \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionSoilsGroundsErrorSchemaUpdateSoilID'
+      tags:
+      - "\u0421onnectionSoilsGrounds"
+  /api/connectionsoilsgrounds/update/groundid:
+    post:
+      summary: "\u0410\u043F\u0434\u0435\u0439\u0442 ID \u0433\u0440\u0443\u043D\u0442\
+        \u0430 \u0432 \u0441\u0432\u044F\u0437\u0438 \u043C\u0435\u0436\u0434\u0443\
+        \ \u043F\u043E\u0447\u0432\u043E\u0439 \u0438 \u0433\u0440\u0443\u043D\u0442\
+        \u043E\u043C"
+      parameters:
+      - in: query
+        name: connection_soils_grounds_id
+        description: connection_soils_grounds_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      - in: query
+        name: connection_ground_id
+        description: connection_ground_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      responses:
+        '200':
+          description: "\u0418\u0437\u043C\u0435\u043D\u044F\u0435\u0442 ID \u0433\
+            \u0440\u0443\u043D\u0442\u0430 \u0432 \u043A\u043E\u043D\u043A\u0440\u0435\
+            \u0442\u043D\u043E\u0439 \u0441\u0432\u044F\u0437\u0438 \u043C\u0435\u0436\
+            \u0434\u0443 \u043F\u043E\u0447\u0432\u043E\u0439 \u0438 \u0433\u0440\u0443\
+            \u043D\u0442\u043E\u043C (\u043F\u043E ID \u044D\u0442\u043E\u0439 \u0441\
+            \u0432\u044F\u0437\u0438)"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionSoilsGroundsOutputSchemaUpdateGroundID'
+        '400':
+          description: "\u041D\u0435 \u043F\u0435\u0440\u0435\u0434\u0430\u043D\u044B\
+            \ \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0435\
+            \ \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionSoilsGroundsErrorSchemaUpdateGroundID'
+      tags:
+      - "\u0421onnectionSoilsGrounds"
+  /api/connectionterritoriessoils:
+    get:
+      summary: "\u041F\u043E\u043B\u0443\u0447\u0435\u043D\u0438\u0435 \u0432\u0441\
+        \u0435\u0445 \u0441\u0432\u044F\u0437\u0435\u0439 \u043C\u0435\u0436\u0434\
+        \u0443 \u0442\u0435\u0440\u0440\u0438\u0442\u043E\u0440\u0438\u044F\u043C\u0438\
+        \ \u0438 \u043F\u043E\u0447\u0432\u0430\u043C\u0438"
+      responses:
+        '200':
+          description: "\u041F\u043E\u043B\u0443\u0447\u0435\u043D\u0438\u0435 \u0441\
+            \u043F\u0438\u0441\u043A\u0430, \u043A\u0430\u043A\u0438\u0435 \u043F\u043E\
+            \u0447\u0432\u044B \u0432\u0441\u0442\u0440\u0435\u0447\u0430\u044E\u0442\
+            \u0441\u044F \u043D\u0430 \u043A\u0430\u043A\u0438\u0445 \u0442\u0435\u0440\
+            \u0440\u0438\u0442\u043E\u0440\u0438\u044F\u0445"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionTerritoriesSoilsOutput'
+      tags:
+      - "\u0421onnectionTerritoriesSoils"
+  /api/connectionterritoriessoils/delete:
+    post:
+      summary: "\u0423\u0434\u0430\u043B\u0435\u043D\u0438\u0435 \u0441\u0432\u044F\
+        \u0437\u0438 \u043C\u0435\u0436\u0434\u0443 \u0442\u0435\u0440\u0440\u0438\
+        \u0442\u043E\u0440\u0438\u044F\u043C\u0438 \u0438 \u043F\u043E\u0447\u0432\
+        \u0430\u043C\u0438"
+      parameters:
+      - in: query
+        name: connection_territories_soils_id
+        description: connection_territories_soils_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      responses:
+        '200':
+          description: "\u0423\u0434\u0430\u043B\u044F\u0435\u0442 \u0441\u0432\u044F\
+            \u0437\u044C \u043C\u0435\u0436\u0434\u0443 \u0442\u0435\u0440\u0440\u0438\
+            \u0442\u043E\u0440\u0438\u0435\u0439 \u0438 \u043F\u043E\u0447\u0432\u043E\
+            \u0439 \u043F\u043E \u0435\u0451 ID"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionTerritoriesSoilsOutputSchemaDelete'
+        '400':
+          description: "\u041D\u0435 \u043F\u0435\u0440\u0435\u0434\u0430\u043D \u043E\
+            \u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0439 \u043F\
+            \u0430\u0440\u0430\u043C\u0435\u0442\u0440"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionTerritoriesSoilsErrorSchemaDelete'
+      tags:
+      - "\u0421onnectionTerritoriesSoils"
+  /api/connectionterritoriessoils/insert:
+    post:
+      summary: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u0435 \u0441\
+        \u0432\u044F\u0437\u0438 \u043C\u0435\u0436\u0434\u0443 \u0442\u0435\u0440\
+        \u0440\u0438\u0442\u043E\u0440\u0438\u0435\u0439 \u0438 \u043F\u043E\u0447\
+        \u0432\u043E\u0439"
+      parameters:
+      - in: query
+        name: connection_territorie_id
+        description: connection_territorie_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      - in: query
+        name: connection_soil_id
+        description: connection_soil_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      responses:
+        '200':
+          description: "\u0414\u043E\u0431\u0430\u0432\u043B\u044F\u0435\u0442 \u0441\
+            \u0432\u044F\u0437\u044C, \u043A\u0430\u043A\u0430\u044F \u043F\u043E\u0447\
+            \u0432\u0430 \u0432\u0441\u0442\u0440\u0435\u0447\u0430\u0435\u0442\u0441\
+            \u044F \u043D\u0430 \u0434\u0430\u043D\u043D\u043E\u0439 \u0442\u0435\u0440\
+            \u0440\u0438\u0442\u043E\u0440\u0438\u0438"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionTerritoriesSoilsOutputSchemaInsert'
+        '400':
+          description: "\u041D\u0435 \u043F\u0435\u0440\u0435\u0434\u0430\u043D\u044B\
+            \ \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0435\
+            \ \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionTerritoriesSoilsErrorSchemaInsert'
+      tags:
+      - "\u0421onnectionTerritoriesSoils"
+  /api/connectionterritoriessoils/update/territorieid:
+    post:
+      summary: "\u0410\u043F\u0434\u0435\u0439\u0442 ID \u0442\u0435\u0440\u0440\u0438\
+        \u0442\u043E\u0440\u0438\u0438 \u0432 \u0441\u0432\u044F\u0437\u0438 \u043C\
+        \u0435\u0436\u0434\u0443 \u0442\u0435\u0440\u0440\u0438\u0442\u043E\u0440\u0438\
+        \u0435\u0439 \u0438 \u043F\u043E\u0447\u0432\u043E\u0439"
+      parameters:
+      - in: query
+        name: connection_territorie_id
+        description: connection_territorie_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      - in: query
+        name: connection_territories_soils_id
+        description: connection_territories_soils_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      responses:
+        '200':
+          description: "\u0418\u0437\u043C\u0435\u043D\u044F\u0435\u0442 ID \u0442\
+            \u0435\u0440\u0440\u0438\u0442\u043E\u0440\u0438\u0438 \u0432 \u043A\u043E\
+            \u043D\u043A\u0440\u0435\u0442\u043D\u043E\u0439 \u0441\u0432\u044F\u0437\
+            \u0438 \u043C\u0435\u0436\u0434\u0443 \u0442\u0435\u0440\u0440\u0438\u0442\
+            \u043E\u0440\u0438\u0435\u0439 \u0438 \u043F\u043E\u0447\u0432\u043E\u0439\
+            \ (\u043F\u043E ID \u044D\u0442\u043E\u0439 \u0441\u0432\u044F\u0437\u0438\
+            )"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionTerritoriesSoilsOutputSchemaUpdateTerritorieID'
+        '400':
+          description: "\u041D\u0435 \u043F\u0435\u0440\u0435\u0434\u0430\u043D\u044B\
+            \ \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0435\
+            \ \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionTerritoriesSoilsErrorSchemaUpdateTerritorieID'
+      tags:
+      - "\u0421onnectionTerritoriesSoils"
+  /api/connectionterritoriessoils/update/soilid:
+    post:
+      summary: "\u0410\u043F\u0434\u0435\u0439\u0442 ID \u043F\u043E\u0447\u0432\u044B\
+        \ \u0432 \u0441\u0432\u044F\u0437\u0438 \u043C\u0435\u0436\u0434\u0443 \u0442\
+        \u0435\u0440\u0440\u0438\u0442\u043E\u0440\u0438\u0435\u0439 \u0438 \u043F\
+        \u043E\u0447\u0432\u043E\u0439"
+      parameters:
+      - in: query
+        name: connection_soil_id
+        description: connection_soil_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      - in: query
+        name: connection_territories_soils_id
+        description: connection_territories_soils_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      responses:
+        '200':
+          description: "\u0418\u0437\u043C\u0435\u043D\u044F\u0435\u0442 ID \u043F\
+            \u043E\u0447\u0432\u044B \u0432 \u043A\u043E\u043D\u043A\u0440\u0435\u0442\
+            \u043D\u043E\u0439 \u0441\u0432\u044F\u0437\u0438 \u043C\u0435\u0436\u0434\
+            \u0443 \u0442\u0435\u0440\u0440\u0438\u0442\u043E\u0440\u0438\u0435\u0439\
+            \ \u0438 \u043F\u043E\u0447\u0432\u043E\u0439 (\u043F\u043E ID \u044D\u0442\
+            \u043E\u0439 \u0441\u0432\u044F\u0437\u0438)"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionTerritoriesSoilsOutputSchemaUpdateSoilID'
+        '400':
+          description: "\u041D\u0435 \u043F\u0435\u0440\u0435\u0434\u0430\u043D\u044B\
+            \ \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0435\
+            \ \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionTerritoriesSoilsErrorSchemaUpdateSoilID'
+      tags:
+      - "\u0421onnectionTerritoriesSoils"
+  /api/connectionsoilsplants:
+    get:
+      summary: "\u041F\u043E\u043B\u0443\u0447\u0435\u043D\u0438\u0435 \u0432\u0441\
+        \u0435\u0445 \u0441\u0432\u044F\u0437\u0435\u0439 \u043C\u0435\u0436\u0434\
+        \u0443 \u043F\u043E\u0447\u0432\u0430\u043C\u0438 \u0438 \u0440\u0430\u0441\
+        \u0442\u0435\u043D\u0438\u044F\u043C\u0438"
+      responses:
+        '200':
+          description: "\u041F\u043E\u043B\u0443\u0447\u0435\u043D\u0438\u0435 \u0441\
+            \u043F\u0438\u0441\u043A\u0430, \u043D\u0430 \u043A\u0430\u043A\u0438\u0445\
+            \ \u043F\u043E\u0447\u0432\u0430\u0445 \u043A\u0430\u043A\u0438\u0435\
+            \ \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u044F \u0440\u0430\u0441\u0442\
+            \u0443\u0442 \u0445\u043E\u0440\u043E\u0448\u043E, \u0430 \u043A\u0430\
+            \u043A\u0438\u0435 - \u043F\u043B\u043E\u0445\u043E"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionSoilsPlantsOutput'
+      tags:
+      - "\u0421onnectionSoilsPlants"
+  /api/connectionsoilsplants/delete:
+    post:
+      summary: "\u0423\u0434\u0430\u043B\u0435\u043D\u0438\u0435 \u0441\u0432\u044F\
+        \u0437\u0438 \u043C\u0435\u0436\u0434\u0443 \u043F\u043E\u0447\u0432\u043E\
+        \u0439 \u0438 \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u0435\u043C"
+      parameters:
+      - in: query
+        name: connection_soils_plants_id
+        description: connection_soils_plants_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      responses:
+        '200':
+          description: "\u0423\u0434\u0430\u043B\u044F\u0435\u0442 \u0441\u0432\u044F\
+            \u0437\u044C \u043C\u0435\u0436\u0434\u0443 \u043F\u043E\u0447\u0432\u043E\
+            \u0439 \u0438 \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u0435\u043C \u043F\
+            \u043E \u0435\u0451 ID"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionSoilsPlantsOutputSchemaDelete'
+        '400':
+          description: "\u041D\u0435 \u043F\u0435\u0440\u0435\u0434\u0430\u043D \u043E\
+            \u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0439 \u043F\
+            \u0430\u0440\u0430\u043C\u0435\u0442\u0440"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionSoilsPlantsErrorSchemaDelete'
+      tags:
+      - "\u0421onnectionSoilsPlants"
+  /api/connectionsoilsplants/insert:
+    post:
+      summary: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u0435 \u0441\
+        \u0432\u044F\u0437\u0438 \u043C\u0435\u0436\u0434\u0443 \u043F\u043E\u0447\
+        \u0432\u043E\u0439 \u0438 \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u0435\
+        \u043C"
+      parameters:
+      - in: query
+        name: connection_soil_id
+        description: connection_soil_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      - in: query
+        name: connection_soils_plants_isGood
+        description: connection_soils_plants_isGood
+        schema:
+          type: boolean
+          example: true
+        required: true
+      - in: query
+        name: connection_plant_id
+        description: connection_plant_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      responses:
+        '200':
+          description: "\u0414\u043E\u0431\u0430\u0432\u043B\u044F\u0435\u0442 \u0441\
+            \u0432\u044F\u0437\u044C \u043C\u0435\u0436\u0434\u0443 \u043F\u043E\u0447\
+            \u0432\u043E\u0439 \u0438 \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u0435\
+            \u043C"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionSoilsPlantsOutputSchemaInsert'
+        '400':
+          description: "\u041D\u0435 \u043F\u0435\u0440\u0435\u0434\u0430\u043D\u044B\
+            \ \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0435\
+            \ \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionSoilsPlantsErrorSchemaInsert'
+      tags:
+      - "\u0421onnectionSoilsPlants"
+  /api/connectionsoilsplants/update/soilid:
+    post:
+      summary: "\u0410\u043F\u0434\u0435\u0439\u0442 ID \u043F\u043E\u0447\u0432\u044B\
+        \ \u0432 \u0441\u0432\u044F\u0437\u0438 \u043C\u0435\u0436\u0434\u0443 \u043F\
+        \u043E\u0447\u0432\u043E\u0439 \u0438 \u0440\u0430\u0441\u0442\u0435\u043D\
+        \u0438\u0435\u043C"
+      parameters:
+      - in: query
+        name: connection_soil_id
+        description: connection_soil_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      - in: query
+        name: connection_soils_plants_id
+        description: connection_soils_plants_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      responses:
+        '200':
+          description: "\u0418\u0437\u043C\u0435\u043D\u044F\u0435\u0442 ID \u043F\
+            \u043E\u0447\u0432\u044B \u0432 \u043A\u043E\u043D\u043A\u0440\u0435\u0442\
+            \u043D\u043E\u0439 \u0441\u0432\u044F\u0437\u0438 \u043C\u0435\u0436\u0434\
+            \u0443 \u043F\u043E\u0447\u0432\u043E\u0439 \u0438 \u0440\u0430\u0441\u0442\
+            \u0435\u043D\u0438\u0435\u043C (\u043F\u043E ID \u044D\u0442\u043E\u0439\
+            \ \u0441\u0432\u044F\u0437\u0438)"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionSoilsPlantsOutputSchemaUpdateSoilID'
+        '400':
+          description: "\u041D\u0435 \u043F\u0435\u0440\u0435\u0434\u0430\u043D\u044B\
+            \ \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0435\
+            \ \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionSoilsPlantsErrorSchemaUpdateSoilID'
+      tags:
+      - "\u0421onnectionSoilsPlants"
+  /api/connectionsoilsplants/update/plantid:
+    post:
+      summary: "\u0410\u043F\u0434\u0435\u0439\u0442 ID \u0440\u0430\u0441\u0442\u0435\
+        \u043D\u0438\u044F \u0432 \u0441\u0432\u044F\u0437\u0438 \u043C\u0435\u0436\
+        \u0434\u0443 \u043F\u043E\u0447\u0432\u043E\u0439 \u0438 \u0440\u0430\u0441\
+        \u0442\u0435\u043D\u0438\u0435\u043C"
+      parameters:
+      - in: query
+        name: connection_soils_plants_id
+        description: connection_soils_plants_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      - in: query
+        name: connection_plant_id
+        description: connection_plant_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      responses:
+        '200':
+          description: "\u0418\u0437\u043C\u0435\u043D\u044F\u0435\u0442 ID \u0440\
+            \u0430\u0441\u0442\u0435\u043D\u0438\u044F \u0432 \u043A\u043E\u043D\u043A\
+            \u0440\u0435\u0442\u043D\u043E\u0439 \u0441\u0432\u044F\u0437\u0438 \u043C\
+            \u0435\u0436\u0434\u0443 \u043F\u043E\u0447\u0432\u043E\u0439 \u0438 \u0440\
+            \u0430\u0441\u0442\u0435\u043D\u0438\u0435\u043C (\u043F\u043E ID \u044D\
+            \u0442\u043E\u0439 \u0441\u0432\u044F\u0437\u0438)"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionSoilsPlantsOutputSchemaUpdatePlantID'
+        '400':
+          description: "\u041D\u0435 \u043F\u0435\u0440\u0435\u0434\u0430\u043D\u044B\
+            \ \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0435\
+            \ \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionSoilsPlantsErrorSchemaUpdatePlantID'
+      tags:
+      - "\u0421onnectionSoilsPlants"
+  /api/connectionsoilsplants/update/isGood:
+    post:
+      summary: "\u0410\u043F\u0434\u0435\u0439\u0442, \u0445\u043E\u0440\u043E\u0448\
+        \u043E \u043B\u0438 \u0440\u0430\u0441\u0442\u0451\u0442 \u0440\u0430\u0441\
+        \u0442\u0435\u043D\u0438\u0435 \u043D\u0430 \u0434\u0430\u043D\u043D\u043E\
+        \u0439 \u043F\u043E\u0447\u0432\u0435"
+      parameters:
+      - in: query
+        name: connection_soils_plants_id
+        description: connection_soils_plants_id
+        schema:
+          type: integer
+          example: 1
+        required: true
+      - in: query
+        name: connection_soils_plants_isGood
+        description: connection_soils_plants_isGood
+        schema:
+          type: boolean
+          example: true
+        required: true
+      responses:
+        '200':
+          description: "\u0418\u0437\u043C\u0435\u043D\u044F\u0435\u0442 \u0442\u043E\
+            , \u0445\u043E\u0440\u043E\u0448\u043E (True) \u0438\u043B\u0438 \u043F\
+            \u043B\u043E\u0445\u043E (False) \u0440\u0430\u0441\u0442\u0451\u0442\
+            \ \u0434\u0430\u043D\u043D\u043E\u0435 \u0440\u0430\u0441\u0442\u0435\u043D\
+            \u0438\u0435 \u043D\u0430 \u0434\u0430\u043D\u043D\u043E\u0439 \u043F\u043E\
+            \u0447\u0432\u0435"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionSoilsPlantsOutputSchemaUpdateIsGood'
+        '400':
+          description: "\u041D\u0435 \u043F\u0435\u0440\u0435\u0434\u0430\u043D\u044B\
+            \ \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0435\
+            \ \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionSoilsPlantsErrorSchemaUpdateIsGood'
+      tags:
+      - "\u0421onnectionSoilsPlants"
   /swagger: {}
 info:
   title: My App
@@ -2773,6 +3628,25 @@ components:
           example: Invalid input parameter number
       required:
       - error
+    UserOutputSchemaUpdateAge:
+      type: object
+      properties:
+        result:
+          type: integer
+          description: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+          example: 25
+      required:
+      - result
+    UserErrorSchemaUpdateAge:
+      type: object
+      properties:
+        error:
+          type: string
+          description: "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u043E\
+            \u0431 \u043E\u0448\u0438\u0431\u043A\u0435"
+          example: Invalid input parameter number
+      required:
+      - error
     UserOutputSchemaUpdateIsFemale:
       type: object
       properties:
@@ -2820,6 +3694,25 @@ components:
           example: 25
       required:
       - result
+    TerritorieOutputSchemaGetSoilsGroundsPlantsAnimalsForTerritories:
+      type: object
+      properties:
+        result:
+          type: integer
+          description: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+          example: 25
+      required:
+      - result
+    TerritorieErrorSchemaGetSoilsGroundsPlantsAnimalsForTerritories:
+      type: object
+      properties:
+        error:
+          type: string
+          description: "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u043E\
+            \u0431 \u043E\u0448\u0438\u0431\u043A\u0435"
+          example: Invalid input parameter number
+      required:
+      - error
     TerritorieOutputSchemaDelete:
       type: object
       properties:
@@ -3835,6 +4728,365 @@ components:
       required:
       - result
     PlantErrorSchemaUpdatePicture:
+      type: object
+      properties:
+        error:
+          type: string
+          description: "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u043E\
+            \u0431 \u043E\u0448\u0438\u0431\u043A\u0435"
+          example: Invalid input parameter number
+      required:
+      - error
+    ConnectionPlantsAnimalsOutput:
+      type: object
+      properties:
+        result:
+          type: integer
+          description: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+          example: 25
+      required:
+      - result
+    ConnectionPlantsAnimalsOutputSchemaDelete:
+      type: object
+      properties:
+        result:
+          type: integer
+          description: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+          example: 25
+      required:
+      - result
+    ConnectionPlantsAnimalsErrorSchemaDelete:
+      type: object
+      properties:
+        error:
+          type: string
+          description: "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u043E\
+            \u0431 \u043E\u0448\u0438\u0431\u043A\u0435"
+          example: Invalid input parameter number
+      required:
+      - error
+    ConnectionPlantsAnimalsOutputSchemaInsert:
+      type: object
+      properties:
+        result:
+          type: integer
+          description: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+          example: 25
+      required:
+      - result
+    ConnectionPlantsAnimalsErrorSchemaInsert:
+      type: object
+      properties:
+        error:
+          type: string
+          description: "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u043E\
+            \u0431 \u043E\u0448\u0438\u0431\u043A\u0435"
+          example: Invalid input parameter number
+      required:
+      - error
+    ConnectionPlantsAnimalsOutputSchemaUpdatePlantID:
+      type: object
+      properties:
+        result:
+          type: integer
+          description: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+          example: 25
+      required:
+      - result
+    ConnectionPlantsAnimalsErrorSchemaUpdatePlantID:
+      type: object
+      properties:
+        error:
+          type: string
+          description: "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u043E\
+            \u0431 \u043E\u0448\u0438\u0431\u043A\u0435"
+          example: Invalid input parameter number
+      required:
+      - error
+    ConnectionPlantsAnimalsOutputSchemaUpdateAnimalID:
+      type: object
+      properties:
+        result:
+          type: integer
+          description: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+          example: 25
+      required:
+      - result
+    ConnectionPlantsAnimalsErrorSchemaUpdateAnimalID:
+      type: object
+      properties:
+        error:
+          type: string
+          description: "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u043E\
+            \u0431 \u043E\u0448\u0438\u0431\u043A\u0435"
+          example: Invalid input parameter number
+      required:
+      - error
+    ConnectionSoilsGroundsOutput:
+      type: object
+      properties:
+        result:
+          type: integer
+          description: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+          example: 25
+      required:
+      - result
+    ConnectionSoilsGroundsOutputSchemaDelete:
+      type: object
+      properties:
+        result:
+          type: integer
+          description: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+          example: 25
+      required:
+      - result
+    ConnectionSoilsGroundsErrorSchemaDelete:
+      type: object
+      properties:
+        error:
+          type: string
+          description: "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u043E\
+            \u0431 \u043E\u0448\u0438\u0431\u043A\u0435"
+          example: Invalid input parameter number
+      required:
+      - error
+    ConnectionSoilsGroundsOutputSchemaInsert:
+      type: object
+      properties:
+        result:
+          type: integer
+          description: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+          example: 25
+      required:
+      - result
+    ConnectionSoilsGroundsErrorSchemaInsert:
+      type: object
+      properties:
+        error:
+          type: string
+          description: "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u043E\
+            \u0431 \u043E\u0448\u0438\u0431\u043A\u0435"
+          example: Invalid input parameter number
+      required:
+      - error
+    ConnectionSoilsGroundsOutputSchemaUpdateSoilID:
+      type: object
+      properties:
+        result:
+          type: integer
+          description: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+          example: 25
+      required:
+      - result
+    ConnectionSoilsGroundsErrorSchemaUpdateSoilID:
+      type: object
+      properties:
+        error:
+          type: string
+          description: "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u043E\
+            \u0431 \u043E\u0448\u0438\u0431\u043A\u0435"
+          example: Invalid input parameter number
+      required:
+      - error
+    ConnectionSoilsGroundsOutputSchemaUpdateGroundID:
+      type: object
+      properties:
+        result:
+          type: integer
+          description: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+          example: 25
+      required:
+      - result
+    ConnectionSoilsGroundsErrorSchemaUpdateGroundID:
+      type: object
+      properties:
+        error:
+          type: string
+          description: "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u043E\
+            \u0431 \u043E\u0448\u0438\u0431\u043A\u0435"
+          example: Invalid input parameter number
+      required:
+      - error
+    ConnectionTerritoriesSoilsOutput:
+      type: object
+      properties:
+        result:
+          type: integer
+          description: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+          example: 25
+      required:
+      - result
+    ConnectionTerritoriesSoilsOutputSchemaDelete:
+      type: object
+      properties:
+        result:
+          type: integer
+          description: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+          example: 25
+      required:
+      - result
+    ConnectionTerritoriesSoilsErrorSchemaDelete:
+      type: object
+      properties:
+        error:
+          type: string
+          description: "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u043E\
+            \u0431 \u043E\u0448\u0438\u0431\u043A\u0435"
+          example: Invalid input parameter number
+      required:
+      - error
+    ConnectionTerritoriesSoilsOutputSchemaInsert:
+      type: object
+      properties:
+        result:
+          type: integer
+          description: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+          example: 25
+      required:
+      - result
+    ConnectionTerritoriesSoilsErrorSchemaInsert:
+      type: object
+      properties:
+        error:
+          type: string
+          description: "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u043E\
+            \u0431 \u043E\u0448\u0438\u0431\u043A\u0435"
+          example: Invalid input parameter number
+      required:
+      - error
+    ConnectionTerritoriesSoilsOutputSchemaUpdateTerritorieID:
+      type: object
+      properties:
+        result:
+          type: integer
+          description: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+          example: 25
+      required:
+      - result
+    ConnectionTerritoriesSoilsErrorSchemaUpdateTerritorieID:
+      type: object
+      properties:
+        error:
+          type: string
+          description: "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u043E\
+            \u0431 \u043E\u0448\u0438\u0431\u043A\u0435"
+          example: Invalid input parameter number
+      required:
+      - error
+    ConnectionTerritoriesSoilsOutputSchemaUpdateSoilID:
+      type: object
+      properties:
+        result:
+          type: integer
+          description: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+          example: 25
+      required:
+      - result
+    ConnectionTerritoriesSoilsErrorSchemaUpdateSoilID:
+      type: object
+      properties:
+        error:
+          type: string
+          description: "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u043E\
+            \u0431 \u043E\u0448\u0438\u0431\u043A\u0435"
+          example: Invalid input parameter number
+      required:
+      - error
+    ConnectionSoilsPlantsOutput:
+      type: object
+      properties:
+        result:
+          type: integer
+          description: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+          example: 25
+      required:
+      - result
+    ConnectionSoilsPlantsOutputSchemaDelete:
+      type: object
+      properties:
+        result:
+          type: integer
+          description: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+          example: 25
+      required:
+      - result
+    ConnectionSoilsPlantsErrorSchemaDelete:
+      type: object
+      properties:
+        error:
+          type: string
+          description: "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u043E\
+            \u0431 \u043E\u0448\u0438\u0431\u043A\u0435"
+          example: Invalid input parameter number
+      required:
+      - error
+    ConnectionSoilsPlantsOutputSchemaInsert:
+      type: object
+      properties:
+        result:
+          type: integer
+          description: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+          example: 25
+      required:
+      - result
+    ConnectionSoilsPlantsErrorSchemaInsert:
+      type: object
+      properties:
+        error:
+          type: string
+          description: "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u043E\
+            \u0431 \u043E\u0448\u0438\u0431\u043A\u0435"
+          example: Invalid input parameter number
+      required:
+      - error
+    ConnectionSoilsPlantsOutputSchemaUpdateSoilID:
+      type: object
+      properties:
+        result:
+          type: integer
+          description: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+          example: 25
+      required:
+      - result
+    ConnectionSoilsPlantsErrorSchemaUpdateSoilID:
+      type: object
+      properties:
+        error:
+          type: string
+          description: "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u043E\
+            \u0431 \u043E\u0448\u0438\u0431\u043A\u0435"
+          example: Invalid input parameter number
+      required:
+      - error
+    ConnectionSoilsPlantsOutputSchemaUpdatePlantID:
+      type: object
+      properties:
+        result:
+          type: integer
+          description: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+          example: 25
+      required:
+      - result
+    ConnectionSoilsPlantsErrorSchemaUpdatePlantID:
+      type: object
+      properties:
+        error:
+          type: string
+          description: "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u043E\
+            \u0431 \u043E\u0448\u0438\u0431\u043A\u0435"
+          example: Invalid input parameter number
+      required:
+      - error
+    ConnectionSoilsPlantsOutputSchemaUpdateIsGood:
+      type: object
+      properties:
+        result:
+          type: integer
+          description: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+          example: 25
+      required:
+      - result
+    ConnectionSoilsPlantsErrorSchemaUpdateIsGood:
       type: object
       properties:
         error:

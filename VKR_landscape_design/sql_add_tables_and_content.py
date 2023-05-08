@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS users(
     user_surname VARCHAR(20),
     user_name VARCHAR(20),
     user_fathername VARCHAR(20),
+    user_age INTEGER,
     user_isFemale BOOLEAN,
     user_picture VARCHAR,
     user_isAdmin BOOLEAN NOT NULL
@@ -94,7 +95,7 @@ CREATE TABLE IF NOT EXISTS connection_soils_plants(
     connection_soils_plants_id INTEGER PRIMARY KEY AUTOINCREMENT,
     connection_soil_id INTEGER NOT NULL,
     connection_plant_id INTEGER NOT NULL,
-    connection_soils_plants_isGood BOOLEAN
+    connection_soils_plants_isGood BOOLEAN NOT NULL
  );
 CREATE TABLE IF NOT EXISTS connection_plants_animals(
     connection_plants_animals_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -104,13 +105,13 @@ CREATE TABLE IF NOT EXISTS connection_plants_animals(
 
 
 
-INSERT INTO users (user_login, user_password, user_email, user_surname, user_name, user_fathername, user_isFemale, user_isAdmin)
+INSERT INTO users (user_login, user_password, user_email, user_surname, user_name, user_fathername, user_age, user_isFemale, user_isAdmin)
 VALUES
-('root', 'samyyslozhnyyparolvmire12345!!!', 'Иванов', 'Пётр', 'Сидорович', 'superadmin@yandex.ru', False, True),
-('vanek2002', '12345abcde', 'Иванов', 'Иван', 'Иванович', 'vanya@yandex.ru', False, False),
-('petrpervuy', '!qwerty15', 'Петров', 'Пётр', 'Петрович', 'petrpervuy@gmail.com', False, False),
-('mashapupkina', 'йцукен', 'Пупкина', 'Мария', 'Игоревна', 'pupkinama@gmail.com', True, False),
-('lutiysidor', 'abracadabra123', 'Сидоров', 'Сидр', 'Сидорович', 'supersid@mail.ru', False, False);
+('root', 'samyyslozhnyyparolvmire12345!!!', 'superadmin@yandex.ru', 'Иванов', 'Пётр', 'Сидорович', 23, False, True),
+('vanek2002', '12345abcde', 'vanya@yandex.ru', 'Иванов', 'Иван', 'Иванович', 32, False, False),
+('petrpervuy', '!qwerty15', 'petrpervuy@gmail.com', 'Петров', 'Пётр', 'Петрович', 19, False, False),
+('mashapupkina', 'йцукен', 'pupkinama@gmail.com', 'Пупкина', 'Мария', 'Игоревна', 24, True, False),
+('lutiysidor', 'abracadabra123', 'supersid@mail.ru', 'Сидоров', 'Сидор', 'Сидорович', 25, False, False);
 
 
 INSERT INTO territories (territorie_coord_x, territorie_coord_y, territorie_coord_z)

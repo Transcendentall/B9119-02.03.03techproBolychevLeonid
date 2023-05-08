@@ -109,7 +109,6 @@ def users_post_delete():
           - Users
       """
     conn = get_db_connection()
-    print(request.get_json()['user_id'])
     x = delete_user(conn, request.get_json()['user_id'])
     return json.dumps({'message': "success"})
 
@@ -125,7 +124,7 @@ def users_post_insert():
             schema: UserInputSchemaInsert
         responses:
           '200':
-            description: Пользователь добавлен
+            description: Добавляет пользователя
             content:
               application/json:
                 schema: UserOutputSchemaInsert
@@ -304,6 +303,35 @@ def users_post_update_fathername():
     conn = get_db_connection()
     x = update_user_fathername(conn, request.get_json()['user_user_id', 'user_user_fathername'])
     return json.dumps({'message': "success"})
+
+
+@blueprint_user.route('/api/users/update/age', methods=['POST'])
+def users_post_update_age():
+    """
+      ---
+      post:
+        summary: Апдейт возраста пользователя
+        parameters:
+          - in: query
+            schema: UserInputSchemaUpdateAge
+        responses:
+          '200':
+            description: Изменяет возраст пользователя
+            content:
+              application/json:
+                schema: UserOutputSchemaUpdateAge
+          '400':
+            description: Не переданы обязательные параметры
+            content:
+              application/json:
+                schema: UserErrorSchemaUpdateAge
+        tags:
+          - Users
+      """
+    conn = get_db_connection()
+    x = update_user_age(conn, request.get_json()['user_user_id', 'user_user_age'])
+    return json.dumps({'message': "success"})
+
 
 @blueprint_user.route('/api/users/update/isFemale', methods=['POST'])
 def users_post_update_isFemale():
