@@ -165,7 +165,7 @@ def users_post_authorisation():
       """
     conn = get_db_connection()
     x = authorisation(conn, request.get_json()['user_user_login', 'user_user_password'])
-    return json.dumps({'message': "success"})
+    return json.dumps(x.to_dict(orient="records"))
 
 @blueprint_user.route('/api/users/delete', methods=['POST'])
 def users_post_delete():
