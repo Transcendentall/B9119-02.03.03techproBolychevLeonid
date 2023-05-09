@@ -145,11 +145,20 @@ paths:
       summary: "\u0410\u0432\u0442\u043E\u0440\u0438\u0437\u0430\u0446\u0438\u044F\
         \ \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044F"
       parameters:
-      - in: body
-        required: false
-        name: body
+      - in: bodyg
+        name: user_password
+        description: user_password
         schema:
-          $ref: '#/components/schemas/UserInputSchemaAuthorisation'
+          type: string
+          example: test
+        required: true
+      - in: bodyg
+        name: user_login
+        description: user_login
+        schema:
+          type: string
+          example: test
+        required: true
       responses:
         '200':
           description: "\u0410\u0432\u0442\u043E\u0440\u0438\u0437\u0438\u0440\u0443\
@@ -204,15 +213,15 @@ paths:
         \u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044F"
       parameters:
       - in: query
-        name: user_login
-        description: user_login
+        name: user_password
+        description: user_password
         schema:
           type: string
           example: test
         required: true
       - in: query
-        name: user_password
-        description: user_password
+        name: user_login
+        description: user_login
         schema:
           type: string
           example: test
@@ -481,18 +490,18 @@ paths:
         \u043B\u044F"
       parameters:
       - in: query
-        name: user_id
-        description: user_id
-        schema:
-          type: integer
-          example: 1
-        required: true
-      - in: query
         name: user_age
         description: user_age
         schema:
           type: string
           example: test
+        required: true
+      - in: query
+        name: user_id
+        description: user_id
+        schema:
+          type: integer
+          example: 1
         required: true
       responses:
         '200':
@@ -733,15 +742,15 @@ paths:
           example: '1'
         required: true
       - in: query
-        name: territorie_coord_z
-        description: territorie_coord_z
+        name: territorie_coord_y
+        description: territorie_coord_y
         schema:
           type: number
           example: '1'
         required: true
       - in: query
-        name: territorie_coord_y
-        description: territorie_coord_y
+        name: territorie_coord_z
+        description: territorie_coord_z
         schema:
           type: number
           example: '1'
@@ -771,18 +780,18 @@ paths:
         \u0440\u0438\u0438"
       parameters:
       - in: query
-        name: territorie_coord_x
-        description: territorie_coord_x
-        schema:
-          type: number
-          example: '1'
-        required: true
-      - in: query
         name: territorie_id
         description: territorie_id
         schema:
           type: integer
           example: 1
+        required: true
+      - in: query
+        name: territorie_coord_x
+        description: territorie_coord_x
+        schema:
+          type: number
+          example: '1'
         required: true
       responses:
         '200':
@@ -849,18 +858,18 @@ paths:
         \u0440\u0438\u0438"
       parameters:
       - in: query
-        name: territorie_coord_z
-        description: territorie_coord_z
-        schema:
-          type: number
-          example: '1'
-        required: true
-      - in: query
         name: territorie_id
         description: territorie_id
         schema:
           type: integer
           example: 1
+        required: true
+      - in: query
+        name: territorie_coord_z
+        description: territorie_coord_z
+        schema:
+          type: number
+          example: '1'
         required: true
       responses:
         '200':
@@ -932,15 +941,15 @@ paths:
         \u0440\u0443\u043D\u0442\u0430"
       parameters:
       - in: query
-        name: ground_name
-        description: ground_name
+        name: ground_description
+        description: ground_description
         schema:
           type: string
           example: test
         required: true
       - in: query
-        name: ground_description
-        description: ground_description
+        name: ground_name
+        description: ground_name
         schema:
           type: string
           example: test
@@ -969,18 +978,18 @@ paths:
         \u043D\u0438\u044F \u0433\u0440\u0443\u043D\u0442\u0430"
       parameters:
       - in: query
-        name: ground_name
-        description: ground_name
-        schema:
-          type: string
-          example: test
-        required: true
-      - in: query
         name: ground_id
         description: ground_id
         schema:
           type: integer
           example: 1
+        required: true
+      - in: query
+        name: ground_name
+        description: ground_name
+        schema:
+          type: string
+          example: test
         required: true
       responses:
         '200':
@@ -1006,18 +1015,18 @@ paths:
         \u043D\u0438\u044F \u0433\u0440\u0443\u043D\u0442\u0430"
       parameters:
       - in: query
-        name: ground_id
-        description: ground_id
-        schema:
-          type: integer
-          example: 1
-        required: true
-      - in: query
         name: ground_description
         description: ground_description
         schema:
           type: string
           example: test
+        required: true
+      - in: query
+        name: ground_id
+        description: ground_id
+        schema:
+          type: integer
+          example: 1
         required: true
       responses:
         '200':
@@ -1120,18 +1129,18 @@ paths:
         \ \u041C\u043E\u043E\u0441\u0443"
       parameters:
       - in: query
-        name: ground_hardness_Moos
-        description: ground_hardness_Moos
-        schema:
-          type: string
-          example: test
-        required: true
-      - in: query
         name: ground_id
         description: ground_id
         schema:
           type: integer
           example: 1
+        required: true
+      - in: query
+        name: ground_hardness_Moos
+        description: ground_hardness_Moos
+        schema:
+          type: string
+          example: test
         required: true
       responses:
         '200':
@@ -1159,18 +1168,18 @@ paths:
         \u043D\u043A\u0438 \u0433\u0440\u0443\u043D\u0442\u0430"
       parameters:
       - in: query
-        name: ground_picture
-        description: ground_picture
-        schema:
-          type: string
-          example: test
-        required: true
-      - in: query
         name: ground_id
         description: ground_id
         schema:
           type: integer
           example: 1
+        required: true
+      - in: query
+        name: ground_picture
+        description: ground_picture
+        schema:
+          type: string
+          example: test
         required: true
       responses:
         '200':
@@ -1352,18 +1361,18 @@ paths:
         \u0442\u043D\u043E\u0441\u0442\u0438 \u043F\u043E\u0447\u0432\u044B"
       parameters:
       - in: query
-        name: soil_id
-        description: soil_id
-        schema:
-          type: integer
-          example: 1
-        required: true
-      - in: query
         name: soil_acidity
         description: soil_acidity
         schema:
           type: string
           example: test
+        required: true
+      - in: query
+        name: soil_id
+        description: soil_id
+        schema:
+          type: integer
+          example: 1
         required: true
       responses:
         '200':
@@ -1429,18 +1438,18 @@ paths:
         \u043B\u044F \u043F\u043E\u0447\u0432\u044B"
       parameters:
       - in: query
-        name: soil_id
-        description: soil_id
-        schema:
-          type: integer
-          example: 1
-        required: true
-      - in: query
         name: soil_profile
         description: soil_profile
         schema:
           type: string
           example: test
+        required: true
+      - in: query
+        name: soil_id
+        description: soil_id
+        schema:
+          type: integer
+          example: 1
         required: true
       responses:
         '200':
@@ -1548,15 +1557,15 @@ paths:
         \u0438\u0432\u043E\u0442\u043D\u043E\u0433\u043E"
       parameters:
       - in: query
-        name: animal_description
-        description: animal_description
+        name: animal_name
+        description: animal_name
         schema:
           type: string
           example: test
         required: true
       - in: query
-        name: animal_name
-        description: animal_name
+        name: animal_description
+        description: animal_description
         schema:
           type: string
           example: test
@@ -1886,18 +1895,18 @@ paths:
         \u0438\u0432\u043E\u0442\u043D\u043E\u0433\u043E"
       parameters:
       - in: query
-        name: animal_id
-        description: animal_id
-        schema:
-          type: integer
-          example: 1
-        required: true
-      - in: query
         name: animal_species
         description: animal_species
         schema:
           type: string
           example: test
+        required: true
+      - in: query
+        name: animal_id
+        description: animal_id
+        schema:
+          type: integer
+          example: 1
         required: true
       responses:
         '200':
@@ -1925,18 +1934,18 @@ paths:
         \u043D\u043A\u0438 \u0436\u0438\u0432\u043E\u0442\u043D\u043E\u0433\u043E"
       parameters:
       - in: query
-        name: animal_id
-        description: animal_id
-        schema:
-          type: integer
-          example: 1
-        required: true
-      - in: query
         name: animal_picture
         description: animal_picture
         schema:
           type: string
           example: test
+        required: true
+      - in: query
+        name: animal_id
+        description: animal_id
+        schema:
+          type: integer
+          example: 1
         required: true
       responses:
         '200':
@@ -2053,18 +2062,18 @@ paths:
           example: test
         required: true
       - in: query
-        name: plant_name
-        description: plant_name
-        schema:
-          type: string
-          example: test
-        required: true
-      - in: query
         name: plant_isFodder
         description: plant_isFodder
         schema:
           type: boolean
           example: true
+        required: true
+      - in: query
+        name: plant_name
+        description: plant_name
+        schema:
+          type: string
+          example: test
         required: true
       responses:
         '200':
@@ -2206,18 +2215,18 @@ paths:
         \u044F"
       parameters:
       - in: query
-        name: plant_isExactingToTheLight
-        description: plant_isExactingToTheLight
-        schema:
-          type: boolean
-          example: true
-        required: true
-      - in: query
         name: plant_id
         description: plant_id
         schema:
           type: integer
           example: 1
+        required: true
+      - in: query
+        name: plant_isExactingToTheLight
+        description: plant_isExactingToTheLight
+        schema:
+          type: boolean
+          example: true
         required: true
       responses:
         '200':
@@ -2246,18 +2255,18 @@ paths:
         \u0438\u044F"
       parameters:
       - in: query
-        name: plant_isOneYear
-        description: plant_isOneYear
-        schema:
-          type: boolean
-          example: true
-        required: true
-      - in: query
         name: plant_id
         description: plant_id
         schema:
           type: integer
           example: 1
+        required: true
+      - in: query
+        name: plant_isOneYear
+        description: plant_isOneYear
+        schema:
+          type: boolean
+          example: true
         required: true
       responses:
         '200':
@@ -2286,18 +2295,18 @@ paths:
         \u0438\u044F"
       parameters:
       - in: query
-        name: plant_id
-        description: plant_id
-        schema:
-          type: integer
-          example: 1
-        required: true
-      - in: query
         name: plant_isTwoYears
         description: plant_isTwoYears
         schema:
           type: boolean
           example: true
+        required: true
+      - in: query
+        name: plant_id
+        description: plant_id
+        schema:
+          type: integer
+          example: 1
         required: true
       responses:
         '200':
@@ -2326,18 +2335,18 @@ paths:
         \u043D\u0438\u044F"
       parameters:
       - in: query
-        name: plant_isManyYears
-        description: plant_isManyYears
-        schema:
-          type: boolean
-          example: true
-        required: true
-      - in: query
         name: plant_id
         description: plant_id
         schema:
           type: integer
           example: 1
+        required: true
+      - in: query
+        name: plant_isManyYears
+        description: plant_isManyYears
+        schema:
+          type: boolean
+          example: true
         required: true
       responses:
         '200':
@@ -2365,18 +2374,18 @@ paths:
         \u043D\u0438\u044F \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u044F"
       parameters:
       - in: query
-        name: plant_climat
-        description: plant_climat
-        schema:
-          type: string
-          example: test
-        required: true
-      - in: query
         name: plant_id
         description: plant_id
         schema:
           type: integer
           example: 1
+        required: true
+      - in: query
+        name: plant_climat
+        description: plant_climat
+        schema:
+          type: string
+          example: test
         required: true
       responses:
         '200':
@@ -2403,18 +2412,18 @@ paths:
         \u043D\u0438\u044F \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u044F"
       parameters:
       - in: query
-        name: plant_id
-        description: plant_id
-        schema:
-          type: integer
-          example: 1
-        required: true
-      - in: query
         name: plant_required_minerals_and_trace_elements
         description: plant_required_minerals_and_trace_elements
         schema:
           type: string
           example: test
+        required: true
+      - in: query
+        name: plant_id
+        description: plant_id
+        schema:
+          type: integer
+          example: 1
         required: true
       responses:
         '200':
@@ -2441,18 +2450,18 @@ paths:
         \u0432\u0430 \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u044F"
       parameters:
       - in: query
-        name: plant_id
-        description: plant_id
-        schema:
-          type: integer
-          example: 1
-        required: true
-      - in: query
         name: plant_kingdom
         description: plant_kingdom
         schema:
           type: string
           example: test
+        required: true
+      - in: query
+        name: plant_id
+        description: plant_id
+        schema:
+          type: integer
+          example: 1
         required: true
       responses:
         '200':
@@ -2516,18 +2525,18 @@ paths:
         \u0430 \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u044F"
       parameters:
       - in: query
-        name: plant_class
-        description: plant_class
-        schema:
-          type: string
-          example: test
-        required: true
-      - in: query
         name: plant_id
         description: plant_id
         schema:
           type: integer
           example: 1
+        required: true
+      - in: query
+        name: plant_class
+        description: plant_class
+        schema:
+          type: string
+          example: test
         required: true
       responses:
         '200':
@@ -2629,18 +2638,18 @@ paths:
         \u0430\u0441\u0442\u0435\u043D\u0438\u044F"
       parameters:
       - in: query
-        name: plant_genus
-        description: plant_genus
-        schema:
-          type: string
-          example: test
-        required: true
-      - in: query
         name: plant_id
         description: plant_id
         schema:
           type: integer
           example: 1
+        required: true
+      - in: query
+        name: plant_genus
+        description: plant_genus
+        schema:
+          type: string
+          example: test
         required: true
       responses:
         '200':
@@ -2798,15 +2807,15 @@ paths:
         \u043D\u044B\u043C"
       parameters:
       - in: query
-        name: connection_plant_id
-        description: connection_plant_id
+        name: connection_animal_id
+        description: connection_animal_id
         schema:
           type: integer
           example: 1
         required: true
       - in: query
-        name: connection_animal_id
-        description: connection_animal_id
+        name: connection_plant_id
+        description: connection_plant_id
         schema:
           type: integer
           example: 1
@@ -2841,15 +2850,15 @@ paths:
         \ \u0436\u0438\u0432\u043E\u0442\u043D\u044B\u043C"
       parameters:
       - in: query
-        name: connection_plant_id
-        description: connection_plant_id
+        name: connection_plants_animals_id
+        description: connection_plants_animals_id
         schema:
           type: integer
           example: 1
         required: true
       - in: query
-        name: connection_plants_animals_id
-        description: connection_plants_animals_id
+        name: connection_plant_id
+        description: connection_plant_id
         schema:
           type: integer
           example: 1
@@ -3063,15 +3072,15 @@ paths:
         \u043E\u043C"
       parameters:
       - in: query
-        name: connection_ground_id
-        description: connection_ground_id
+        name: connection_soils_grounds_id
+        description: connection_soils_grounds_id
         schema:
           type: integer
           example: 1
         required: true
       - in: query
-        name: connection_soils_grounds_id
-        description: connection_soils_grounds_id
+        name: connection_ground_id
+        description: connection_ground_id
         schema:
           type: integer
           example: 1
@@ -3201,15 +3210,15 @@ paths:
         \u0435\u0439 \u0438 \u043F\u043E\u0447\u0432\u043E\u0439"
       parameters:
       - in: query
-        name: connection_territories_soils_id
-        description: connection_territories_soils_id
+        name: connection_territorie_id
+        description: connection_territorie_id
         schema:
           type: integer
           example: 1
         required: true
       - in: query
-        name: connection_territorie_id
-        description: connection_territorie_id
+        name: connection_territories_soils_id
+        description: connection_territories_soils_id
         schema:
           type: integer
           example: 1
@@ -3245,15 +3254,15 @@ paths:
         \u043E\u0447\u0432\u043E\u0439"
       parameters:
       - in: query
-        name: connection_territories_soils_id
-        description: connection_territories_soils_id
+        name: connection_soil_id
+        description: connection_soil_id
         schema:
           type: integer
           example: 1
         required: true
       - in: query
-        name: connection_soil_id
-        description: connection_soil_id
+        name: connection_territories_soils_id
+        description: connection_territories_soils_id
         schema:
           type: integer
           example: 1
@@ -3348,18 +3357,18 @@ paths:
           example: 1
         required: true
       - in: query
-        name: connection_plant_id
-        description: connection_plant_id
-        schema:
-          type: integer
-          example: 1
-        required: true
-      - in: query
         name: connection_soils_plants_isGood
         description: connection_soils_plants_isGood
         schema:
           type: boolean
           example: true
+        required: true
+      - in: query
+        name: connection_plant_id
+        description: connection_plant_id
+        schema:
+          type: integer
+          example: 1
         required: true
       responses:
         '200':
@@ -3432,15 +3441,15 @@ paths:
         \u0442\u0435\u043D\u0438\u0435\u043C"
       parameters:
       - in: query
-        name: connection_plant_id
-        description: connection_plant_id
+        name: connection_soils_plants_id
+        description: connection_soils_plants_id
         schema:
           type: integer
           example: 1
         required: true
       - in: query
-        name: connection_soils_plants_id
-        description: connection_soils_plants_id
+        name: connection_plant_id
+        description: connection_plant_id
         schema:
           type: integer
           example: 1
@@ -3475,18 +3484,18 @@ paths:
         \u0439 \u043F\u043E\u0447\u0432\u0435"
       parameters:
       - in: query
-        name: connection_soils_plants_id
-        description: connection_soils_plants_id
-        schema:
-          type: integer
-          example: 1
-        required: true
-      - in: query
         name: connection_soils_plants_isGood
         description: connection_soils_plants_isGood
         schema:
           type: boolean
           example: true
+        required: true
+      - in: query
+        name: connection_soils_plants_id
+        description: connection_soils_plants_id
+        schema:
+          type: integer
+          example: 1
         required: true
       responses:
         '200':
@@ -3524,14 +3533,14 @@ components:
     Input:
       type: object
       properties:
-        number:
-          type: integer
-          description: "\u0427\u0438\u0441\u043B\u043E"
-          example: 5
         power:
           type: integer
           description: "\u0421\u0442\u0435\u043F\u0435\u043D\u044C"
           example: 2
+        number:
+          type: integer
+          description: "\u0427\u0438\u0441\u043B\u043E"
+          example: 5
       required:
       - number
       - power
@@ -3591,20 +3600,6 @@ components:
           example: 1
       required:
       - user_id
-    UserInputSchemaAuthorisation:
-      type: object
-      properties:
-        user_login:
-          type: string
-          description: user_login
-          example: test
-        user_password:
-          type: string
-          description: user_password
-          example: test
-      required:
-      - user_login
-      - user_password
     UserOutputSchemaAuthorisation:
       type: object
       properties:
