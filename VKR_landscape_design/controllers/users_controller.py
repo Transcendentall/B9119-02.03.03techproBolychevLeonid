@@ -109,7 +109,7 @@ def users_get_one_user():
       """
     args = request.args
     conn = get_db_connection()
-    x = get_one_user(conn, args.get('user_id'))
+    x = get_one_user(conn, request.get_json()['user_id'])
     return json.dumps(x.to_dict(orient="records"))
 
 
@@ -222,7 +222,7 @@ def users_post_insert():
           - Users
       """
     conn = get_db_connection()
-    x = insert_user(conn, request.get_json()['user_user_login', 'user_user_password', 'user_user_email'])
+    x = insert_user(conn, request.get_json()['user_user_login'], request.get_json()['user_user_password'], request.get_json()['user_user_email'])
     return json.dumps({'message': "success"})
 
 
@@ -250,7 +250,7 @@ def users_post_update_login():
           - Users
       """
     conn = get_db_connection()
-    x = update_user_login(conn, request.get_json()['user_user_id', 'user_user_login'])
+    x = update_user_login(conn, request.get_json()['user_user_id'], request.get_json()['user_user_login'])
     return json.dumps({'message': "success"})
 
 
@@ -278,7 +278,7 @@ def users_post_update_password():
           - Users
       """
     conn = get_db_connection()
-    x = update_user_password(conn, request.get_json()['user_user_id', 'user_user_password'])
+    x = update_user_password(conn, request.get_json()['user_user_id'], request.get_json()['user_user_password'])
     return json.dumps({'message': "success"})
 
 @blueprint_user.route('/api/users/update/email', methods=['POST'])
@@ -305,7 +305,7 @@ def users_post_update_email():
           - Users
       """
     conn = get_db_connection()
-    x = update_user_email(conn, request.get_json()['user_user_id', 'user_user_email'])
+    x = update_user_email(conn, request.get_json()['user_user_id'], request.get_json()['user_user_email'])
     return json.dumps({'message': "success"})
 
 @blueprint_user.route('/api/users/update/surname', methods=['POST'])
@@ -332,7 +332,7 @@ def users_post_update_surname():
           - Users
       """
     conn = get_db_connection()
-    x = update_user_surname(conn, request.get_json()['user_user_id', 'user_user_surname'])
+    x = update_user_surname(conn, request.get_json()['user_user_id'], request.get_json()['user_user_surname'])
     return json.dumps({'message': "success"})
 
 @blueprint_user.route('/api/users/update/name', methods=['POST'])
@@ -359,7 +359,7 @@ def users_post_update_name():
           - Users
       """
     conn = get_db_connection()
-    x = update_user_name(conn, request.get_json()['user_user_id', 'user_user_name'])
+    x = update_user_name(conn, request.get_json()['user_user_id'], request.get_json()['user_user_name'])
     return json.dumps({'message': "success"})
 
 @blueprint_user.route('/api/users/update/fathername', methods=['POST'])
@@ -386,7 +386,7 @@ def users_post_update_fathername():
           - Users
       """
     conn = get_db_connection()
-    x = update_user_fathername(conn, request.get_json()['user_user_id', 'user_user_fathername'])
+    x = update_user_fathername(conn, request.get_json()['user_user_id'], request.get_json()['user_user_fathername'])
     return json.dumps({'message': "success"})
 
 
@@ -414,7 +414,7 @@ def users_post_update_age():
           - Users
       """
     conn = get_db_connection()
-    x = update_user_age(conn, request.get_json()['user_user_id', 'user_user_age'])
+    x = update_user_age(conn, request.get_json()['user_user_id'], request.get_json()['user_user_age'])
     return json.dumps({'message': "success"})
 
 
@@ -442,7 +442,7 @@ def users_post_update_isFemale():
           - Users
       """
     conn = get_db_connection()
-    x = update_user_isFemale(conn, request.get_json()['user_user_id', 'user_user_isFemale'])
+    x = update_user_isFemale(conn, request.get_json()['user_user_id'], request.get_json()['user_user_isFemale'])
     return json.dumps({'message': "success"})
 
 @blueprint_user.route('/api/users/update/picture', methods=['POST'])
@@ -469,7 +469,7 @@ def users_post_update_picture():
           - Users
       """
     conn = get_db_connection()
-    x = update_user_picture(conn, request.get_json()['user_user_id', 'user_user_picture'])
+    x = update_user_picture(conn, request.get_json()['user_user_id'], request.get_json()['user_user_picture'])
     return json.dumps({'message': "success"})
 
 @blueprint_user.route('/api/users/update/isAdmin', methods=['POST'])
@@ -496,5 +496,5 @@ def users_post_update_isAdmin():
           - Users
       """
     conn = get_db_connection()
-    x = update_user_isAdmin(conn, request.get_json()['user_user_id', 'user_user_isAdmin'])
+    x = update_user_isAdmin(conn, request.get_json()['user_user_id'], request.get_json()['user_user_isAdmin'])
     return json.dumps({'message': "success"})
