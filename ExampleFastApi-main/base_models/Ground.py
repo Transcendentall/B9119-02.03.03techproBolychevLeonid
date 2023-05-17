@@ -4,7 +4,7 @@ from typing import Optional
 class UserInBD(BaseModel):
     user_login: str
     user_password: str
-    user_email: str
+    email: str
     user_surname: Optional[str] = None
     user_name: Optional[str] = None
     user_fathername: Optional[str] = None
