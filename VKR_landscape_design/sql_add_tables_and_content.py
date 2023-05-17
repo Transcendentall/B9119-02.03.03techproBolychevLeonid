@@ -117,9 +117,7 @@ VALUES
 INSERT INTO territories (territorie_coord_x, territorie_coord_y, territorie_coord_z)
 VALUES
 (43.038126, 131.884906, 41),
-(43.027650, 131.895167, 18);
-INSERT INTO territories (territorie_coord_x, territorie_coord_y, territorie_coord_z)
-VALUES
+(43.027650, 131.895167, 18),
 (43.078497, 131.944396, 35),
 (43.093035, 131.912163, 41),
 (43.093788, 131.951451, 62);

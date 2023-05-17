@@ -6,6 +6,12 @@ def get_animals(conn):
     FROM animals
     ''', conn)
 
+def get_one_animal(conn, user_animal_id):
+    return pandas.read_sql('''
+    SELECT * 
+    FROM animals
+    WHERE animal_id = ''' + str(user_animal_id), conn)
+
 def insert_animal(conn, user_animal_name, user_animal_description):
     cur = conn.cursor()
     cur.execute('''

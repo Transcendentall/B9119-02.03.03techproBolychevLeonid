@@ -15,17 +15,23 @@ async def grounds_get_select_all():
     x = get_grounds(conn)
     return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
 
+@router.get("/grounds/one")
+async def grounds_get_one_ground(ground_id: int):
+    conn = get_db_connection()
+    x = get_one_ground(conn, ground_id)
+    return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
+
 @router.post("/grounds/delete")
 async def grounds_post_delete(ground_id: int):
     conn = get_db_connection()
     x = delete_ground(conn, ground_id)
-    return Response("{'messname':'Грунт удалён.'}", status_code=200)
+    return Response("{'messdelete':'Грунт удалён.'}", status_code=200)
 
 @router.post("/grounds/insert")
 async def grounds_post_insert(ground_name: str, ground_description: str):
     conn = get_db_connection()
     x = insert_ground(conn, ground_name, ground_description)
-    return Response("{'message':'Грунт создан.'}", status_code=200)
+    return Response("{'messinsert':'Грунт создан.'}", status_code=200)
 
 @router.post("/grounds/update/name")
 async def grounds_post_update_name(ground_id: int, ground_name: str):

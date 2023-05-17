@@ -6,6 +6,12 @@ def get_connection_territories_soils(conn):
     FROM connection_territories_soils
     ''', conn)
 
+def get_one_connection_territories_soils(conn, user_connection_territories_soils_id):
+    return pandas.read_sql('''
+    SELECT * 
+    FROM connection_territories_soils
+    WHERE connection_territories_soils_id = ''' + str(user_connection_territories_soils_id), conn)
+
 def insert_connection_territories_soils(conn, user_connection_territorie_id, user_connection_soil_id):
     cur = conn.cursor()
     cur.execute('''

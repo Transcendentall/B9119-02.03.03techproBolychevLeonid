@@ -2,64 +2,94 @@ from pydantic import BaseModel
 from typing import Optional
 from fastapi import APIRouter, Response
 import json
-from base_models import Ground
-from models.grounds_model import *
+from base_models import Animal
+from models.animals_model import *
 from utils import get_db_connection
 router = APIRouter()
 
 
 
-@router.get("/grounds/all")
-async def grounds_get_select_all():
+@router.get("/animals/all")
+async def animals_get_select_all():
     conn = get_db_connection()
-    x = get_grounds(conn)
+    x = get_animals(conn)
     return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
 
-@router.post("/grounds/delete")
-async def grounds_post_delete(ground_id: int):
+@router.get("/animals/one")
+async def animals_get_one_animal(animal_id: int):
     conn = get_db_connection()
-    x = delete_ground(conn, ground_id)
-    return Response("{'messdelete':'Грунт удалён.'}", status_code=200)
+    x = get_one_animal(conn, animal_id)
+    return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
 
-@router.post("/grounds/insert")
-async def grounds_post_insert(ground_name: str, ground_description: str):
+@router.post("/animals/delete")
+async def animals_post_delete(animal_id: int):
     conn = get_db_connection()
-    x = insert_ground(conn, ground_name, ground_description)
-    return Response("{'messinsert':'Грунт создан.'}", status_code=200)
+    x = delete_animal(conn, animal_id)
+    return Response("{'messdelete':'Животное удалёно.'}", status_code=200)
 
-@router.post("/grounds/update/name")
-async def grounds_post_update_name(ground_id: int, ground_name: str):
+@router.post("/animals/insert")
+async def animals_post_insert(animal_name: str, animal_description: str):
     conn = get_db_connection()
-    x = update_ground_name(conn, ground_id, ground_name)
-    return Response("{'messname':'Название грунта обновлено.'}", status_code=200)
+    x = insert_animal(conn, animal_name, animal_description)
+    return Response("{'messinsert':'Животное создано.'}", status_code=200)
 
-@router.post("/grounds/update/description")
-async def grounds_post_update_description(ground_id: int, ground_description: str):
+@router.post("/animals/update/name")
+async def animals_post_update_name(animal_id: int, animal_name: str):
     conn = get_db_connection()
-    x = update_ground_description(conn, ground_id, ground_description)
-    return Response("{'messdescription':'Описание грунта обновлено.'}", status_code=200)
+    x = update_animal_name(conn, animal_id, animal_name)
+    return Response("{'messname':'Название животного обновлено.'}", status_code=200)
 
-@router.post("/grounds/update/density")
-async def grounds_post_update_density(ground_id: int, ground_density: str):
+@router.post("/animals/update/description")
+async def animals_post_update_description(animal_id: int, animal_description: str):
     conn = get_db_connection()
-    x = update_ground_density(conn, ground_id, ground_density)
-    return Response("{'messdensity':'Плотность грунта обновлена.'}", status_code=200)
+    x = update_animal_description(conn, animal_id, animal_description)
+    return Response("{'messdescription':'Описание животного обновлено.'}", status_code=200)
 
-@router.post("/grounds/update/humidity")
-async def grounds_post_update_humidity(ground_id: int, ground_humidity: str):
+@router.post("/animals/update/kingdom")
+async def animals_post_update_kingdom(animal_id: int, animal_kingdom: str):
     conn = get_db_connection()
-    x = update_ground_humidity(conn, ground_id, ground_humidity)
-    return Response("{'messhumidity':'Влажность грунта обновлена.'}", status_code=200)
+    x = update_animal_kingdom(conn, animal_id, animal_kingdom)
+    return Response("{'messkingdom':'Царство животного обновлено.'}", status_code=200)
 
-@router.post("/grounds/update/hardness_Moos")
-async def grounds_post_update_hardness_Moos(ground_id: int, ground_hardness_Moos: str):
+@router.post("/animals/update/philum")
+async def animals_post_update_philum(animal_id: int, animal_philum: str):
     conn = get_db_connection()
-    x = update_ground_hardness_Moos(conn, ground_id, ground_hardness_Moos)
-    return Response("{'messhardness_Moos':'Твёрдость грунта по шкале Мооса обновлена.'}", status_code=200)
+    x = update_animal_philum(conn, animal_id, animal_philum)
+    return Response("{'messphilum':'Тип животного обновлён.'}", status_code=200)
 
-@router.post("/grounds/update/picture")
-async def grounds_post_update_picture(ground_id: int, ground_picture: str):
+@router.post("/animals/update/class")
+async def animals_post_update_class(animal_id: int, animal_class: str):
     conn = get_db_connection()
-    x = update_ground_picture(conn, ground_id, ground_picture)
-    return Response("{'messpicture':'Картинка грунта обновлена.'}", status_code=200)
+    x = update_animal_class(conn, animal_id, animal_class)
+    return Response("{'messclass':'Класс животного обновлён.'}", status_code=200)
+
+@router.post("/animals/update/order")
+async def animals_post_update_order(animal_id: int, animal_order: str):
+    conn = get_db_connection()
+    x = update_animal_order(conn, animal_id, animal_order)
+    return Response("{'messorder':'Порядок животного обновлён.'}", status_code=200)
+
+@router.post("/animals/update/family")
+async def animals_post_update_family(animal_id: int, animal_family: str):
+    conn = get_db_connection()
+    x = update_animal_family(conn, animal_id, animal_family)
+    return Response("{'messfamily':'Семейство животного обновлено.'}", status_code=200)
+
+@router.post("/animals/update/genus")
+async def animals_post_update_genus(animal_id: int, animal_genus: str):
+    conn = get_db_connection()
+    x = update_animal_genus(conn, animal_id, animal_genus)
+    return Response("{'messgenus':'Родовая принадлежность животного обновлена.'}", status_code=200)
+
+@router.post("/animals/update/species")
+async def animals_post_update_species(animal_id: int, animal_species: str):
+    conn = get_db_connection()
+    x = update_animal_species(conn, animal_id, animal_species)
+    return Response("{'messspecies':'Видовая принадлежность животного обновлена.'}", status_code=200)
+
+@router.post("/animals/update/picture")
+async def animals_post_update_picture(animal_id: int, animal_picture: str):
+    conn = get_db_connection()
+    x = update_animal_picture(conn, animal_id, animal_picture)
+    return Response("{'messpicture':'Картинка животного обновлена.'}", status_code=200)
 

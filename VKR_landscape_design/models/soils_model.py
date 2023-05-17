@@ -6,6 +6,28 @@ def get_soils(conn):
     FROM soils
     ''', conn)
 
+def get_one_soil(conn, user_soil_id):
+    return pandas.read_sql('''
+    SELECT * 
+    FROM soils
+    WHERE soil_id = ''' + str(user_soil_id), conn)
+
+def get_grounds_for_soil(conn, user_soil_id):
+    return pandas.read_sql('''
+    SELECT DISTINCT * 
+    FROM soils 
+    JOIN connection_soils_grounds ON (soils.soil_id = connection_soils_grounds.connection_soil_id) 
+    JOIN grounds ON (connection_soils_grounds.connection_ground_id = grounds.ground_id) 
+    WHERE soil_id = ''' + str(user_soil_id), conn)
+
+def get_plants_for_soil(conn, user_soil_id):
+    return pandas.read_sql('''
+    SELECT DISTINCT * 
+    FROM soils 
+    JOIN connection_soils_plants ON (soils.soil_id = connection_soils_plants.connection_soil_id) 
+    JOIN plants ON (connection_soils_plants.connection_plant_id = plants.plant_id) 
+    WHERE soil_id = ''' + str(user_soil_id), conn)
+
 def insert_soil(conn, user_soil_name, user_soil_description):
     cur = conn.cursor()
     cur.execute('''

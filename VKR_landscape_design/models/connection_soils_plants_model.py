@@ -7,6 +7,12 @@ def get_connection_soils_plants(conn):
     FROM connection_soils_plants
     ''', conn)
 
+def get_one_connection_soils_plants(conn, user_connection_soils_plants_id):
+    return pandas.read_sql('''
+    SELECT * 
+    FROM connection_soils_plants
+    WHERE connection_soils_plants_id = ''' + str(user_connection_soils_plants_id), conn)
+
 def insert_connection_soils_plants(conn, user_connection_soil_id, user_connection_plant_id, user_connection_soils_plants_isGood):
     cur = conn.cursor()
     cur.execute('''

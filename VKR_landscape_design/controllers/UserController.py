@@ -61,13 +61,13 @@ async def users_get_select_all_without_password():
 async def users_post_delete(user_id: int):
     conn = get_db_connection()
     x = delete_user(conn, user_id)
-    return Response("{'messname':'Пользователь удалён.'}", status_code=200)
+    return Response("{'messdelete':'Пользователь удалён.'}", status_code=200)
 
 @router.post("/users/insert")
 async def users_post_insert(user: User.UserRegister):
     conn = get_db_connection()
     x = insert_user(conn, user.user_login, user.user_password, user.user_email)
-    return Response("{'message':'Пользователь создан.'}", status_code=200)
+    return Response("{'messinsert':'Пользователь создан.'}", status_code=200)
 
 @router.post("/users/update/login")
 async def users_post_update_login(user_id: int, user_login: str):
@@ -91,19 +91,19 @@ async def users_post_update_email(user_id: int, user_email: str):
 async def users_post_update_surname(user_id: int, user_surname: str):
     conn = get_db_connection()
     x = update_user_surname(conn, user_id, user_surname)
-    return Response("{'message':'Фамилия пользователя обновлена.'}", status_code=200)
+    return Response("{'messsurname':'Фамилия пользователя обновлена.'}", status_code=200)
 
 @router.post("/users/update/name")
 async def users_post_update_name(user_id: int, user_name: str):
     conn = get_db_connection()
     x = update_user_name(conn, user_id, user_name)
-    return Response("{'message':'Имя пользователя обновлено.'}", status_code=200)
+    return Response("{'messname':'Имя пользователя обновлено.'}", status_code=200)
 
 @router.post("/users/update/fathername")
 async def users_post_update_fathername(user_id: int, user_fathername: str):
     conn = get_db_connection()
     x = update_user_fathername(conn, user_id, user_fathername)
-    return Response("{'message':'Отчество пользователя обновлено.'}", status_code=200)
+    return Response("{'messfathername':'Отчество пользователя обновлено.'}", status_code=200)
 
 @router.post("/users/update/age")
 async def users_post_update_age(user_id: int, user_age: int):

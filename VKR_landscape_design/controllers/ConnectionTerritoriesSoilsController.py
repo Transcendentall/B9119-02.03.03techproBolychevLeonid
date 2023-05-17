@@ -2,39 +2,46 @@ from pydantic import BaseModel
 from typing import Optional
 from fastapi import APIRouter, Response
 import json
-from base_models import ConnectionPlantsAnimals
-from models.connection_plants_animals_model import *
+from base_models import ConnectionTerritoriesSoils
+from models.connection_territories_soils_model import *
 from utils import get_db_connection
 router = APIRouter()
 
 
 
-@router.get("/connectionplantsanimals/all")
-async def connection_plants_animals_get_select_all():
+@router.get("/connectionterritoriessoils/all")
+async def connection_territories_soils_get_select_all():
     conn = get_db_connection()
-    x = get_connection_plants_animals(conn)
+    x = get_connection_territories_soils(conn)
     return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
 
-@router.post("/connectionplantsanimals/insert")
-async def connection_plants_animals_post_insert(connection_plant_id: int, connection_animal_id: int):
+@router.get("/connectionterritoriessoils/one")
+async def connection_territories_soils_get_one(connection_territories_soils_id: int):
     conn = get_db_connection()
-    x = insert_connection_plants_animals(conn, connection_plant_id, connection_animal_id)
-    return Response("{'message':'Связь между растением и животным (какое животное ест это растение) добавлена.'}", status_code=200)
+    x = get_one_connection_territories_soils(conn, connection_territories_soils_id)
+    return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
 
-@router.post("/connectionplantsanimals/delete")
-async def connection_plants_animals_post_delete(connection_plants_animals_id: int):
+@router.post("/connectionterritoriessoils/insert")
+async def connection_territories_soils_post_insert(connection_territorie_id: int, connection_soil_id: int):
     conn = get_db_connection()
-    x = delete_connection_plants_animals(conn, connection_plants_animals_id)
-    return Response("{'messname':'Связь между растением и животным (какое животное ест это растение) удалена.'}", status_code=200)
+    x = insert_connection_territories_soils(conn, connection_territorie_id, connection_soil_id)
+    return Response("{'messinsert':'Связь между территорией и почвой (какая почва находится на этой территории) добавлена.'}", status_code=200)
 
-@router.post("/connectionplantsanimals/update/plantid")
-async def connection_plants_animals_post_update_plant_id(connection_plants_animals_id: int, connection_plants_animals_plant_id: str):
+@router.post("/connectionterritoriessoils/delete")
+async def connection_territories_soils_post_delete(connection_territories_soils_id: int):
     conn = get_db_connection()
-    x = update_connection_plants_animals_plant_id(conn, connection_plants_animals_id, connection_plants_animals_plant_id)
-    return Response("{'messname':'ID растения в связи между растением и животным (какое животное ест это растение) обновлён.'}", status_code=200)
+    x = delete_connection_territories_soils(conn, connection_territories_soils_id)
+    return Response("{'messdelete':'Связь между территорией и почвой (какая почва находится на этой территории) удалена.'}", status_code=200)
 
-@router.post("/connectionplantsanimals/update/animalid")
-async def connection_plants_animals_post_update_animal_id(connection_plants_animals_id: int, connection_plants_animals_animal_id: str):
+@router.post("/connectionterritoriessoils/update/territorieid")
+async def connection_territories_soils_post_update_territorie_id(connection_territories_soils_id: int, connection_territories_soils_territorie_id: int):
     conn = get_db_connection()
-    x = update_connection_plants_animals_animal_id(conn, connection_plants_animals_id, connection_plants_animals_animal_id)
-    return Response("{'messname':'ID животного в связи между растением и животным (какое животное ест это растение) обновлён.'}", status_code=200)
+    x = update_connection_territories_soils_territorie_id(conn, connection_territories_soils_id, connection_territories_soils_territorie_id)
+    return Response("{'messterritorieid':'ID территории в связи территорией и почвой (какая почва находится на этой территории) обновлён.'}", status_code=200)
+
+@router.post("/connectionterritoriessoils/update/soilid")
+async def connection_territories_soils_post_update_soil_id(connection_territories_soils_id: int, connection_territories_soils_soil_id: int):
+    conn = get_db_connection()
+    x = update_connection_territories_soils_soil_id(conn, connection_territories_soils_id, connection_territories_soils_soil_id)
+    return Response("{'messsoilid':'ID почвы в связи территорией и почвой (какая почва находится на этой территории) обновлён.'}", status_code=200)
+

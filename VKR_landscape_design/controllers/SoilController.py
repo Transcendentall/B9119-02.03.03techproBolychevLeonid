@@ -15,17 +15,35 @@ async def soils_get_select_all():
     x = get_soils(conn)
     return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
 
+@router.get("/soils/one")
+async def soils_get_one_soil(soil_id: int):
+    conn = get_db_connection()
+    x = get_one_soil(conn, soil_id)
+    return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
+
+@router.get("/soils/groundsforsoil")
+async def soils_get_grounds_for_soil(soil_id: int):
+    conn = get_db_connection()
+    x = get_grounds_for_soil(conn, soil_id)
+    return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
+
+@router.get("/soils/plantsforsoil")
+async def soils_get_plants_for_soil(soil_id: int):
+    conn = get_db_connection()
+    x = get_plants_for_soil(conn, soil_id)
+    return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
+
 @router.post("/soils/delete")
 async def soils_post_delete(soil_id: int):
     conn = get_db_connection()
     x = delete_soil(conn, soil_id)
-    return Response("{'messname':'Почва удалена.'}", status_code=200)
+    return Response("{'messdelete':'Почва удалена.'}", status_code=200)
 
 @router.post("/soils/insert")
 async def soils_post_insert(soil_name: str, soil_description: str):
     conn = get_db_connection()
     x = insert_soil(conn, soil_name, soil_description)
-    return Response("{'message':'Почва создана.'}", status_code=200)
+    return Response("{'messinsert':'Почва создана.'}", status_code=200)
 
 @router.post("/soils/update/name")
 async def soils_post_update_name(soil_id: int, soil_name: str):
