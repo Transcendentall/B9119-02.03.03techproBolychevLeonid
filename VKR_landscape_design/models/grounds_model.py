@@ -6,6 +6,12 @@ def get_grounds(conn):
     FROM grounds
     ''', conn)
 
+def get_one_ground(conn, user_ground_id):
+    return pandas.read_sql('''
+    SELECT * 
+    FROM grounds
+    WHERE ground_id = ''' + str(user_ground_id), conn)
+
 def insert_ground(conn, user_ground_name, user_ground_description):
     cur = conn.cursor()
     cur.execute('''

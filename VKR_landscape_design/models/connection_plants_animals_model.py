@@ -6,6 +6,12 @@ def get_connection_plants_animals(conn):
     FROM connection_plants_animals
     ''', conn)
 
+def get_one_connection_plants_animals(conn, user_connection_plants_animals_id):
+    return pandas.read_sql('''
+    SELECT * 
+    FROM connection_plants_animals
+    WHERE connection_plants_animals_id = ''' + str(user_connection_plants_animals_id), conn)
+
 def insert_connection_plants_animals(conn, user_connection_plant_id, user_connection_animal_id):
     cur = conn.cursor()
     cur.execute('''

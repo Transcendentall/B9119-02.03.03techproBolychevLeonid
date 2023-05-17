@@ -6,13 +6,21 @@ def get_territories(conn):
     FROM territories
     ''', conn)
 
+def get_one_territorie(conn, user_territorie_id):
+    return pandas.read_sql('''
+    SELECT * 
+    FROM territories
+    WHERE territorie_id = ''' + str(user_territorie_id), conn)
+
 def get_soils_grounds_plants_animals_for_territories(conn, user_territorie_coord_x, user_territorie_coord_y):
     err = 0.01
     return pandas.read_sql('''
-    SELECT soil_id, soil_name, soil_description, soil_picture, plant_id, plant_name, plant_description, plant_climat, plant_temperature_min, plant_temperature_max, connection_soils_plants_isGood, plant_picture, animal_id, animal_name, animal_description, animal_picture
+    SELECT DISTINCT soil_id, soil_name, soil_description, soil_picture, ground_name, ground_description, ground_picture, plant_id, plant_name, plant_description, plant_climat, plant_temperature_min, plant_temperature_max, connection_soils_plants_isGood, plant_picture, animal_id, animal_name, animal_description, animal_picture
     FROM territories 
     JOIN connection_territories_soils ON (territories.territorie_id = connection_territories_soils.connection_territorie_id) 
     JOIN soils ON (connection_territories_soils.connection_soil_id = soils.soil_id) 
+    JOIN connection_soils_grounds ON (soils.soil_id = connection_soils_grounds.connection_soil_id) 
+    JOIN grounds ON (connection_soils_grounds.connection_ground_id = grounds.ground_id) 
     JOIN connection_soils_plants ON (soils.soil_id = connection_soils_plants.connection_soil_id) 
     JOIN plants ON (connection_soils_plants.connection_plant_id = plants.plant_id) 
     JOIN connection_plants_animals ON (plants.plant_id = connection_plants_animals.connection_plant_id) 

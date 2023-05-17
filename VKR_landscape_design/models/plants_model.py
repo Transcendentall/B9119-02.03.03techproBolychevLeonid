@@ -6,6 +6,12 @@ def get_plants(conn):
     FROM plants
     ''', conn)
 
+def get_one_plant(conn, user_plant_id):
+    return pandas.read_sql('''
+    SELECT * 
+    FROM plants
+    WHERE plant_id = ''' + str(user_plant_id), conn)
+
 def get_plants_isFodder(conn):
     return pandas.read_sql('''
     SELECT * 
@@ -19,6 +25,14 @@ def get_plants_isNoFodder(conn):
     FROM plants
     WHERE plant_isFodder = False
     ''', conn)
+
+def get_animals_for_plant(conn, user_plant_id):
+    return pandas.read_sql('''
+    SELECT DISTINCT * 
+    FROM plants
+    JOIN connection_plants_animals ON (plants.plant_id = connection_plants_animals.connection_plant_id) 
+    JOIN animals ON (connection_plants_animals.connection_animal_id = animals.animal_id)
+    WHERE plant_id = ''' + str(user_plant_id), conn)
 
 def insert_plant(conn, user_plant_name, user_plant_description, user_plant_isFodder):
     cur = conn.cursor()
