@@ -1,8 +1,0 @@
-flask-swagger-ui
-flask_cors
-numpy
-pandas
-flask
-marshmallow
-apispec
-apispec_webframeworks
