@@ -46,7 +46,7 @@ async def plants_post_delete(plant_id: int):
     return Response("{'messdelete':'Растение удалёно.'}", status_code=200)
 
 @router.post("/plants/insert")
-async def plants_post_insert(plant_name: str, plant_description: str, plant_isFodder: bool):
+async def plants_post_insert(plant_name: str, plant_description: str, plant_isFodder: int):
     conn = get_db_connection()
     x = insert_plant(conn, plant_name, plant_description, plant_isFodder)
     return Response("{'messinsert':'Растение создано.'}", status_code=200)
@@ -64,31 +64,31 @@ async def plants_post_update_description(plant_id: int, plant_description: str):
     return Response("{'messdescription':'Описание растения обновлено.'}", status_code=200)
 
 @router.post("/plants/update/isFodder")
-async def plants_post_update_isFodder(plant_id: int, plant_isFodder: bool):
+async def plants_post_update_isFodder(plant_id: int, plant_isFodder: int):
     conn = get_db_connection()
     x = update_plant_isFodder(conn, plant_id, plant_isFodder)
     return Response("{'messisFodder':'Обновлено, является ли растение кормовым.'}", status_code=200)
 
 @router.post("/plants/update/isExactingToTheLight")
-async def plants_post_update_isExactingToTheLight(plant_id: int, plant_isExactingToTheLight: bool):
+async def plants_post_update_isExactingToTheLight(plant_id: int, plant_isExactingToTheLight: int):
     conn = get_db_connection()
     x = update_plant_isExactingToTheLight(conn, plant_id, plant_isExactingToTheLight)
     return Response("{'messisExactingToTheLight':'Обновлено, является ли растение требовательным к свету.'}", status_code=200)
 
 @router.post("/plants/update/isOneYear")
-async def plants_post_update_isOneYear(plant_id: int, plant_isOneYear: bool):
+async def plants_post_update_isOneYear(plant_id: int, plant_isOneYear: int):
     conn = get_db_connection()
     x = update_plant_isOneYear(conn, plant_id, plant_isOneYear)
     return Response("{'messisOneYear':'Обновлено, является ли растение однолетним.'}", status_code=200)
 
 @router.post("/plants/update/isTwoYears")
-async def plants_post_update_isTwoYears(plant_id: int, plant_isTwoYears: bool):
+async def plants_post_update_isTwoYears(plant_id: int, plant_isTwoYears: int):
     conn = get_db_connection()
     x = update_plant_isTwoYears(conn, plant_id, plant_isTwoYears)
     return Response("{'messisTwoYears':'Обновлено, является ли растение двухлетним.'}", status_code=200)
 
 @router.post("/plants/update/isManyYears")
-async def plants_post_update_isManyYears(plant_id: int, plant_isManyYears: bool):
+async def plants_post_update_isManyYears(plant_id: int, plant_isManyYears: int):
     conn = get_db_connection()
     x = update_plant_isManyYears(conn, plant_id, plant_isManyYears)
     return Response("{'messisManyYears':'Обновлено, является ли растение многолетним.'}", status_code=200)
