@@ -116,11 +116,11 @@ VALUES
 
 INSERT INTO territories (territorie_coord_x, territorie_coord_y, territorie_coord_z)
 VALUES
-(43.038126, 131.884906, 41),
-(43.027650, 131.895167, 18),
-(43.078497, 131.944396, 35),
-(43.093035, 131.912163, 41),
-(43.093788, 131.951451, 62);
+(43.0260543, 131.8875379, 41),
+(42.978988, 131.7817809, 18),
+(43.0977199, 131.9148999, 35),
+(43.1309653, 131.9198254, 41),
+(43.1380137, 131.9584293, 62);
 
 INSERT INTO soils (soil_name, soil_description, soil_profile)
 VALUES

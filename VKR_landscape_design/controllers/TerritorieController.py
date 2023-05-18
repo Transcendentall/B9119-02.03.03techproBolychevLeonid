@@ -21,10 +21,10 @@ async def territories_get_one_territorie(territorie_id: int):
     x = get_one_territorie(conn, territorie_id)
     return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
 
-@router.get("/territories/getallsoilsgroundsplantsanimalsforterritories")
-async def territories_get_soils_grounds_plants_animals_for_territories(territorie_coord_x: float, territorie_coord_y: float):
+@router.get("/territories/bycoord")
+async def territories_bycoord(territorie_coord_x: float, territorie_coord_y: float):
     conn = get_db_connection()
-    x = get_soils_grounds_plants_animals_for_territories(conn, territorie_coord_x, territorie_coord_y)
+    x = bycoord(conn, territorie_coord_x, territorie_coord_y)
     if len(x) == 0:
         return Response("{'message':'В данной точке нет почв.'}", status_code=404)
     return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
