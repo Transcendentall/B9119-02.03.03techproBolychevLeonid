@@ -12,8 +12,8 @@ def get_one_territorie(conn, user_territorie_id):
     FROM territories
     WHERE territorie_id = ''' + str(user_territorie_id), conn)
 
-def get_soils_grounds_plants_animals_for_territories(conn, user_territorie_coord_x, user_territorie_coord_y):
-    err = 0.01
+def bycoord(conn, user_territorie_coord_x, user_territorie_coord_y):
+    err = 0.05
     return pandas.read_sql('''
     SELECT DISTINCT soil_id, soil_name, soil_description, soil_picture, ground_name, ground_description, ground_picture, plant_id, plant_name, plant_description, plant_climat, plant_temperature_min, plant_temperature_max, connection_soils_plants_isGood, plant_picture, animal_id, animal_name, animal_description, animal_picture
     FROM territories 

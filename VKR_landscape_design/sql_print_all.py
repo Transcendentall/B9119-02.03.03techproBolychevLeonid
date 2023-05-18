@@ -67,4 +67,4 @@ print(get_one_user_without_password(con, 1))
 print(authorisation(con, 'lutiysidor', 'abracadabra123'))
 
 print(get_animals_for_plant(con, 4))
-print(get_soils_grounds_plants_animals_for_territories(con, 43.03, 131.88))
+print(bycoord(con, 43.10562, 131.87353))
