@@ -112,7 +112,7 @@ async def users_post_update_age(user_id: int, user_age: int):
     return Response("{'message':'Возраст пользователя обновлён.'}", status_code=200)
 
 @router.post("/users/update/isFemale")
-async def users_post_update_isFemale(user_id: int, user_isFemale: bool):
+async def users_post_update_isFemale(user_id: int, user_isFemale: int):
     conn = get_db_connection()
     x = update_user_isFemale(conn, user_id, user_isFemale)
     return Response("{'messisFemale':'Обновлено, является ли пользователь женщиной.'}", status_code=200)
@@ -124,7 +124,7 @@ async def users_post_update_picture(user_id: int, user_picture: str):
     return Response("{'messpicture':'Картинка пользователя обновлена.'}", status_code=200)
 
 @router.post("/users/update/isAdmin")
-async def users_post_update_isAdmin(user_id: int, user_isAdmin: bool):
+async def users_post_update_isAdmin(user_id: int, user_isAdmin: int):
     conn = get_db_connection()
     x = update_user_isAdmin(conn, user_id, user_isAdmin)
     return Response("{'messisAdmin':'Обновлено, является ли пользователь администратором.'}", status_code=200)

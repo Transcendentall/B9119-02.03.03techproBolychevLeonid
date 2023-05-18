@@ -9,9 +9,9 @@ class UserInBD(BaseModel):
     user_name: Optional[str] = None
     user_fathername: Optional[str] = None
     user_age: Optional[int] = None
-    user_isFemale: Optional[bool] = None
+    user_isFemale: Optional[int] = None
     user_picture: Optional[str] = None
-    user_isAdmin: bool
+    user_isAdmin: int
 
 class UserRegister(BaseModel):
     user_login: str
