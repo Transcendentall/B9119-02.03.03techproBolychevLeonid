@@ -1,4 +1,7 @@
 import pandas
+import hashlib
+import os
+import bcrypt
 
 def get_users(conn):
     return pandas.read_sql('''
@@ -39,16 +42,20 @@ def get_one_user_without_password(conn, user_user_id):
     WHERE user_id = ''' + str(user_user_id), conn)
 
 def authorisation(conn, user_user_login, user_user_password):
+    h = hashlib.md5(user_user_password.encode('utf8'))
+    p = h.hexdigest()
     return pandas.read_sql('''
     SELECT user_id
     FROM users
-    WHERE user_login = "''' + user_user_login + '" AND user_password = "' + str(user_user_password) + '"', conn)
+    WHERE user_login = "''' + user_user_login + '" AND user_password = "' + str(p) + '"', conn)
 
 def insert_user(conn, user_user_login, user_user_password, user_user_email):
+    h = hashlib.md5(user_user_password.encode('utf8'))
+    p = h.hexdigest()
     cur = conn.cursor()
     cur.execute('''
         INSERT INTO users(user_login, user_password, user_email, user_isAdmin) VALUES (:userlogin, :userpassword, :useremail, FALSE)
-        ''', {"userlogin": user_user_login, "userpassword": user_user_password, "useremail": user_user_email})
+        ''', {"userlogin": user_user_login, "userpassword": p, "useremail": user_user_email})
     conn.commit()
 
 def delete_user(conn, user_user_id):
@@ -68,12 +75,14 @@ def update_user_login(conn, user_user_id, user_user_login):
     conn.commit()
 
 def update_user_password(conn, user_user_id, user_user_password):
+    h = hashlib.md5(user_user_password.encode('utf8'))
+    p = h.hexdigest()
     cur = conn.cursor()
     cur.execute('''
         UPDATE users 
         SET user_password = :userpassword 
         WHERE user_id = :useridupdate
-        ''', {"useridupdate": user_user_id, "userpassword": user_user_password})
+        ''', {"useridupdate": user_user_id, "userpassword": p})
     conn.commit()
 
 def update_user_email(conn, user_user_id, user_user_email):

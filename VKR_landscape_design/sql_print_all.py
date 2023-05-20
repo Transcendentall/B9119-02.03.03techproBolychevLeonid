@@ -68,3 +68,8 @@ print(authorisation(con, 'lutiysidor', 'abracadabra123'))
 
 print(get_animals_for_plant(con, 4))
 print(bycoord(con, 43.17649517318715, 131.9786536900625))
+
+
+print()
+print('--------------------')
+print()
