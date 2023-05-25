@@ -14,13 +14,16 @@ def get_one_territorie(conn, user_territorie_id):
 
 def bycoord(conn, user_territorie_coord_x, user_territorie_coord_y):
     err = 0.05
+    # ABS(territorie_coord_x - ''' + str(user_territorie_coord_x) + '''), ABS(territorie_coord_y - ''' + str(user_territorie_coord_y) + '''), SQRT(ABS(territorie_coord_x - ''' + str(user_territorie_coord_x) + ''') + ABS(territorie_coord_y - ''' + str(user_territorie_coord_y) + '''))
     return pandas.read_sql('''
     SELECT DISTINCT territorie_id 
     FROM territories 
     WHERE territorie_coord_x <= ''' + str(user_territorie_coord_x + err) +
     ' AND territorie_coord_x >=  ' + str(user_territorie_coord_x - err) +
     ' AND territorie_coord_y <=  ' + str(user_territorie_coord_y + err) +
-    ' AND territorie_coord_y >=  ' + str(user_territorie_coord_y - err), conn)
+    ' AND territorie_coord_y >=  ' + str(user_territorie_coord_y - err) +
+    ' ORDER by (SQRT(ABS(territorie_coord_x - ' + str(user_territorie_coord_x) + ') + ABS(territorie_coord_y - ' + str(user_territorie_coord_y) + ')))'
+    ' LIMIT 1', conn)
 
 def byterritorie_soil(conn, user_territorie_id):
     return pandas.read_sql('''
