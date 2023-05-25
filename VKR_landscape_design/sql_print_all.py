@@ -81,6 +81,7 @@ print(byterritorie_animal(con, 1))
 print('-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-')
 print(get_connection_plants_animals(con))
 print(find_connection_plants_animals_plant_id(con, 5, 1))
+print(bycoord(con, 43.10562, 131.87353))
 
 print()
 print('--------------------')
