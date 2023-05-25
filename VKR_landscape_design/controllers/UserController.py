@@ -80,7 +80,7 @@ async def users_post_insert(user: User.UserRegister):
         raise HTTPException(status_code=400, detail="Ошибка: пользователь с таким логином уже есть в системе. Введите другой логин.")
     z = find_user_email(conn, user.user_email)
     if len(z) != 0:
-        raise HTTPException(status_code=400, detail="Ошибка: на эту электронную почту уже был зарегистрирован аккаунт пользователя.")
+        raise HTTPException(status_code=400, detail="Ошибка: на эту электронную почту уже был зарегистрирован аккаунт пользователя. Введите другую электронную почту.")
     x = insert_user(conn, user.user_login, user.user_password, user.user_email)
     return Response("{'messinsert':'Пользователь создан.'}", status_code=200)
 
@@ -89,6 +89,9 @@ async def users_post_update_login(user_id: int, user_login: str):
     conn = get_db_connection()
     if ((len(user_login) < 2) or (len(user_login) > 20)):
         raise HTTPException(status_code=400, detail="Ошибка: логин должен иметь длину от 2 до 20 символов.")
+    y = find_user_login(conn, user_login)
+    if len(y) != 0:
+        raise HTTPException(status_code=400, detail="Ошибка: пользователь с таким логином уже есть в системе. Введите другой логин.")
     x = update_user_login(conn, user_id, user_login)
     return Response("{'messlogin':'Логин пользователя обновлён.'}", status_code=200)
 
@@ -105,6 +108,9 @@ async def users_post_update_email(user_id: int, user_email: str):
     conn = get_db_connection()
     if ((len(user_email) < 6) or (len(user_email) > 30) or (not('@' in user_email))):
         raise HTTPException(status_code=400, detail="Ошибка: электронная почта должна иметь длину от 6 до 30 символов и содержать символ @.")
+    z = find_user_email(conn, user_email)
+    if len(z) != 0:
+        raise HTTPException(status_code=400, detail="Ошибка: на эту электронную почту уже был зарегистрирован аккаунт пользователя. Введите другую электронную почту.")
     x = update_user_email(conn, user_id, user_email)
     return Response("{'messemail':'Электронная почта пользователя обновлена.'}", status_code=200)
 
