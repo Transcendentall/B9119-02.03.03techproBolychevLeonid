@@ -12,6 +12,40 @@ def get_one_connection_soils_grounds(conn, user_connection_soils_grounds_id):
     FROM connection_soils_grounds
     WHERE connection_soils_grounds_id = ''' + str(user_connection_soils_grounds_id), conn)
 
+
+
+
+def find_connection_soils_grounds(conn, user_connection_soil_id, user_connection_ground_id):
+    return pandas.read_sql('''
+    SELECT * 
+    FROM connection_soils_grounds
+    WHERE connection_soil_id = ''' + str(user_connection_soil_id)
+                           + ' AND connection_ground_id = ' + str(user_connection_ground_id), conn)
+
+def find_connection_soils_grounds_soil_id(conn, user_connection_soils_grounds_id, user_connection_soil_id):
+    return pandas.read_sql('''
+    SELECT *
+    FROM connection_soils_grounds
+    WHERE connection_soil_id = ''' + str(user_connection_soil_id) + ' '
+    '''AND connection_ground_id IN 
+    (SELECT connection_ground_id 
+    FROM connection_soils_grounds
+    WHERE connection_soils_grounds_id = ''' + str(user_connection_soils_grounds_id) + ')', conn)
+
+def find_connection_soils_grounds_ground_id(conn, user_connection_soils_grounds_id, user_connection_ground_id):
+    return pandas.read_sql('''
+    SELECT *
+    FROM connection_soils_grounds
+    WHERE connection_ground_id = ''' + str(user_connection_ground_id) + ' '
+    '''AND connection_soil_id IN 
+    (SELECT connection_soil_id 
+    FROM connection_soils_grounds
+    WHERE connection_soils_grounds_id = ''' + str(user_connection_soils_grounds_id) + ')', conn)
+
+
+
+
+
 def insert_connection_soils_grounds(conn, user_connection_soil_id, user_connection_ground_id):
     cur = conn.cursor()
     cur.execute('''

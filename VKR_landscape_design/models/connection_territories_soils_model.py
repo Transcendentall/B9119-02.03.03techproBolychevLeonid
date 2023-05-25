@@ -12,6 +12,42 @@ def get_one_connection_territories_soils(conn, user_connection_territories_soils
     FROM connection_territories_soils
     WHERE connection_territories_soils_id = ''' + str(user_connection_territories_soils_id), conn)
 
+
+
+
+
+
+def find_connection_territories_soils(conn, user_connection_territorie_id, user_connection_soil_id):
+    return pandas.read_sql('''
+    SELECT * 
+    FROM connection_territories_soils
+    WHERE connection_territorie_id = ''' + str(user_connection_territorie_id)
+                           + ' AND connection_soil_id = ' + str(user_connection_soil_id), conn)
+
+def find_connection_territories_soils_territorie_id(conn, user_connection_territories_soils_id, user_connection_territorie_id):
+    return pandas.read_sql('''
+    SELECT *
+    FROM connection_territories_soils
+    WHERE connection_territorie_id = ''' + str(user_connection_territorie_id) + ' '
+    '''AND connection_soil_id IN 
+    (SELECT connection_soil_id 
+    FROM connection_territories_soils
+    WHERE connection_territories_soils_id = ''' + str(user_connection_territories_soils_id) + ')', conn)
+
+def find_connection_territories_soils_soil_id(conn, user_connection_territories_soils_id, user_connection_soil_id):
+    return pandas.read_sql('''
+    SELECT *
+    FROM connection_territories_soils
+    WHERE connection_soil_id = ''' + str(user_connection_soil_id) + ' '
+    '''AND connection_territorie_id IN 
+    (SELECT connection_territorie_id 
+    FROM connection_territories_soils
+    WHERE connection_territories_soils_id = ''' + str(user_connection_territories_soils_id) + ')', conn)
+
+
+
+
+
 def insert_connection_territories_soils(conn, user_connection_territorie_id, user_connection_soil_id):
     cur = conn.cursor()
     cur.execute('''

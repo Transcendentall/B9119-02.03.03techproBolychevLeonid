@@ -1,9 +1,11 @@
 from pydantic import BaseModel
 from typing import Optional
-from fastapi import APIRouter, Response
+from fastapi import APIRouter, Response, HTTPException
 import json
 from base_models import ConnectionPlantsAnimals
 from models.connection_plants_animals_model import *
+from models.plants_model import *
+from models.animals_model import *
 from utils import get_db_connection
 router = APIRouter()
 
@@ -18,29 +20,56 @@ async def connection_plants_animals_get_select_all():
 @router.get("/connectionplantsanimals/one")
 async def connection_plants_animals_get_one(connection_plants_animals_id: int):
     conn = get_db_connection()
+    y = get_one_connection_plants_animals(conn, connection_plants_animals_id)
+    if len(y) == 0:
+        raise HTTPException(status_code=404, detail="Ошибка: связь между растением и животным с данным ID не найдена.")
     x = get_one_connection_plants_animals(conn, connection_plants_animals_id)
     return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
 
 @router.post("/connectionplantsanimals/insert")
 async def connection_plants_animals_post_insert(connection_plant_id: int, connection_animal_id: int):
     conn = get_db_connection()
+    y = get_one_plant(conn, connection_plant_id)
+    if len(y) == 0:
+        raise HTTPException(status_code=404, detail="Ошибка: растение с данным ID не существует, поэтому его невозможно включить в связь между растением и животным.")
+    z = get_one_animal(conn, connection_animal_id)
+    if len(z) == 0:
+        raise HTTPException(status_code=404, detail="Ошибка: животное с данным ID не существует, поэтому его невозможно включить в связь между растением и животным.")
+    w = find_connection_plants_animals(conn, connection_plant_id, connection_animal_id)
+    if len(w) != 0:
+        raise HTTPException(status_code=404, detail="Ошибка: такая связь между растением и животным уже есть.")
     x = insert_connection_plants_animals(conn, connection_plant_id, connection_animal_id)
     return Response("{'messinsert':'Связь между растением и животным (какое животное ест это растение) добавлена.'}", status_code=200)
 
 @router.post("/connectionplantsanimals/delete")
 async def connection_plants_animals_post_delete(connection_plants_animals_id: int):
     conn = get_db_connection()
+    y = get_one_connection_plants_animals(conn, connection_plants_animals_id)
+    if len(y) == 0:
+        raise HTTPException(status_code=404, detail="Ошибка: связь между растением и животным с данным ID не найдена, поэтому удалить её невозможно.")
     x = delete_connection_plants_animals(conn, connection_plants_animals_id)
     return Response("{'messdelete':'Связь между растением и животным (какое животное ест это растение) удалена.'}", status_code=200)
 
 @router.post("/connectionplantsanimals/update/plantid")
-async def connection_plants_animals_post_update_plant_id(connection_plants_animals_id: int, connection_plants_animals_plant_id: int):
+async def connection_plants_animals_post_update_plant_id(connection_plants_animals_id: int, connection_plant_id: int):
     conn = get_db_connection()
-    x = update_connection_plants_animals_plant_id(conn, connection_plants_animals_id, connection_plants_animals_plant_id)
+    y = get_one_plant(conn, connection_plant_id)
+    if len(y) == 0:
+        raise HTTPException(status_code=404, detail="Ошибка: растение с данным ID не существует, поэтому его невозможно включить в связь между растением и животным.")
+    w = find_connection_plants_animals_plant_id(conn, connection_plants_animals_id, connection_plant_id)
+    if len(w) != 0:
+        raise HTTPException(status_code=400, detail="Ошибка: такая связь между растением и животным уже есть.")
+    x = update_connection_plants_animals_plant_id(conn, connection_plants_animals_id, connection_plant_id)
     return Response("{'messplantid':'ID растения в связи между растением и животным (какое животное ест это растение) обновлён.'}", status_code=200)
 
 @router.post("/connectionplantsanimals/update/animalid")
-async def connection_plants_animals_post_update_animal_id(connection_plants_animals_id: int, connection_plants_animals_animal_id: int):
+async def connection_plants_animals_post_update_animal_id(connection_plants_animals_id: int, connection_animal_id: int):
     conn = get_db_connection()
-    x = update_connection_plants_animals_animal_id(conn, connection_plants_animals_id, connection_plants_animals_animal_id)
+    z = get_one_animal(conn, connection_animal_id)
+    if len(z) == 0:
+        raise HTTPException(status_code=404, detail="Ошибка: животное с данным ID не существует, поэтому его невозможно включить в связь между растением и животным.")
+    w = find_connection_plants_animals_animal_id(conn, connection_plants_animals_id, connection_animal_id)
+    if len(w) != 0:
+        raise HTTPException(status_code=400, detail="Ошибка: такая связь между растением и животным уже есть.")
+    x = update_connection_plants_animals_animal_id(conn, connection_plants_animals_id, connection_animal_id)
     return Response("{'messanimalid':'ID животного в связи между растением и животным (какое животное ест это растение) обновлён.'}", status_code=200)
