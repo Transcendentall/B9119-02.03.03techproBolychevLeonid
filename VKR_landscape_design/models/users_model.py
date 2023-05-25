@@ -35,6 +35,18 @@ def get_one_user(conn, user_user_id):
     FROM users
     WHERE user_id = ''' + str(user_user_id), conn)
 
+def find_user_login(conn, user_user_login):
+    return pandas.read_sql('''
+    SELECT * 
+    FROM users
+    WHERE user_login = "''' + str(user_user_login) + '"', conn)
+
+def find_user_email(conn, user_user_email):
+    return pandas.read_sql('''
+    SELECT * 
+    FROM users
+    WHERE user_email = "''' + str(user_user_email) + '"', conn)
+
 def get_one_user_without_password(conn, user_user_id):
     return pandas.read_sql('''
     SELECT user_id, user_login, user_email, user_surname, user_name, user_fathername, user_age, user_isFemale, user_picture, user_isAdmin 

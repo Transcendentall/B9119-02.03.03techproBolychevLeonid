@@ -67,7 +67,18 @@ print(get_one_user_without_password(con, 1))
 print(authorisation(con, 'lutiysidor', 'abracadabra123'))
 
 print(get_animals_for_plant(con, 4))
-print(bycoord(con, 43.17649517318715, 131.9786536900625))
+
+print('-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-')
+print(bycoord(con, 43.10562, 131.87353))
+print('--------------------')
+print(byterritorie_soil(con, 1))
+print('--------------------')
+print(byterritorie_ground(con, 1))
+print('--------------------')
+print(byterritorie_plant(con, 1))
+print('--------------------')
+print(byterritorie_animal(con, 1))
+print('-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-')
 
 
 print()
