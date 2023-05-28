@@ -64,13 +64,15 @@ async def territories_byterritorie_plant(user_territorie_id: int):
     return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
 
 @router.post("/territories/insert")
-async def territories_post_insert(territorie_coord_x: float, territorie_coord_y: float):
+async def territories_post_insert(territorie_coord_x: float, territorie_coord_y: float, territorie_address: str):
     conn = get_db_connection()
     if ((territorie_coord_x < -90) or (territorie_coord_x > 90)):
         raise HTTPException(status_code=400, detail="Ошибка: координата x (широта) точки должна принадлежать интервалу [-90; 90].")
     if ((territorie_coord_y <= -180) or (territorie_coord_y > 180)):
         raise HTTPException(status_code=400, detail="Ошибка: координата y (долгота) точки должна принадлежать полуинтервалу (-180; 180].")
-    x = insert_territorie(conn, territorie_coord_x, territorie_coord_y)
+    if (len(territorie_address) > 100):
+        raise HTTPException(status_code=400, detail="Ошибка: адрес территории должен быть не длинее 100 символов.")
+    x = insert_territorie(conn, territorie_coord_x, territorie_coord_y, territorie_address)
     return Response("{'messinsert':'Территория создана.'}", status_code=200)
 
 @router.post("/territories/delete")
