@@ -70,12 +70,12 @@ def byterritorie_animal(conn, user_territorie_id):
     WHERE territorie_id = ''' + str(user_territorie_id), conn)
 
 
-def insert_territorie(conn, user_territorie_coord_x, user_territorie_coord_y, user_territorie_coord_z):
+def insert_territorie(conn, user_territorie_coord_x, user_territorie_coord_y, user_territorie_address):
     cur = conn.cursor()
     cur.execute('''
-        INSERT INTO territories(territorie_coord_x, territorie_coord_y, territorie_coord_z) 
-        VALUES (:userterritoriecoordx, :userterritoriecoordy, :userterritoriecoordz)
-        ''', {"userterritoriecoordx": user_territorie_coord_x, "userterritoriecoordy": user_territorie_coord_y, "userterritoriecoordz": user_territorie_coord_z})
+        INSERT INTO territories(territorie_coord_x, territorie_coord_y, territorie_address) 
+        VALUES (:userterritoriecoordx, :userterritoriecoordy, :userterritorieaddress) 
+        ''', {"userterritoriecoordx": user_territorie_coord_x, "userterritoriecoordy": user_territorie_coord_y, "userterritorieaddress": user_territorie_address})
     conn.commit()
 
 def delete_territorie(conn, user_territorie_id):
