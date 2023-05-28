@@ -103,3 +103,13 @@ def update_territorie_coord_y(conn, user_territorie_id, user_territorie_coord_y)
         ''', {"userterritorieid": user_territorie_id, "userterritoriecoordy": user_territorie_coord_y})
     conn.commit()
 
+
+def update_territorie_address(conn, user_territorie_id, user_territorie_address):
+    cur = conn.cursor()
+    cur.execute('''
+        UPDATE territories 
+        SET territorie_address = :userterritorieaddress 
+        WHERE territorie_id = :userterritorieid 
+        ''', {"userterritorieid": user_territorie_id, "userterritorieaddress": user_territorie_address})
+    conn.commit()
+

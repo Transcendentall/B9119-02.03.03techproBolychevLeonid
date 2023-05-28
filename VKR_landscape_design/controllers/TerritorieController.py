@@ -99,3 +99,12 @@ async def territories_post_update_coord_y(territorie_id: int, territorie_coord_y
     return Response("{'messcoordy':'Координата y (долгота) территории обновлена.'}", status_code=200)
 
 
+@router.post("/territories/update/address")
+async def territories_post_update_address(territorie_id: int, territorie_address: str):
+    conn = get_db_connection()
+    if (len(territorie_address) > 100):
+        raise HTTPException(status_code=400, detail="Ошибка: адрес территории должен быть не длинее 100 символов.")
+    x = update_territorie_address(conn, territorie_id, territorie_address)
+    return Response("{'messaddress':'Адрес территории обновлён.'}", status_code=200)
+
+

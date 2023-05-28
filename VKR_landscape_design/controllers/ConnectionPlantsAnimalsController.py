@@ -32,6 +32,9 @@ async def connection_plants_animals_post_insert(connection_plant_id: int, connec
     y = get_one_plant(conn, connection_plant_id)
     if len(y) == 0:
         raise HTTPException(status_code=404, detail="Ошибка: растение с данным ID не существует, поэтому его невозможно включить в связь между растением и животным.")
+    r = check_one_plants_isFodder(conn, connection_plant_id)
+    if len(r) == 0:
+        raise HTTPException(status_code=404, detail="Ошибка: растение с данным ID не является кормовым и не может использоваться для кормления скота, поэтому связь между ним и животными создать невозможно.")
     z = get_one_animal(conn, connection_animal_id)
     if len(z) == 0:
         raise HTTPException(status_code=404, detail="Ошибка: животное с данным ID не существует, поэтому его невозможно включить в связь между растением и животным.")
@@ -56,6 +59,9 @@ async def connection_plants_animals_post_update_plant_id(connection_plants_anima
     y = get_one_plant(conn, connection_plant_id)
     if len(y) == 0:
         raise HTTPException(status_code=404, detail="Ошибка: растение с данным ID не существует, поэтому его невозможно включить в связь между растением и животным.")
+    r = check_one_plants_isFodder(conn, connection_plant_id)
+    if len(r) == 0:
+        raise HTTPException(status_code=404, detail="Ошибка: растение с данным ID не является кормовым и не может использоваться для кормления скота, поэтому связь между ним и животными создать невозможно.")
     w = find_connection_plants_animals_plant_id(conn, connection_plants_animals_id, connection_plant_id)
     if len(w) != 0:
         raise HTTPException(status_code=400, detail="Ошибка: такая связь между растением и животным уже есть.")
