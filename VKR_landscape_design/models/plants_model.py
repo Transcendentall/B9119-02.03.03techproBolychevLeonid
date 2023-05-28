@@ -19,6 +19,28 @@ def get_plants_isFodder(conn):
     WHERE plant_isFodder = True
     ''', conn)
 
+def check_one_plants_isFodder(conn, user_plant_id):
+    return pandas.read_sql('''
+    SELECT * 
+    FROM plants 
+    WHERE plant_isFodder = True 
+    AND plant_id = ''' + str(user_plant_id), conn)
+
+
+def check_one_plants_temperature_min_max_min(conn, user_plant_id, new_min):
+    return pandas.read_sql('''
+    SELECT *
+    FROM plants 
+    WHERE plant_id = ''' + str(user_plant_id) +
+    ' AND (' + str(new_min) + ' <= plant_temperature_max)', conn)
+
+def check_one_plants_temperature_min_max_max(conn, user_plant_id, new_max):
+    return pandas.read_sql('''
+    SELECT *
+    FROM plants 
+    WHERE plant_id = ''' + str(user_plant_id) +
+    ' AND (plant_temperature_min <=' + str(new_max) + ')', conn)
+
 def get_plants_isNoFodder(conn):
     return pandas.read_sql('''
     SELECT * 

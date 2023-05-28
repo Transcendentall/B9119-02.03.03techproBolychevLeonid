@@ -83,6 +83,9 @@ print(get_connection_plants_animals(con))
 print(find_connection_plants_animals_plant_id(con, 5, 1))
 print(bycoord(con, 43.10562, 131.87353))
 
+print(check_one_plants_temperature_min_max_min(con, 1, 3))
+print(check_one_plants_temperature_min_max_max(con, 1, 0))
+
 print()
 print('--------------------')
 print()
