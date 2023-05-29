@@ -39,6 +39,14 @@ async def territories_byterritorie_soil(user_territorie_id: int):
         raise HTTPException(status_code=404, detail="Ошибка: такой точки нет в базе данных.")
     return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
 
+@router.get("/territories/byterritoriesoil")
+async def territories_byterritorie_soil_noused(user_territorie_id: int):
+    conn = get_db_connection()
+    x = byterritorie_soil_noused(conn, user_territorie_id)
+    if len(x) == 0:
+        raise HTTPException(status_code=404, detail="Ошибка: такой точки нет в базе данных.")
+    return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
+
 @router.get("/territories/byterritorieground")
 async def territories_byterritorie_ground(user_territorie_id: int):
     conn = get_db_connection()
@@ -70,8 +78,8 @@ async def territories_post_insert(territorie_coord_x: float, territorie_coord_y:
         raise HTTPException(status_code=400, detail="Ошибка: координата x (широта) точки должна принадлежать интервалу [-90; 90].")
     if ((territorie_coord_y <= -180) or (territorie_coord_y > 180)):
         raise HTTPException(status_code=400, detail="Ошибка: координата y (долгота) точки должна принадлежать полуинтервалу (-180; 180].")
-    if (len(territorie_address) > 100):
-        raise HTTPException(status_code=400, detail="Ошибка: адрес территории должен быть не длинее 100 символов.")
+    if (len(territorie_address) > 500):
+        raise HTTPException(status_code=400, detail="Ошибка: адрес территории должен быть не длинее 500 символов.")
     x = insert_territorie(conn, territorie_coord_x, territorie_coord_y, territorie_address)
     return Response("{'messinsert':'Территория создана.'}", status_code=200)
 
@@ -85,7 +93,7 @@ async def territories_post_delete(territorie_id: int):
     return Response("{'messdelete':'Территория удалена.'}", status_code=200)
 
 @router.post("/territories/update/coord_x")
-async def territories_post_update_coord_x(territorie_id: int, territorie_coord_x: int):
+async def territories_post_update_coord_x(territorie_id: int, territorie_coord_x: float):
     conn = get_db_connection()
     if ((territorie_coord_x < -90) or (territorie_coord_x > 90)):
         raise HTTPException(status_code=400, detail="Ошибка: координата x (широта) точки должна принадлежать интервалу [-90; 90].")
@@ -93,7 +101,7 @@ async def territories_post_update_coord_x(territorie_id: int, territorie_coord_x
     return Response("{'messcoordx':'Координата x (широта) территории обновлена.'}", status_code=200)
 
 @router.post("/territories/update/coord_y")
-async def territories_post_update_coord_y(territorie_id: int, territorie_coord_y: int):
+async def territories_post_update_coord_y(territorie_id: int, territorie_coord_y: float):
     conn = get_db_connection()
     if ((territorie_coord_y <= -180) or (territorie_coord_y > 180)):
         raise HTTPException(status_code=400, detail="Ошибка: координата y (долгота) точки должна принадлежать полуинтервалу (-180; 180].")
@@ -104,8 +112,8 @@ async def territories_post_update_coord_y(territorie_id: int, territorie_coord_y
 @router.post("/territories/update/address")
 async def territories_post_update_address(territorie_id: int, territorie_address: str):
     conn = get_db_connection()
-    if (len(territorie_address) > 100):
-        raise HTTPException(status_code=400, detail="Ошибка: адрес территории должен быть не длинее 100 символов.")
+    if (len(territorie_address) > 500):
+        raise HTTPException(status_code=400, detail="Ошибка: адрес территории должен быть не длинее 500 символов.")
     x = update_territorie_address(conn, territorie_id, territorie_address)
     return Response("{'messaddress':'Адрес территории обновлён.'}", status_code=200)
 
