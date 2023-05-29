@@ -86,6 +86,12 @@ print(bycoord(con, 43.10562, 131.87353))
 print(check_one_plants_temperature_min_max_min(con, 1, 3))
 print(check_one_plants_temperature_min_max_max(con, 1, 0))
 
+print('111111')
+print(byterritorie_soil(con, 3))
+print('222222')
+print(byterritorie_soil_noused(con, 3))
+print('333333')
+
 print()
 print('--------------------')
 print()

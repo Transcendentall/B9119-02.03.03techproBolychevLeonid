@@ -33,6 +33,19 @@ def byterritorie_soil(conn, user_territorie_id):
     JOIN soils ON (connection_territories_soils.connection_soil_id = soils.soil_id) 
     WHERE territorie_id = ''' + str(user_territorie_id), conn)
 
+def byterritorie_soil_noused(conn, user_territorie_id):
+    return pandas.read_sql('''
+    SELECT DISTINCT soil_id, soil_name, soil_description, soil_acidity, soil_minerals, soil_profile, soil_picture
+    FROM territories 
+    JOIN connection_territories_soils ON (territories.territorie_id = connection_territories_soils.connection_territorie_id) 
+    JOIN soils ON (connection_territories_soils.connection_soil_id = soils.soil_id) 
+    WHERE soil_id NOT IN 
+      (SELECT DISTINCT soil_id
+    FROM territories 
+    JOIN connection_territories_soils ON (territories.territorie_id = connection_territories_soils.connection_territorie_id) 
+    JOIN soils ON (connection_territories_soils.connection_soil_id = soils.soil_id) 
+    WHERE territorie_id = ''' + str(user_territorie_id) + ')', conn)
+
 def byterritorie_ground(conn, user_territorie_id):
     return pandas.read_sql('''
     SELECT DISTINCT territorie_id, ground_id, ground_name, ground_description, ground_density, ground_humidity, ground_hardness_Moos, ground_picture

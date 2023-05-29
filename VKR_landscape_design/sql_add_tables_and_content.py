@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS territories(
     territorie_id INTEGER PRIMARY KEY AUTOINCREMENT,
     territorie_coord_x REAL NOT NULL,
     territorie_coord_y REAL NOT NULL,
-    territorie_address VARCHAR(100)
+    territorie_address VARCHAR(500)
  );
 CREATE TABLE IF NOT EXISTS soils(
     soil_id INTEGER PRIMARY KEY AUTOINCREMENT,
