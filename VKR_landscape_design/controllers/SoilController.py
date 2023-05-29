@@ -23,22 +23,40 @@ async def soils_get_one_soil(soil_id: int):
         raise HTTPException(status_code=404, detail="Ошибка: почва с данным ID не найдена.")
     return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
 
-@router.get("/soils/groundsforsoil")
-async def soils_get_grounds_for_soil(soil_id: int):
+@router.get("/soils/bysoilgrounds")
+async def soils_bysoil_grounds(soil_id: int):
     conn = get_db_connection()
     y = get_one_soil(conn, soil_id)
     if len(y) == 0:
         raise HTTPException(status_code=404, detail="Ошибка: почва с данным ID не найдена, потому получить перечень характерных для неё грунтов невозможно.")
-    x = get_grounds_for_soil(conn, soil_id)
+    x = bysoil_grounds(conn, soil_id)
     return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
 
-@router.get("/soils/plantsforsoil")
-async def soils_get_plants_for_soil(soil_id: int):
+@router.get("/soils/bysoilgroundsnoused")
+async def soils_bysoil_grounds_noused(soil_id: int):
+    conn = get_db_connection()
+    y = get_one_soil(conn, soil_id)
+    if len(y) == 0:
+        raise HTTPException(status_code=404, detail="Ошибка: почва с данным ID не найдена, потому получить перечень нехарактерных для неё грунтов невозможно.")
+    x = bysoil_grounds_noused(conn, soil_id)
+    return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
+
+@router.get("/soils/bysoilplants")
+async def soils_bysoil_plants(soil_id: int):
     conn = get_db_connection()
     y = get_one_soil(conn, soil_id)
     if len(y) == 0:
         raise HTTPException(status_code=404, detail="Ошибка: почва с данным ID не найдена, потому получить перечень хорошо и плохо растущих на ней растений невозможно.")
-    x = get_plants_for_soil(conn, soil_id)
+    x = bysoil_plants(conn, soil_id)
+    return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
+
+@router.get("/soils/bysoilplantsnoused")
+async def soils_bysoil_plants_noused(soil_id: int):
+    conn = get_db_connection()
+    y = get_one_soil(conn, soil_id)
+    if len(y) == 0:
+        raise HTTPException(status_code=404, detail="Ошибка: почва с данным ID не найдена, потому получить перечень нерастущих на ней растений невозможно.")
+    x = bysoil_plants_noused(conn, soil_id)
     return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
 
 @router.post("/soils/delete")

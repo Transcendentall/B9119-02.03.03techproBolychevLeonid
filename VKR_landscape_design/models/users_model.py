@@ -57,7 +57,7 @@ def authorisation(conn, user_user_login, user_user_password):
     h = hashlib.md5(user_user_password.encode('utf8'))
     p = h.hexdigest()
     return pandas.read_sql('''
-    SELECT user_id
+    SELECT user_id, user_isAdmin
     FROM users
     WHERE user_login = "''' + user_user_login + '" AND user_password = "' + str(p) + '"', conn)
 
