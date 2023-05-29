@@ -31,21 +31,21 @@ async def territories_bycoord(territorie_coord_x: float, territorie_coord_y: flo
         raise HTTPException(status_code=404, detail="Ошибка: в данном месте нет никаких почв.")
     return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
 
-@router.get("/territories/byterritoriesoil")
-async def territories_byterritorie_soil(user_territorie_id: int):
+@router.get("/territories/byterritoriesoils")
+async def territories_byterritorie_soils(user_territorie_id: int):
     conn = get_db_connection()
-    x = byterritorie_soil(conn, user_territorie_id)
+    x = byterritorie_soils(conn, user_territorie_id)
     if len(x) == 0:
-        raise HTTPException(status_code=404, detail="Ошибка: такой точки нет в базе данных, поэтому получить перечень почв для неё невозможно.")
+        raise HTTPException(status_code=404, detail="Ошибка: такой точки нет в базе данных, поэтому получить перечень её почв для неё невозможно.")
     return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
 
-@router.get("/territories/byterritoriesoilnoused")
-async def territories_byterritorie_soil_noused(user_territorie_id: int):
+@router.get("/territories/byterritoriesoilsnoused")
+async def territories_byterritorie_soils_noused(user_territorie_id: int):
     conn = get_db_connection()
     y = get_one_territorie(conn, user_territorie_id)
     if len(y) == 0:
-        raise HTTPException(status_code=404, detail="Ошибка: такой точки нет в базе данных, поэтому получить перечень почв для неё невозможно.")
-    x = byterritorie_soil_noused(conn, user_territorie_id)
+        raise HTTPException(status_code=404, detail="Ошибка: такой точки нет в базе данных, поэтому получить перечень отсутствующих в ней почв для неё невозможно.")
+    x = byterritorie_soils_noused(conn, user_territorie_id)
     return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
 
 @router.get("/territories/byterritorieground")

@@ -48,13 +48,24 @@ def get_plants_isNoFodder(conn):
     WHERE plant_isFodder = False
     ''', conn)
 
-def get_animals_for_plant(conn, user_plant_id):
+def byplant_animals(conn, user_plant_id):
     return pandas.read_sql('''
-    SELECT DISTINCT * 
+    SELECT DISTINCT animal_id, animal_name, animal_description, animal_kingdom, animal_philum, animal_class, animal_order, animal_family, animal_genus, animal_species, animal_picture 
     FROM plants
     JOIN connection_plants_animals ON (plants.plant_id = connection_plants_animals.connection_plant_id) 
     JOIN animals ON (connection_plants_animals.connection_animal_id = animals.animal_id)
     WHERE plant_id = ''' + str(user_plant_id), conn)
+
+def byplant_animals_noused(conn, user_plant_id):
+    return pandas.read_sql('''
+    SELECT DISTINCT * 
+    FROM animals 
+    WHERE animal_id NOT IN 
+    (SELECT DISTINCT animal_id
+    FROM animals 
+    JOIN connection_plants_animals ON (animals.animal_id = connection_plants_animals.connection_animal_id) 
+    JOIN plants ON (connection_plants_animals.connection_plant_id = plants.plant_id) 
+    WHERE plant_id = ''' + str(user_plant_id) + ')', conn)
 
 def insert_plant(conn, user_plant_name, user_plant_description, user_plant_isFodder):
     cur = conn.cursor()

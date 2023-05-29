@@ -35,13 +35,22 @@ async def plants_get_select_isNoFodder():
     x = get_plants_isNoFodder(conn)
     return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
 
-@router.get("/plants/animalsforplant")
-async def plants_get_animals_for_plant(plant_id: int):
+@router.get("/plants/byplantanimals")
+async def plants_byplant_animals(plant_id: int):
     conn = get_db_connection()
     y = get_one_plant(conn, plant_id)
     if len(y) == 0:
         raise HTTPException(status_code=404, detail="Ошибка: растение с данным ID не найдено, потому получить перечень животных, которые им питаются, невозможно.")
-    x = get_animals_for_plant(conn, plant_id)
+    x = byplant_animals(conn, plant_id)
+    return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
+
+@router.get("/plants/byplantanimalsnoused")
+async def plants_byplant_animals_noused(plant_id: int):
+    conn = get_db_connection()
+    y = get_one_plant(conn, plant_id)
+    if len(y) == 0:
+        raise HTTPException(status_code=404, detail="Ошибка: растение с данным ID не найдено, потому получить перечень животных, которые им не питаются, невозможно.")
+    x = byplant_animals_noused(conn, plant_id)
     return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
 
 @router.post("/plants/delete")

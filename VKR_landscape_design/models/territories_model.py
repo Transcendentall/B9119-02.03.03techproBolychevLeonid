@@ -25,7 +25,7 @@ def bycoord(conn, user_territorie_coord_x, user_territorie_coord_y):
     ' ORDER by (SQRT(ABS(territorie_coord_x - ' + str(user_territorie_coord_x) + ') + ABS(territorie_coord_y - ' + str(user_territorie_coord_y) + ')))'
     ' LIMIT 1', conn)
 
-def byterritorie_soil(conn, user_territorie_id):
+def byterritorie_soils(conn, user_territorie_id):
     return pandas.read_sql('''
     SELECT DISTINCT territorie_id, soil_id, soil_name, soil_description, soil_acidity, soil_minerals, soil_profile, soil_picture
     FROM territories 
@@ -33,14 +33,12 @@ def byterritorie_soil(conn, user_territorie_id):
     JOIN soils ON (connection_territories_soils.connection_soil_id = soils.soil_id) 
     WHERE territorie_id = ''' + str(user_territorie_id), conn)
 
-def byterritorie_soil_noused(conn, user_territorie_id):
+def byterritorie_soils_noused(conn, user_territorie_id):
     return pandas.read_sql('''
     SELECT DISTINCT soil_id, soil_name, soil_description, soil_acidity, soil_minerals, soil_profile, soil_picture
-    FROM territories 
-    JOIN connection_territories_soils ON (territories.territorie_id = connection_territories_soils.connection_territorie_id) 
-    JOIN soils ON (connection_territories_soils.connection_soil_id = soils.soil_id) 
+    FROM soils 
     WHERE soil_id NOT IN 
-      (SELECT DISTINCT soil_id
+    (SELECT DISTINCT soil_id
     FROM territories 
     JOIN connection_territories_soils ON (territories.territorie_id = connection_territories_soils.connection_territorie_id) 
     JOIN soils ON (connection_territories_soils.connection_soil_id = soils.soil_id) 
