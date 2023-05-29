@@ -36,15 +36,16 @@ async def territories_byterritorie_soil(user_territorie_id: int):
     conn = get_db_connection()
     x = byterritorie_soil(conn, user_territorie_id)
     if len(x) == 0:
-        raise HTTPException(status_code=404, detail="Ошибка: такой точки нет в базе данных.")
+        raise HTTPException(status_code=404, detail="Ошибка: такой точки нет в базе данных, поэтому получить перечень почв для неё невозможно.")
     return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
 
 @router.get("/territories/byterritoriesoilnoused")
 async def territories_byterritorie_soil_noused(user_territorie_id: int):
     conn = get_db_connection()
+    y = get_one_territorie(conn, user_territorie_id)
+    if len(y) == 0:
+        raise HTTPException(status_code=404, detail="Ошибка: такой точки нет в базе данных, поэтому получить перечень почв для неё невозможно.")
     x = byterritorie_soil_noused(conn, user_territorie_id)
-    if len(x) == 0:
-        raise HTTPException(status_code=404, detail="Ошибка: такой точки нет в базе данных.")
     return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
 
 @router.get("/territories/byterritorieground")
