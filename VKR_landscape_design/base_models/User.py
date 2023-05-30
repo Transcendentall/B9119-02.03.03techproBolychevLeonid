@@ -22,3 +22,6 @@ class UserAuthorization(BaseModel):
     user_login: str
     user_password: str
 
+class UserPicture(BaseModel):
+    user_id: int
+    user_picture: str

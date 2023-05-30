@@ -8,3 +8,7 @@ class SoilInBD(BaseModel):
     soil_minerals: Optional[str] = None
     soil_profile: Optional[str] = None
     soil_picture: Optional[str] = None
+
+class SoilPicture(BaseModel):
+    soil_id: int
+    soil_picture: str

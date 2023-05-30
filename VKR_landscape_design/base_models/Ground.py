@@ -8,3 +8,7 @@ class GroundInBD(BaseModel):
     ground_humidity: Optional[float] = None
     ground_hardness_Moos: Optional[int] = None
     ground_picture: Optional[str] = None
+
+class GroundPicture(BaseModel):
+    ground_id: int
+    ground_picture: str

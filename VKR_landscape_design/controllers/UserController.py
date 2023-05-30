@@ -155,11 +155,15 @@ async def users_post_update_isFemale(user_id: int, user_isFemale: int):
     return Response("{'messisFemale':'Обновлено, является ли пользователь женщиной.'}", status_code=200)
 
 @router.post("/users/update/picture")
-async def users_post_update_picture(user_id: int, user_picture: str):
+async def users_post_update_picture(user: User.UserPicture):
+    """
+      Описание: изменение картинки (аватарки) пользователя.
+      Ограничение на вход: файл с картинкой (аватаркой) пользователя не должен содержать более 100000 символов.
+    """
     conn = get_db_connection()
-    if (len(user_picture) > 100000):
+    if (len(user.user_picture) > 100000):
         raise HTTPException(status_code=400, detail="Ошибка: файл с картинкой (аватаркой) пользователя не должен содержать более 100000 символов.")
-    x = update_user_picture(conn, user_id, user_picture)
+    x = update_user_picture(conn, user.user_id, user.user_picture)
     return Response("{'messpicture':'Картинка пользователя обновлена.'}", status_code=200)
 
 @router.post("/users/update/isAdmin")
