@@ -119,9 +119,13 @@ async def soils_post_update_profile(soil_id: int, soil_profile: str):
     return Response("{'messprofile':'Профиль почвы обновлён.'}", status_code=200)
 
 @router.post("/soils/update/picture")
-async def soils_post_update_picture(soil_id: int, soil_picture: str):
+async def soils_post_update_picture(soil: Soil.SoilPicture):
+    """
+      Описание: изменение картинки почвы.
+      Ограничение на вход: файл с картинкой почвы не должен содержать более 100000 символов.
+    """
     conn = get_db_connection()
-    if (len(soil_picture) > 100000):
+    if (len(soil.soil_picture) > 100000):
         raise HTTPException(status_code=400, detail="Ошибка: файл с картинкой почвы не должен содержать более 100000 символов (включительно).")
-    x = update_soil_picture(conn, soil_id, soil_picture)
+    x = update_soil_picture(conn, soil.soil_id, soil.soil_picture)
     return Response("{'messpicture':'Картинка почвы обновлена.'}", status_code=200)

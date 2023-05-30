@@ -21,3 +21,7 @@ class PlantInBD(BaseModel):
     plant_genus: Optional[str] = None
     plant_species: Optional[str] = None
     plant_picture: Optional[str] = None
+
+class PlantPicture(BaseModel):
+    plant_id: int
+    plant_picture: str

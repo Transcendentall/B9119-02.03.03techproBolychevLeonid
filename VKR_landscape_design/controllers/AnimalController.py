@@ -115,10 +115,14 @@ async def animals_post_update_species(animal_id: int, animal_species: str):
     return Response("{'messspecies':'Видовая принадлежность животного обновлена.'}", status_code=200)
 
 @router.post("/animals/update/picture")
-async def animals_post_update_picture(animal_id: int, animal_picture: str):
+async def animals_post_update_picture(animal: Animal.AnimalPicture):
+    """
+      Описание: изменение картинки животного.
+      Ограничение на вход: файл с картинкой животного не должен содержать более 100000 символов.
+    """
     conn = get_db_connection()
-    if (len(animal_picture) > 100000):
+    if (len(animal.animal_picture) > 100000):
         raise HTTPException(status_code=400, detail="Ошибка: файл с картинкой животного не должен содержать более 100000 символов.")
-    x = update_animal_picture(conn, animal_id, animal_picture)
+    x = update_animal_picture(conn, animal.animal_id, animal.animal_picture)
     return Response("{'messpicture':'Картинка животного обновлена.'}", status_code=200)
 

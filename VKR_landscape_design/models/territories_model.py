@@ -16,7 +16,7 @@ def bycoord(conn, user_territorie_coord_x, user_territorie_coord_y):
     err = 0.05
     # ABS(territorie_coord_x - ''' + str(user_territorie_coord_x) + '''), ABS(territorie_coord_y - ''' + str(user_territorie_coord_y) + '''), SQRT(ABS(territorie_coord_x - ''' + str(user_territorie_coord_x) + ''') + ABS(territorie_coord_y - ''' + str(user_territorie_coord_y) + '''))
     return pandas.read_sql('''
-    SELECT DISTINCT territorie_id 
+    SELECT DISTINCT *
     FROM territories 
     WHERE territorie_coord_x <= ''' + str(user_territorie_coord_x + err) +
     ' AND territorie_coord_x >=  ' + str(user_territorie_coord_x - err) +

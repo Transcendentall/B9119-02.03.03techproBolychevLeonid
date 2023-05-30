@@ -12,3 +12,7 @@ class AnimalInBD(BaseModel):
     animal_genus: Optional[str] = None
     animal_species: Optional[str] = None
     animal_picture: Optional[str] = None
+
+class AnimalPicture(BaseModel):
+    animal_id: int
+    animal_picture: str

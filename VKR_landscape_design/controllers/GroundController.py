@@ -83,10 +83,14 @@ async def grounds_post_update_hardness_Moos(ground_id: int, ground_hardness_Moos
     return Response("{'messhardness_Moos':'Твёрдость грунта по шкале Мооса обновлена.'}", status_code=200)
 
 @router.post("/grounds/update/picture")
-async def grounds_post_update_picture(ground_id: int, ground_picture: str):
+async def grounds_post_update_picture(ground: Ground.GroundPicture):
+    """
+      Описание: изменение картинки грунта.
+      Ограничение на вход: файл с картинкой грунта не должен содержать более 100000 символов.
+    """
     conn = get_db_connection()
-    if (len(ground_picture) > 100000):
+    if (len(ground.ground_picture) > 100000):
         raise HTTPException(status_code=400, detail="Ошибка: файл с картинкой грунта не должен содержать более 100000 символов.")
-    x = update_ground_picture(conn, ground_id, ground_picture)
+    x = update_ground_picture(conn, ground.ground_id, ground.ground_picture)
     return Response("{'messpicture':'Картинка грунта обновлена.'}", status_code=200)
 
