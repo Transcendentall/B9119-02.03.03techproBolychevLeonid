@@ -31,8 +31,8 @@ def get_users_without_password_noadmins(conn):
 
 def get_one_user(conn, user_user_id):
     return pandas.read_sql('''
-    SELECT * 
-    FROM users
+    SELECT user_id, user_login, user_password, user_email, user_surname, user_name, user_fathername, user_age, user_isFemale, user_isAdmin 
+    FROM users 
     WHERE user_id = ''' + str(user_user_id), conn)
 
 def find_user_login(conn, user_user_login):
@@ -49,7 +49,7 @@ def find_user_email(conn, user_user_email):
 
 def get_one_user_without_password(conn, user_user_id):
     return pandas.read_sql('''
-    SELECT user_id, user_login, user_email, user_surname, user_name, user_fathername, user_age, user_isFemale, user_picture, user_isAdmin 
+    SELECT user_id, user_login, user_email, user_surname, user_name, user_fathername, user_age, user_isFemale, user_isAdmin 
     FROM users 
     WHERE user_id = ''' + str(user_user_id), conn)
 
@@ -169,3 +169,8 @@ def update_user_isAdmin(conn, user_user_id, user_user_isAdmin):
         ''', {"useridupdate": user_user_id, "userisAdmin": user_user_isAdmin})
     conn.commit()
 
+def get_user_picture(conn, user_user_id):
+    return pandas.read_sql('''
+    SELECT user_picture 
+    FROM users
+    WHERE user_id = ''' + str(user_user_id), conn)

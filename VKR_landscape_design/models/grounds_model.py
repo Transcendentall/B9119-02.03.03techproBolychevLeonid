@@ -8,8 +8,8 @@ def get_grounds(conn):
 
 def get_one_ground(conn, user_ground_id):
     return pandas.read_sql('''
-    SELECT * 
-    FROM grounds
+    SELECT ground_id, ground_name, ground_description, ground_density, ground_humidity, ground_hardness_Moos 
+    FROM grounds 
     WHERE ground_id = ''' + str(user_ground_id), conn)
 
 def insert_ground(conn, user_ground_name, user_ground_description):
@@ -80,3 +80,9 @@ def update_ground_picture(conn, user_ground_id, user_ground_picture):
         WHERE ground_id = :usergroundid
         ''', {"usergroundid": user_ground_id, "usergroundpicture": user_ground_picture})
     conn.commit()
+
+def get_ground_picture(conn, user_ground_id):
+    return pandas.read_sql('''
+    SELECT ground_picture 
+    FROM grounds
+    WHERE ground_id = ''' + str(user_ground_id), conn)

@@ -17,6 +17,9 @@ async def plants_get_select_all():
 
 @router.get("/plants/one")
 async def plants_get_one_plant(plant_id: int):
+    """
+      Описание: получение данных об одном растении по его ID (кроме картинки).
+    """
     conn = get_db_connection()
     x = get_one_plant(conn, plant_id)
     if len(x) == 0:
@@ -226,11 +229,16 @@ async def plants_post_update_species(plant_id: int, plant_species: str):
 async def plants_post_update_picture(plant: Plant.PlantPicture):
     """
       Описание: изменение картинки растения.
-      Ограничение на вход: файл с картинкой растения не должен содержать более 100000 символов.
     """
     conn = get_db_connection()
-    if (len(plant.plant_picture) > 100000):
-        raise HTTPException(status_code=400, detail="Ошибка: файл с картинкой растения не должен содержать более 100000 символов.")
     x = update_plant_picture(conn, plant.plant_id, plant.plant_picture)
     return Response("{'messpicture':'Картинка растения обновлена.'}", status_code=200)
 
+@router.get("/plants/get/picture")
+async def plants_get_picture(plant_id: int):
+    """
+      Описание: получение картинки растения.
+    """
+    conn = get_db_connection()
+    x = get_plant_picture(conn, plant_id)
+    return Response(json.dumps(x.to_dict(orient="records")), status_code=200)

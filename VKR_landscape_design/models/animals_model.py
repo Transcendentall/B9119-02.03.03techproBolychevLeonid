@@ -8,8 +8,8 @@ def get_animals(conn):
 
 def get_one_animal(conn, user_animal_id):
     return pandas.read_sql('''
-    SELECT * 
-    FROM animals
+    SELECT animal_id, animal_name, animal_description, animal_kingdom, animal_philum, animal_class, animal_order, animal_family, animal_genus, animal_species 
+    FROM animals 
     WHERE animal_id = ''' + str(user_animal_id), conn)
 
 def insert_animal(conn, user_animal_name, user_animal_description):
@@ -116,3 +116,9 @@ def update_animal_picture(conn, user_animal_id, user_animal_picture):
         WHERE animal_id = :useranimalid
         ''', {"useranimalid": user_animal_id, "useranimalpicture": user_animal_picture})
     conn.commit()
+
+def get_animal_picture(conn, user_animal_id):
+    return pandas.read_sql('''
+    SELECT animal_picture 
+    FROM animals
+    WHERE animal_id = ''' + str(user_animal_id), conn)

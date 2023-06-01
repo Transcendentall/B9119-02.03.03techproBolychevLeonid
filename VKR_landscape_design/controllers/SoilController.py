@@ -17,6 +17,9 @@ async def soils_get_select_all():
 
 @router.get("/soils/one")
 async def soils_get_one_soil(soil_id: int):
+    """
+      Описание: получение данных об одной почве по её ID (кроме картинки).
+    """
     conn = get_db_connection()
     x = get_one_soil(conn, soil_id)
     if len(x) == 0:
@@ -122,10 +125,16 @@ async def soils_post_update_profile(soil_id: int, soil_profile: str):
 async def soils_post_update_picture(soil: Soil.SoilPicture):
     """
       Описание: изменение картинки почвы.
-      Ограничение на вход: файл с картинкой почвы не должен содержать более 100000 символов.
     """
     conn = get_db_connection()
-    if (len(soil.soil_picture) > 100000):
-        raise HTTPException(status_code=400, detail="Ошибка: файл с картинкой почвы не должен содержать более 100000 символов (включительно).")
     x = update_soil_picture(conn, soil.soil_id, soil.soil_picture)
     return Response("{'messpicture':'Картинка почвы обновлена.'}", status_code=200)
+
+@router.get("/soils/get/picture")
+async def soils_get_picture(soil_id: int):
+    """
+      Описание: получение картинки почвы.
+    """
+    conn = get_db_connection()
+    x = get_soil_picture(conn, soil_id)
+    return Response(json.dumps(x.to_dict(orient="records")), status_code=200)

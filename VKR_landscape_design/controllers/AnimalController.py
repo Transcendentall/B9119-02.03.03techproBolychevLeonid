@@ -17,6 +17,9 @@ async def animals_get_select_all():
 
 @router.get("/animals/one")
 async def animals_get_one_animal(animal_id: int):
+    """
+      Описание: получение данных об одном животном по его ID (кроме картинки).
+    """
     conn = get_db_connection()
     x = get_one_animal(conn, animal_id)
     if len(x) == 0:
@@ -118,11 +121,16 @@ async def animals_post_update_species(animal_id: int, animal_species: str):
 async def animals_post_update_picture(animal: Animal.AnimalPicture):
     """
       Описание: изменение картинки животного.
-      Ограничение на вход: файл с картинкой животного не должен содержать более 100000 символов.
     """
     conn = get_db_connection()
-    if (len(animal.animal_picture) > 100000):
-        raise HTTPException(status_code=400, detail="Ошибка: файл с картинкой животного не должен содержать более 100000 символов.")
     x = update_animal_picture(conn, animal.animal_id, animal.animal_picture)
     return Response("{'messpicture':'Картинка животного обновлена.'}", status_code=200)
 
+@router.get("/animals/get/picture")
+async def animals_get_picture(animal_id: int):
+    """
+      Описание: получение картинки животного.
+    """
+    conn = get_db_connection()
+    x = get_animal_picture(conn, animal_id)
+    return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
