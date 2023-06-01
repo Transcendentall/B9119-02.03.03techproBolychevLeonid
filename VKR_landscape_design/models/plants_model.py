@@ -8,8 +8,8 @@ def get_plants(conn):
 
 def get_one_plant(conn, user_plant_id):
     return pandas.read_sql('''
-    SELECT * 
-    FROM plants
+    SELECT plant_id, plant_name, plant_description, plant_isFodder, plant_isExactingToTheLight, plant_isOneYear, plant_isTwoYears, plant_isManyYears, plant_climat, plant_required_minerals_and_trace_elements, plant_temperature_min, plant_temperature_max, plant_kingdom, plant_philum, plant_class, plant_order, plant_family, plant_genus, plant_species 
+    FROM plants 
     WHERE plant_id = ''' + str(user_plant_id), conn)
 
 def get_plants_isFodder(conn):
@@ -252,3 +252,9 @@ def update_plant_picture(conn, user_plant_id, user_plant_picture):
         WHERE plant_id = :userplantid
         ''', {"userplantid": user_plant_id, "userplantpicture": user_plant_picture})
     conn.commit()
+
+def get_plant_picture(conn, user_plant_id):
+    return pandas.read_sql('''
+    SELECT plant_picture 
+    FROM plants
+    WHERE plant_id = ''' + str(user_plant_id), conn)

@@ -10,6 +10,9 @@ router = APIRouter()
 
 @router.get("/users/one")
 async def users_get_one_user(user_id: int):
+    """
+      Описание: получение данных об одном пользователе по его ID (кроме картинки).
+    """
     conn = get_db_connection()
     x = get_one_user(conn, user_id)
     if len(x) == 0:
@@ -18,6 +21,9 @@ async def users_get_one_user(user_id: int):
 
 @router.get("/users/onewithoutpassword")
 async def users_get_one_user_without_password(user_id: int):
+    """
+      Описание: получение данных об одном пользователе по его ID (кроме картинки и пароля).
+    """
     conn = get_db_connection()
     x = get_one_user_without_password(conn, user_id)
     if len(x) == 0:
@@ -158,11 +164,8 @@ async def users_post_update_isFemale(user_id: int, user_isFemale: int):
 async def users_post_update_picture(user: User.UserPicture):
     """
       Описание: изменение картинки (аватарки) пользователя.
-      Ограничение на вход: файл с картинкой (аватаркой) пользователя не должен содержать более 100000 символов.
     """
     conn = get_db_connection()
-    if (len(user.user_picture) > 100000):
-        raise HTTPException(status_code=400, detail="Ошибка: файл с картинкой (аватаркой) пользователя не должен содержать более 100000 символов.")
     x = update_user_picture(conn, user.user_id, user.user_picture)
     return Response("{'messpicture':'Картинка пользователя обновлена.'}", status_code=200)
 
@@ -173,3 +176,12 @@ async def users_post_update_isAdmin(user_id: int, user_isAdmin: int):
         raise HTTPException(status_code=400, detail="Ошибка: пользователь может быть только или обычным (0), или администратором (1).")
     x = update_user_isAdmin(conn, user_id, user_isAdmin)
     return Response("{'messisAdmin':'Обновлено, является ли пользователь администратором.'}", status_code=200)
+
+@router.get("/users/get/picture")
+async def users_get_picture(user_id: int):
+    """
+      Описание: получение картинки пользователя.
+    """
+    conn = get_db_connection()
+    x = get_user_picture(conn, user_id)
+    return Response(json.dumps(x.to_dict(orient="records")), status_code=200)

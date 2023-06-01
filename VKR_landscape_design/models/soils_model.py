@@ -8,8 +8,8 @@ def get_soils(conn):
 
 def get_one_soil(conn, user_soil_id):
     return pandas.read_sql('''
-    SELECT * 
-    FROM soils
+    SELECT soil_id, soil_name, soil_description, soil_acidity, soil_minerals, soil_profile 
+    FROM soils 
     WHERE soil_id = ''' + str(user_soil_id), conn)
 
 def bysoil_grounds(conn, user_soil_id):
@@ -119,3 +119,8 @@ def update_soil_picture(conn, user_soil_id, user_soil_picture):
         ''', {"usersoilid": user_soil_id, "usersoilpicture": user_soil_picture})
     conn.commit()
 
+def get_soil_picture(conn, user_soil_id):
+    return pandas.read_sql('''
+    SELECT soil_picture 
+    FROM soils
+    WHERE soil_id = ''' + str(user_soil_id), conn)

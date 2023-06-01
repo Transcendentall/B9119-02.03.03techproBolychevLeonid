@@ -17,6 +17,9 @@ async def grounds_get_select_all():
 
 @router.get("/grounds/one")
 async def grounds_get_one_ground(ground_id: int):
+    """
+      Описание: получение данных об одном грунте по его ID (кроме картинки).
+    """
     conn = get_db_connection()
     x = get_one_ground(conn, ground_id)
     if len(x) == 0:
@@ -86,11 +89,17 @@ async def grounds_post_update_hardness_Moos(ground_id: int, ground_hardness_Moos
 async def grounds_post_update_picture(ground: Ground.GroundPicture):
     """
       Описание: изменение картинки грунта.
-      Ограничение на вход: файл с картинкой грунта не должен содержать более 100000 символов.
     """
     conn = get_db_connection()
-    if (len(ground.ground_picture) > 100000):
-        raise HTTPException(status_code=400, detail="Ошибка: файл с картинкой грунта не должен содержать более 100000 символов.")
     x = update_ground_picture(conn, ground.ground_id, ground.ground_picture)
     return Response("{'messpicture':'Картинка грунта обновлена.'}", status_code=200)
+
+@router.get("/grounds/get/picture")
+async def grounds_get_picture(ground_id: int):
+    """
+      Описание: получение картинки грунта.
+    """
+    conn = get_db_connection()
+    x = get_ground_picture(conn, ground_id)
+    return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
 
