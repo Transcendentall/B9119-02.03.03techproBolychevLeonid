@@ -17,7 +17,7 @@ async def users_get_one_user(user_id: int):
     x = get_one_user(conn, user_id)
     if len(x) == 0:
         raise HTTPException(status_code=404, detail="Ошибка: пользователь с данным ID не найден.")
-    return Response(json.dumps(x.to_dict(orient="records")).replace("NaN", "null"), status_code=200)
+    return Response((json.dumps(x.to_dict(orient="records")).replace(": NaN", ": null")).replace(".0,", ","), status_code=200)
 
 @router.get("/users/onewithoutpassword")
 async def users_get_one_user_without_password(user_id: int):
@@ -28,7 +28,7 @@ async def users_get_one_user_without_password(user_id: int):
     x = get_one_user_without_password(conn, user_id)
     if len(x) == 0:
         raise HTTPException(status_code=404, detail="Ошибка: пользователь с данным ID не найден.")
-    return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
+    return Response((json.dumps(x.to_dict(orient="records")).replace(": NaN", ": null")).replace(".0,", ","), status_code=200)
 
 
 @router.post("/users/authorisation/")
@@ -37,31 +37,31 @@ async def users_post_authorisation(user: User.UserAuthorization):
     x = authorisation(conn, user.user_login, user.user_password)
     if len(x) == 0:
         raise HTTPException(status_code=401, detail="Ошибка: неправильный логин или пароль.")
-    return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
+    return Response((json.dumps(x.to_dict(orient="records")).replace(": NaN", ": null")).replace(".0,", ","), status_code=200)
 
 @router.get("/users/all")
 async def users_get_select_all():
     conn = get_db_connection()
     x = get_users(conn)
-    return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
+    return Response((json.dumps(x.to_dict(orient="records")).replace(": NaN", ": null")).replace(".0,", ","), status_code=200)
 
 @router.get("/users/allwithoutpassword")
 async def users_get_select_all_without_password():
     conn = get_db_connection()
     x = get_users_without_password(conn)
-    return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
+    return Response((json.dumps(x.to_dict(orient="records")).replace(": NaN", ": null")).replace(".0,", ","), status_code=200)
 
 @router.get("/users/allwithoutpasswordadmins")
 async def users_get_select_all_without_password():
     conn = get_db_connection()
     x = get_users_without_password_admins(conn)
-    return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
+    return Response((json.dumps(x.to_dict(orient="records")).replace(": NaN", ": null")).replace(".0,", ","), status_code=200)
 
 @router.get("/users/allwithoutpasswordnoadmins")
 async def users_get_select_all_without_password():
     conn = get_db_connection()
     x = get_users_without_password_noadmins(conn)
-    return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
+    return Response((json.dumps(x.to_dict(orient="records")).replace(": NaN", ": null")).replace(".0,", ","), status_code=200)
 
 @router.post("/users/delete")
 async def users_post_delete(user_id: int):
