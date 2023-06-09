@@ -13,7 +13,7 @@ router = APIRouter()
 async def soils_get_select_all():
     conn = get_db_connection()
     x = get_soils(conn)
-    return Response(json.dumps(x.to_dict(orient="records")).replace("NaN", "null"), status_code=200)
+    return Response((json.dumps(x.to_dict(orient="records")).replace(": NaN", ": null")).replace(".0,", ","), status_code=200)
 
 @router.get("/soils/one")
 async def soils_get_one_soil(soil_id: int):
@@ -24,7 +24,7 @@ async def soils_get_one_soil(soil_id: int):
     x = get_one_soil(conn, soil_id)
     if len(x) == 0:
         raise HTTPException(status_code=404, detail="Ошибка: почва с данным ID не найдена.")
-    return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
+    return Response((json.dumps(x.to_dict(orient="records")).replace(": NaN", ": null")).replace(".0,", ","), status_code=200)
 
 @router.get("/soils/bysoilgrounds")
 async def soils_bysoil_grounds(soil_id: int):
@@ -33,7 +33,7 @@ async def soils_bysoil_grounds(soil_id: int):
     if len(y) == 0:
         raise HTTPException(status_code=404, detail="Ошибка: почва с данным ID не найдена, потому получить перечень характерных для неё грунтов невозможно.")
     x = bysoil_grounds(conn, soil_id)
-    return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
+    return Response((json.dumps(x.to_dict(orient="records")).replace(": NaN", ": null")).replace(".0,", ","), status_code=200)
 
 @router.get("/soils/bysoilgroundsnoused")
 async def soils_bysoil_grounds_noused(soil_id: int):
@@ -42,7 +42,7 @@ async def soils_bysoil_grounds_noused(soil_id: int):
     if len(y) == 0:
         raise HTTPException(status_code=404, detail="Ошибка: почва с данным ID не найдена, потому получить перечень нехарактерных для неё грунтов невозможно.")
     x = bysoil_grounds_noused(conn, soil_id)
-    return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
+    return Response((json.dumps(x.to_dict(orient="records")).replace(": NaN", ": null")).replace(".0,", ","), status_code=200)
 
 @router.get("/soils/bysoilplants")
 async def soils_bysoil_plants(soil_id: int):
@@ -51,7 +51,7 @@ async def soils_bysoil_plants(soil_id: int):
     if len(y) == 0:
         raise HTTPException(status_code=404, detail="Ошибка: почва с данным ID не найдена, потому получить перечень хорошо и плохо растущих на ней растений невозможно.")
     x = bysoil_plants(conn, soil_id)
-    return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
+    return Response((json.dumps(x.to_dict(orient="records")).replace(": NaN", ": null")).replace(".0,", ","), status_code=200)
 
 @router.get("/soils/bysoilplantsnoused")
 async def soils_bysoil_plants_noused(soil_id: int):
@@ -60,7 +60,7 @@ async def soils_bysoil_plants_noused(soil_id: int):
     if len(y) == 0:
         raise HTTPException(status_code=404, detail="Ошибка: почва с данным ID не найдена, потому получить перечень нерастущих на ней растений невозможно.")
     x = bysoil_plants_noused(conn, soil_id)
-    return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
+    return Response((json.dumps(x.to_dict(orient="records")).replace(": NaN", ": null")).replace(".0,", ","), status_code=200)
 
 @router.post("/soils/delete")
 async def soils_post_delete(soil_id: int):

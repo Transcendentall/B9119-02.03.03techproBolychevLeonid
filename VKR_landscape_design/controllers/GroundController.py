@@ -13,7 +13,7 @@ router = APIRouter()
 async def grounds_get_select_all():
     conn = get_db_connection()
     x = get_grounds(conn)
-    return Response(json.dumps(x.to_dict(orient="records")).replace("NaN", "null"), status_code=200)
+    return Response((json.dumps(x.to_dict(orient="records")).replace(": NaN", ": null")).replace(".0,", ","), status_code=200)
 
 @router.get("/grounds/one")
 async def grounds_get_one_ground(ground_id: int):
@@ -24,7 +24,7 @@ async def grounds_get_one_ground(ground_id: int):
     x = get_one_ground(conn, ground_id)
     if len(x) == 0:
         raise HTTPException(status_code=404, detail="Ошибка: грунт с данным ID не найден.")
-    return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
+    return Response((json.dumps(x.to_dict(orient="records")).replace(": NaN", ": null")).replace(".0,", ","), status_code=200)
 
 @router.post("/grounds/delete")
 async def grounds_post_delete(ground_id: int):
