@@ -15,42 +15,42 @@ def get_one_connection_plants_animals(conn, user_connection_plants_animals_id):
 
 
 
-def find_connection_plants_animals(conn, user_connection_plant_id, user_connection_animal_id):
+def find_connection_plants_animals(conn, user_plant_id, user_animal_id):
     return pandas.read_sql('''
     SELECT * 
     FROM connection_plants_animals
-    WHERE connection_plant_id = ''' + str(user_connection_plant_id)
-                           + ' AND connection_animal_id = ' + str(user_connection_animal_id), conn)
+    WHERE plant_id = ''' + str(user_plant_id)
+                           + ' AND animal_id = ' + str(user_animal_id), conn)
 
-def find_connection_plants_animals_plant_id(conn, user_connection_plants_animals_id, user_connection_plant_id):
+def find_connection_plants_animals_plant_id(conn, user_connection_plants_animals_id, user_plant_id):
     return pandas.read_sql('''
     SELECT *
     FROM connection_plants_animals
-    WHERE connection_plant_id = ''' + str(user_connection_plant_id) + ' '
-    '''AND connection_animal_id IN 
-    (SELECT connection_animal_id 
+    WHERE plant_id = ''' + str(user_plant_id) + ' '
+    '''AND animal_id IN 
+    (SELECT animal_id 
     FROM connection_plants_animals
     WHERE connection_plants_animals_id = ''' + str(user_connection_plants_animals_id) + ')', conn)
 
-def find_connection_plants_animals_animal_id(conn, user_connection_plants_animals_id, user_connection_animal_id):
+def find_connection_plants_animals_animal_id(conn, user_connection_plants_animals_id, user_animal_id):
     return pandas.read_sql('''
     SELECT *
     FROM connection_plants_animals
-    WHERE connection_animal_id = ''' + str(user_connection_animal_id) + ' '
-    '''AND connection_plant_id IN 
-    (SELECT connection_plant_id 
+    WHERE animal_id = ''' + str(user_animal_id) + ' '
+    '''AND plant_id IN 
+    (SELECT plant_id 
     FROM connection_plants_animals
     WHERE connection_plants_animals_id = ''' + str(user_connection_plants_animals_id) + ')', conn)
 
 
 
 
-def insert_connection_plants_animals(conn, user_connection_plant_id, user_connection_animal_id):
+def insert_connection_plants_animals(conn, user_plant_id, user_animal_id):
     cur = conn.cursor()
     cur.execute('''
-        INSERT INTO connection_plants_animals(connection_plant_id, connection_animal_id) 
+        INSERT INTO connection_plants_animals(plant_id, animal_id) 
         VALUES (:userconnectionplantid, :userconnectionanimalid)
-        ''', {"userconnectionplantid": user_connection_plant_id, "userconnectionanimalid": user_connection_animal_id})
+        ''', {"userconnectionplantid": user_plant_id, "userconnectionanimalid": user_animal_id})
     conn.commit()
 
 def delete_connection_plants_animals(conn, user_connection_plants_animals_id):
@@ -60,20 +60,20 @@ def delete_connection_plants_animals(conn, user_connection_plants_animals_id):
         ''', {"connectionplantsanimalsiddelete": user_connection_plants_animals_id})
     conn.commit()
 
-def update_connection_plants_animals_plant_id(conn, user_connection_plants_animals_id, user_connection_plant_id):
+def update_connection_plants_animals_plant_id(conn, user_connection_plants_animals_id, user_plant_id):
     cur = conn.cursor()
     cur.execute('''
         UPDATE connection_plants_animals 
-        SET connection_plant_id = :userconnectionplantid 
+        SET plant_id = :userconnectionplantid 
         WHERE connection_plants_animals_id = :userconnectionplantsanimalsid
-        ''', {"userconnectionplantsanimalsid": user_connection_plants_animals_id, "userconnectionplantid": user_connection_plant_id})
+        ''', {"userconnectionplantsanimalsid": user_connection_plants_animals_id, "userconnectionplantid": user_plant_id})
     conn.commit()
 
-def update_connection_plants_animals_animal_id(conn, user_connection_plants_animals_id, user_connection_animal_id):
+def update_connection_plants_animals_animal_id(conn, user_connection_plants_animals_id, user_animal_id):
     cur = conn.cursor()
     cur.execute('''
         UPDATE connection_plants_animals 
-        SET connection_animal_id = :userconnectionanimalid
+        SET animal_id = :userconnectionanimalid
         WHERE connection_plants_animals_id = :userconnectionplantsanimalsid
-        ''', {"userconnectionplantsanimalsid": user_connection_plants_animals_id, "userconnectionanimalid": user_connection_animal_id})
+        ''', {"userconnectionplantsanimalsid": user_connection_plants_animals_id, "userconnectionanimalid": user_animal_id})
     conn.commit()

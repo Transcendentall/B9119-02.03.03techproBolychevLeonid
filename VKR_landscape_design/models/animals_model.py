@@ -2,7 +2,7 @@ import pandas
 
 def get_animals(conn):
     return pandas.read_sql('''
-    SELECT * 
+    SELECT animal_id, animal_name, animal_description, animal_kingdom, animal_philum, animal_class, animal_order, animal_family, animal_genus, animal_species, animal_picture  
     FROM animals
     ''', conn)
 

@@ -13,7 +13,7 @@ router = APIRouter()
 async def grounds_get_select_all():
     conn = get_db_connection()
     x = get_grounds(conn)
-    return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
+    return Response(json.dumps(x.to_dict(orient="records")).replace("NaN", "null"), status_code=200)
 
 @router.get("/grounds/one")
 async def grounds_get_one_ground(ground_id: int):
