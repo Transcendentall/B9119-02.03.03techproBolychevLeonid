@@ -8,12 +8,11 @@ from utils import get_db_connection
 router = APIRouter()
 
 
-
 @router.get("/plants/all")
 async def plants_get_select_all():
     conn = get_db_connection()
     x = get_plants(conn)
-    return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
+    return Response(json.dumps(x.to_dict(orient="records")).replace("NaN", "null"), status_code=200)
 
 @router.get("/plants/one")
 async def plants_get_one_plant(plant_id: int):

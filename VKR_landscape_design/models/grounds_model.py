@@ -2,7 +2,7 @@ import pandas
 
 def get_grounds(conn):
     return pandas.read_sql('''
-    SELECT * 
+    SELECT ground_id, ground_name, ground_description, ground_density, ground_humidity, ground_hardness_Moos, ground_picture 
     FROM grounds
     ''', conn)
 

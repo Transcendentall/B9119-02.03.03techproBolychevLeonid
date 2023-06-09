@@ -17,7 +17,7 @@ async def users_get_one_user(user_id: int):
     x = get_one_user(conn, user_id)
     if len(x) == 0:
         raise HTTPException(status_code=404, detail="Ошибка: пользователь с данным ID не найден.")
-    return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
+    return Response(json.dumps(x.to_dict(orient="records")).replace("NaN", "null"), status_code=200)
 
 @router.get("/users/onewithoutpassword")
 async def users_get_one_user_without_password(user_id: int):

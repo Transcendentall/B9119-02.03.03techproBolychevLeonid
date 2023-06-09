@@ -13,7 +13,7 @@ router = APIRouter()
 async def soils_get_select_all():
     conn = get_db_connection()
     x = get_soils(conn)
-    return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
+    return Response(json.dumps(x.to_dict(orient="records")).replace("NaN", "null"), status_code=200)
 
 @router.get("/soils/one")
 async def soils_get_one_soil(soil_id: int):

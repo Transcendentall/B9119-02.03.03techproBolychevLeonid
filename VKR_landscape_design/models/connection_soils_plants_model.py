@@ -18,30 +18,30 @@ def get_one_connection_soils_plants(conn, user_connection_soils_plants_id):
 
 
 
-def find_connection_soils_plants(conn, user_connection_soil_id, user_connection_plant_id):
+def find_connection_soils_plants(conn, user_soil_id, user_plant_id):
     return pandas.read_sql('''
     SELECT * 
     FROM connection_soils_plants
-    WHERE connection_soil_id = ''' + str(user_connection_soil_id)
-                           + ' AND connection_plant_id = ' + str(user_connection_plant_id), conn)
+    WHERE soil_id = ''' + str(user_soil_id)
+                           + ' AND plant_id = ' + str(user_plant_id), conn)
 
-def find_connection_soils_plants_soil_id(conn, user_connection_soils_plants_id, user_connection_soil_id):
+def find_connection_soils_plants_soil_id(conn, user_connection_soils_plants_id, user_soil_id):
     return pandas.read_sql('''
     SELECT *
     FROM connection_soils_plants
-    WHERE connection_soil_id = ''' + str(user_connection_soil_id) + ' '
-    '''AND connection_plant_id IN 
-    (SELECT connection_plant_id 
+    WHERE soil_id = ''' + str(user_soil_id) + ' '
+    '''AND plant_id IN 
+    (SELECT plant_id 
     FROM connection_soils_plants
     WHERE connection_soils_plants_id = ''' + str(user_connection_soils_plants_id) + ')', conn)
 
-def find_connection_soils_plants_plant_id(conn, user_connection_soils_plants_id, user_connection_plant_id):
+def find_connection_soils_plants_plant_id(conn, user_connection_soils_plants_id, user_plant_id):
     return pandas.read_sql('''
     SELECT *
     FROM connection_soils_plants
-    WHERE connection_plant_id = ''' + str(user_connection_plant_id) + ' '
-    '''AND connection_soil_id IN 
-    (SELECT connection_soil_id 
+    WHERE plant_id = ''' + str(user_plant_id) + ' '
+    '''AND soil_id IN 
+    (SELECT soil_id 
     FROM connection_soils_plants
     WHERE connection_soils_plants_id = ''' + str(user_connection_soils_plants_id) + ')', conn)
 
@@ -49,12 +49,12 @@ def find_connection_soils_plants_plant_id(conn, user_connection_soils_plants_id,
 
 
 
-def insert_connection_soils_plants(conn, user_connection_soil_id, user_connection_plant_id, user_connection_soils_plants_isGood):
+def insert_connection_soils_plants(conn, user_soil_id, user_plant_id):
     cur = conn.cursor()
     cur.execute('''
-        INSERT INTO connection_soils_plants(connection_soil_id, connection_plant_id, connection_soils_plants_isGood) 
-        VALUES (:userconnectionsoilid, :userconnectionplantid, :userconnectionsoilsplantsisGood)
-        ''', {"userconnectionsoilid": user_connection_soil_id, "userconnectionplantid": user_connection_plant_id, "userconnectionsoilsplantsisGood": user_connection_soils_plants_isGood})
+        INSERT INTO connection_soils_plants(soil_id, plant_id) 
+        VALUES (:userconnectionsoilid, :userconnectionplantid)
+        ''', {"userconnectionsoilid": user_soil_id, "userconnectionplantid": user_plant_id})
     conn.commit()
 
 def delete_connection_soils_plants(conn, user_connection_soils_plants_id):
@@ -64,29 +64,20 @@ def delete_connection_soils_plants(conn, user_connection_soils_plants_id):
         ''', {"connectionsoilsplantsiddelete": user_connection_soils_plants_id})
     conn.commit()
 
-def update_connection_soils_plants_soil_id(conn, user_connection_soils_plants_id, user_connection_soil_id):
+def update_connection_soils_plants_soil_id(conn, user_connection_soils_plants_id, user_soil_id):
     cur = conn.cursor()
     cur.execute('''
         UPDATE connection_soils_plants 
-        SET connection_soil_id = :userconnectionsoilid 
+        SET soil_id = :userconnectionsoilid 
         WHERE connection_soils_plants_id = :userconnectionsoilsplantsid
-        ''', {"userconnectionsoilsplantsid": user_connection_soils_plants_id, "userconnectionsoilid": user_connection_soil_id})
+        ''', {"userconnectionsoilsplantsid": user_connection_soils_plants_id, "userconnectionsoilid": user_soil_id})
     conn.commit()
 
-def update_connection_soils_plants_plant_id(conn, user_connection_soils_plants_id, user_connection_plant_id):
+def update_connection_soils_plants_plant_id(conn, user_connection_soils_plants_id, user_plant_id):
     cur = conn.cursor()
     cur.execute('''
         UPDATE connection_soils_plants 
-        SET connection_plant_id = :userconnectionplantid
+        SET plant_id = :userconnectionplantid
         WHERE connection_soils_plants_id = :userconnectionsoilsplantsid
-        ''', {"userconnectionsoilsplantsid": user_connection_soils_plants_id, "userconnectionplantid": user_connection_plant_id})
-    conn.commit()
-
-def update_connection_soils_plants_isGood(conn, user_connection_soils_plants_id, user_connection_soils_plants_isGood):
-    cur = conn.cursor()
-    cur.execute('''
-        UPDATE connection_soils_plants 
-        SET connection_soils_plants_isGood = :userconnectionsoilsplantsisGood
-        WHERE connection_soils_plants_id = :userconnectionsoilsplantsid
-        ''', {"userconnectionsoilsplantsid": user_connection_soils_plants_id, "userconnectionsoilsplantsisGood": user_connection_soils_plants_isGood})
+        ''', {"userconnectionsoilsplantsid": user_connection_soils_plants_id, "userconnectionplantid": user_plant_id})
     conn.commit()

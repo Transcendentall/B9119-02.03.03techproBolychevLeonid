@@ -5,7 +5,7 @@ import bcrypt
 
 def get_users(conn):
     return pandas.read_sql('''
-    SELECT * 
+    SELECT user_id, user_login, user_password, user_email, user_surname, user_name, user_fathername, user_age, user_isFemale, user_picture, user_isAdmin 
     FROM users
     ''', conn)
 
