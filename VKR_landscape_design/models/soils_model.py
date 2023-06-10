@@ -14,7 +14,7 @@ def get_one_soil(conn, user_soil_id):
 
 def bysoil_grounds(conn, user_soil_id):
     return pandas.read_sql('''
-    SELECT ground_id, ground_name, ground_description, ground_density, ground_humidity, ground_hardness_Moos, ground_picture 
+    SELECT grounds.ground_id, ground_name, ground_description, ground_density, ground_humidity, ground_hardness_Moos, ground_picture 
     FROM grounds 
     JOIN connection_soils_grounds ON (grounds.ground_id = connection_soils_grounds.ground_id) 
     JOIN soils ON (connection_soils_grounds.soil_id = soils.soil_id) 
@@ -24,8 +24,8 @@ def bysoil_grounds_noused(conn, user_soil_id):
     return pandas.read_sql('''
     SELECT DISTINCT *     
     FROM grounds 
-    WHERE ground_id NOT IN 
-    (SELECT DISTINCT ground_id
+    WHERE grounds.ground_id NOT IN 
+    (SELECT DISTINCT grounds.ground_id
     FROM grounds 
     JOIN connection_soils_grounds ON (grounds.ground_id = connection_soils_grounds.ground_id) 
     JOIN soils ON (connection_soils_grounds.soil_id = soils.soil_id) 
@@ -33,7 +33,7 @@ def bysoil_grounds_noused(conn, user_soil_id):
 
 def bysoil_plants(conn, user_soil_id):
     return pandas.read_sql('''
-    SELECT DISTINCT plant_id, plant_name, connection_soils_plants_isGood, plant_description, plant_isFodder, plant_isExactingToTheLight, plant_isOneYear, plant_isTwoYears, plant_isManyYears, plant_climat, plant_required_minerals_and_trace_elements, plant_temperature_min, plant_temperature_max, plant_kingdom, plant_philum, plant_class, plant_order, plant_family, plant_genus, plant_species, plant_picture 
+    SELECT DISTINCT plants.plant_id, plant_name, plant_description, plant_isFodder, plant_isExactingToTheLight, plant_isOneYear, plant_isTwoYears, plant_isManyYears, plant_climat, plant_required_minerals_and_trace_elements, plant_temperature_min, plant_temperature_max, plant_kingdom, plant_philum, plant_class, plant_order, plant_family, plant_genus, plant_species, plant_picture 
     FROM plants 
     JOIN connection_soils_plants ON (plants.plant_id = connection_soils_plants.plant_id) 
     JOIN soils ON (connection_soils_plants.soil_id = soils.soil_id) 
@@ -43,8 +43,8 @@ def bysoil_plants_noused(conn, user_soil_id):
     return pandas.read_sql('''
     SELECT DISTINCT * 
     FROM plants 
-    WHERE plant_id NOT IN 
-    (SELECT DISTINCT plant_id 
+    WHERE plants.plant_id NOT IN 
+    (SELECT DISTINCT plants.plant_id 
     FROM plants 
     JOIN connection_soils_plants ON (plants.plant_id = connection_soils_plants.plant_id) 
     JOIN soils ON (connection_soils_plants.soil_id = soils.soil_id) 

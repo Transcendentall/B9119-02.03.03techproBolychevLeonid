@@ -49,7 +49,7 @@ def get_plants_isNoFodder(conn):
 
 def byplant_animals(conn, user_plant_id):
     return pandas.read_sql('''
-    SELECT DISTINCT animal_id, animal_name, animal_description, animal_kingdom, animal_philum, animal_class, animal_order, animal_family, animal_genus, animal_species, animal_picture 
+    SELECT DISTINCT animals.animal_id, animal_name, animal_description, animal_kingdom, animal_philum, animal_class, animal_order, animal_family, animal_genus, animal_species, animal_picture 
     FROM plants
     JOIN connection_plants_animals ON (plants.plant_id = connection_plants_animals.plant_id) 
     JOIN animals ON (connection_plants_animals.animal_id = animals.animal_id)
@@ -59,8 +59,8 @@ def byplant_animals_noused(conn, user_plant_id):
     return pandas.read_sql('''
     SELECT DISTINCT * 
     FROM animals 
-    WHERE animal_id NOT IN 
-    (SELECT DISTINCT animal_id
+    WHERE animals.animal_id NOT IN 
+    (SELECT DISTINCT animals.animal_id
     FROM animals 
     JOIN connection_plants_animals ON (animals.animal_id = connection_plants_animals.animal_id) 
     JOIN plants ON (connection_plants_animals.plant_id = plants.plant_id) 
