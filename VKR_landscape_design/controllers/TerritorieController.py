@@ -37,7 +37,7 @@ async def territories_byterritorie_soils(user_territorie_id: int):
     x = byterritorie_soils(conn, user_territorie_id)
     if len(x) == 0:
         raise HTTPException(status_code=404, detail="Ошибка: такой точки нет в базе данных, поэтому получить перечень её почв для неё невозможно.")
-    return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
+    return Response((json.dumps(x.to_dict(orient="records")).replace(": NaN", ": null")).replace(".0,", ","), status_code=200)
 
 @router.get("/territories/byterritoriesoilsnoused")
 async def territories_byterritorie_soils_noused(user_territorie_id: int):
@@ -46,7 +46,7 @@ async def territories_byterritorie_soils_noused(user_territorie_id: int):
     if len(y) == 0:
         raise HTTPException(status_code=404, detail="Ошибка: такой точки нет в базе данных, поэтому получить перечень отсутствующих в ней почв для неё невозможно.")
     x = byterritorie_soils_noused(conn, user_territorie_id)
-    return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
+    return Response((json.dumps(x.to_dict(orient="records")).replace(": NaN", ": null")).replace(".0,", ","), status_code=200)
 
 @router.get("/territories/byterritorieground")
 async def territories_byterritorie_ground(user_territorie_id: int):
@@ -54,7 +54,7 @@ async def territories_byterritorie_ground(user_territorie_id: int):
     x = byterritorie_ground(conn, user_territorie_id)
     if len(x) == 0:
         raise HTTPException(status_code=404, detail="Ошибка: такой точки нет в базе данных.")
-    return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
+    return Response((json.dumps(x.to_dict(orient="records")).replace(": NaN", ": null")).replace(".0,", ","), status_code=200)
 
 @router.get("/territories/byterritorieanimal")
 async def territories_byterritorie_animal(user_territorie_id: int):
@@ -62,7 +62,7 @@ async def territories_byterritorie_animal(user_territorie_id: int):
     x = byterritorie_animal(conn, user_territorie_id)
     if len(x) == 0:
         raise HTTPException(status_code=404, detail="Ошибка: такой точки нет в базе данных.")
-    return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
+    return Response((json.dumps(x.to_dict(orient="records")).replace(": NaN", ": null")).replace(".0,", ","), status_code=200)
 
 @router.get("/territories/byterritorieplant")
 async def territories_byterritorie_plant(user_territorie_id: int):
@@ -70,7 +70,7 @@ async def territories_byterritorie_plant(user_territorie_id: int):
     x = byterritorie_plant(conn, user_territorie_id)
     if len(x) == 0:
         raise HTTPException(status_code=404, detail="Ошибка: такой точки нет в базе данных.")
-    return Response(json.dumps(x.to_dict(orient="records")), status_code=200)
+    return Response((json.dumps(x.to_dict(orient="records")).replace(": NaN", ": null")).replace(".0,", ","), status_code=200)
 
 @router.post("/territories/insert")
 async def territories_post_insert(territorie_coord_x: float, territorie_coord_y: float, territorie_address: str):
