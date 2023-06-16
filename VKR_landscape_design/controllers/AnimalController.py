@@ -44,15 +44,19 @@ async def animals_post_delete(animal_id: int):
 @router.post("/animals/insert")
 async def animals_post_insert(animal_name: str, animal_description: str):
     """
-      Описание: добавление животного.
+      Описание: добавление животного. На ввод подаются название и описание.
       Ограничения: 1) длина названия животного должна быть <= 30 символов;
-                   2) длина описания животного должна быть <= 3000 символов.
+                   2) длина описания животного должна быть <= 3000 символов;
+                   3) название животного должно быть уникальным (повторы не допускаются).
     """
     conn = get_db_connection()
     if ((len(animal_name) > 30)):
         raise HTTPException(status_code=400, detail="Ошибка: название животного должно иметь длину не более 30 символов.")
-    if ((len(animal_description) < 2) or (len(animal_description) > 3000) or (not(animal_description[0].isupper()))):
+    if ((len(animal_description) > 3000)):
         raise HTTPException(status_code=400, detail="Ошибка: описание животного должно иметь длину не более 3000 символов.")
+    y = find_animal_name(conn, animal_name)
+    if len(y) != 0:
+        raise HTTPException(status_code=400, detail="Ошибка: в базе данных уже есть животное с таким названием.")
     x = insert_animal(conn, animal_name, animal_description)
     return Response("{'messinsert':'Животное создано.'}", status_code=200)
 
@@ -182,5 +186,8 @@ async def animals_get_picture(animal_id: int):
       Описание: получение картинки животного.
     """
     conn = get_db_connection()
+    y = get_one_animal(conn, animal_id)
+    if len(y) == 0:
+        raise HTTPException(status_code=404, detail="Ошибка: животное с данным ID не найдено, потому получить его картинку невозможно.")
     x = get_animal_picture(conn, animal_id)
     return Response(json.dumps(x.to_dict(orient="records")), status_code=200)

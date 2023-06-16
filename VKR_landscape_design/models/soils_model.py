@@ -12,6 +12,12 @@ def get_one_soil(conn, user_soil_id):
     FROM soils 
     WHERE soil_id = ''' + str(user_soil_id), conn)
 
+def find_soil_name(conn, user_soil_name):
+    return pandas.read_sql('''
+    SELECT * 
+    FROM soils
+    WHERE soil_name = "''' + str(user_soil_name) + '"', conn)
+
 def bysoil_grounds(conn, user_soil_id):
     return pandas.read_sql('''
     SELECT grounds.ground_id, ground_name, ground_description, ground_density, ground_humidity, ground_hardness_Moos, ground_picture 

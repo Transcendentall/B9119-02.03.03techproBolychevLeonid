@@ -11,6 +11,12 @@ def get_one_plant(conn, user_plant_id):
     FROM plants 
     WHERE plant_id = ''' + str(user_plant_id), conn)
 
+def find_plant_name(conn, user_plant_name):
+    return pandas.read_sql('''
+    SELECT * 
+    FROM plants
+    WHERE plant_name = "''' + str(user_plant_name) + '"', conn)
+
 def get_plants_isFodder(conn):
     return pandas.read_sql('''
     SELECT * 
