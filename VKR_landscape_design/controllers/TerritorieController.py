@@ -100,7 +100,7 @@ async def territories_byterritorie_plant(user_territorie_id: int):
     if len(y) == 0:
         raise HTTPException(status_code=404, detail="Ошибка: такой точки нет в базе данных, поэтому получить информацию о присутствующих в ней растениях невозможно.")
     x = byterritorie_plant(conn, user_territorie_id)
-    return Response((json.dumps(x.to_dict(orient="records"), ignore_nan=True).replace(": NaN", ": null")).replace(".0,", ","), status_code=200)
+    return Response((json.dumps(x.to_dict(orient="records")).replace(": NaN", ": null")).replace(".0,", ","), status_code=200)
 
 @router.post("/territories/insert")
 async def territories_post_insert(territorie_coord_x: float, territorie_coord_y: float, territorie_address: str):
