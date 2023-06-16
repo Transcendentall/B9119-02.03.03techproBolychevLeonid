@@ -6,6 +6,12 @@ def get_animals(conn):
     FROM animals
     ''', conn)
 
+def find_animal_name(conn, user_animal_name):
+    return pandas.read_sql('''
+    SELECT * 
+    FROM animals
+    WHERE animal_name = "''' + str(user_animal_name) + '"', conn)
+
 def get_one_animal(conn, user_animal_id):
     return pandas.read_sql('''
     SELECT animal_id, animal_name, animal_description, animal_kingdom, animal_philum, animal_class, animal_order, animal_family, animal_genus, animal_species 
