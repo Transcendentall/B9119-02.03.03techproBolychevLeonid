@@ -2,6 +2,7 @@ from pydantic import BaseModel
 from typing import Optional
 from fastapi import APIRouter, Response, HTTPException
 import json
+import simplejson as sj
 from base_models import Territorie
 from models.territories_model import *
 from utils import get_db_connection
