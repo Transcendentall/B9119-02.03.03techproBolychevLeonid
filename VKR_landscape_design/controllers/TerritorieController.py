@@ -6,8 +6,8 @@ import simplejson as sj
 from base_models import Territorie
 from models.territories_model import *
 from utils import get_db_connection
+import math
 router = APIRouter()
-
 
 
 @router.get("/territories/all")
@@ -36,6 +36,7 @@ async def territories_bycoord(territorie_coord_x: float, territorie_coord_y: flo
       Описание: получение ближайшей точки по указанным координатам.
     """
     conn = get_db_connection()
+    conn.create_function('sqrt', 1, math.sqrt)
     x = bycoord(conn, territorie_coord_x, territorie_coord_y)
     if len(x) == 0:
         raise HTTPException(status_code=404, detail="Ошибка: рядом с указанными координатами нет никаких точек, находящихся в базе данных.")

@@ -22,7 +22,7 @@ def bycoord(conn, user_territorie_coord_x, user_territorie_coord_y):
     ' AND territorie_coord_x >=  ' + str(user_territorie_coord_x - err) +
     ' AND territorie_coord_y <=  ' + str(user_territorie_coord_y + err) +
     ' AND territorie_coord_y >=  ' + str(user_territorie_coord_y - err) +
-    ' ORDER by (SQRT(ABS(territorie_coord_x - ' + str(user_territorie_coord_x) + ') + ABS(territorie_coord_y - ' + str(user_territorie_coord_y) + ')))'
+    ' ORDER by (sqrt(ABS(territorie_coord_x - ' + str(user_territorie_coord_x) + ') + ABS(territorie_coord_y - ' + str(user_territorie_coord_y) + ')))'
     ' LIMIT 1', conn)
 
 def byterritorie_soils(conn, user_territorie_id):
