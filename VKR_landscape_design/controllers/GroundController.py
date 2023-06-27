@@ -45,11 +45,15 @@ async def grounds_post_delete(ground_id: int):
 async def grounds_post_insert(ground_name: str, ground_description: str):
     """
       Описание: добавление грунта. На ввод подаются название и описание.
-      Ограничения: 1) длина названия грунта должна быть <= 30 символов;
-                   2) длина описания грунта должна быть <= 3000 символов;
+      Ограничения: 1) длина названия грунта должна быть <= 30 символов, и название не должно быть пустым;
+                   2) длина описания грунта должна быть <= 3000 символов, и описание не должно быть пустым;
                    3) название грунта должно быть уникальным (повторы не допускаются).
     """
     conn = get_db_connection()
+    if ((len(ground_name) == 0)):
+        raise HTTPException(status_code=400, detail="Ошибка: название грунта не должно быть пустым.")
+    if ((len(ground_description) == 0)):
+        raise HTTPException(status_code=400, detail="Ошибка: описание грунта не должно быть пустым.")
     if ((len(ground_name) > 30)):
         raise HTTPException(status_code=400, detail="Ошибка: название грунта должно иметь длину не более 30 символов.")
     if ((len(ground_description) > 3000)):
@@ -64,9 +68,11 @@ async def grounds_post_insert(ground_name: str, ground_description: str):
 async def grounds_post_update_name(ground_id: int, ground_name: str):
     """
       Описание: изменение названия грунта.
-      Ограничения: длина названия грунта должна быть <= 30 символов.
+      Ограничения: длина названия грунта должна быть <= 30 символов, и название не должно быть пустым.
     """
     conn = get_db_connection()
+    if ((len(ground_name) == 0)):
+        raise HTTPException(status_code=400, detail="Ошибка: название почвы не должно быть пустым.")
     if ((len(ground_name) > 30)):
         raise HTTPException(status_code=400, detail="Ошибка: название грунта должно иметь длину не более 30 символов.")
     x = update_ground_name(conn, ground_id, ground_name)
@@ -76,9 +82,11 @@ async def grounds_post_update_name(ground_id: int, ground_name: str):
 async def grounds_post_update_description(ground_id: int, ground_description: str):
     """
       Описание: изменение описания грунта.
-      Ограничения: длина описания животного должна быть <= 3000 символов.
+      Ограничения: длина описания животного должна быть <= 3000 символов, и описание не должно быть пустым.
     """
     conn = get_db_connection()
+    if ((len(ground_description) == 0)):
+        raise HTTPException(status_code=400, detail="Ошибка: описание почвы не должно быть пустым.")
     if ((len(ground_description) > 3000)):
         raise HTTPException(status_code=400, detail="Ошибка: описание грунта должно иметь длину не более 3000 символов.")
     x = update_ground_description(conn, ground_id, ground_description)

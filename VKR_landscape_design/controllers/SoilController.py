@@ -61,7 +61,7 @@ async def soils_bysoil_plants(soil_id: int):
     conn = get_db_connection()
     y = get_one_soil(conn, soil_id)
     if len(y) == 0:
-        raise HTTPException(status_code=404, detail="Ошибка: почва с данным ID не найдена, потому получить перечень хорошо и плохо растущих на ней растений невозможно.")
+        raise HTTPException(status_code=404, detail="Ошибка: почва с данным ID не найдена, потому получить перечень подходящих для неё растений невозможно.")
     x = bysoil_plants(conn, soil_id)
     return Response((json.dumps(x.to_dict(orient="records")).replace(": NaN", ": null")).replace(".0,", ","), status_code=200)
 
@@ -93,11 +93,15 @@ async def soils_post_delete(soil_id: int):
 async def soils_post_insert(soil_name: str, soil_description: str):
     """
       Описание: добавление почвы. На ввод подаются название и описание.
-      Ограничения: 1) длина названия почвы должна быть <= 40 символов;
-                   2) длина описания почвы должна быть <= 3000 символов;
+      Ограничения: 1) длина названия почвы должна быть <= 40 символов, и название не должно быть пустым;
+                   2) длина описания почвы должна быть <= 3000 символов, и описание не должно быть пустым;
                    3) название почвы должно быть уникальным (повторы не допускаются).
     """
     conn = get_db_connection()
+    if ((len(soil_name) == 0)):
+        raise HTTPException(status_code=400, detail="Ошибка: название почвы не должно быть пустым.")
+    if ((len(soil_description) == 0)):
+        raise HTTPException(status_code=400, detail="Ошибка: описание почвы не должно быть пустым.")
     if ((len(soil_name) > 40)):
         raise HTTPException(status_code=400, detail="Ошибка: название почвы должно иметь длину не более 40 символов.")
     if ((len(soil_description) > 3000)):
@@ -112,9 +116,11 @@ async def soils_post_insert(soil_name: str, soil_description: str):
 async def soils_post_update_name(soil_id: int, soil_name: str):
     """
       Описание: изменение названия почвы.
-      Ограничения: длина названия почвы должна быть <= 40 символов.
+      Ограничения: длина названия почвы должна быть <= 40 символов, и название не должно быть пустым.
     """
     conn = get_db_connection()
+    if ((len(soil_name) == 0)):
+        raise HTTPException(status_code=400, detail="Ошибка: название почвы не должно быть пустым.")
     if ((len(soil_name) > 40)):
         raise HTTPException(status_code=400, detail="Ошибка: название почвы должно иметь длину не более 40 символов.")
     x = update_soil_name(conn, soil_id, soil_name)
@@ -124,9 +130,11 @@ async def soils_post_update_name(soil_id: int, soil_name: str):
 async def soils_post_update_description(soil_id: int, soil_description: str):
     """
       Описание: изменение описания грунта.
-      Ограничения: длина описания животного должна быть <= 3000 символов.
+      Ограничения: длина описания животного должна быть <= 3000 символов, и описание не должно быть пустым.
     """
     conn = get_db_connection()
+    if ((len(soil_description) == 0)):
+        raise HTTPException(status_code=400, detail="Ошибка: описание почвы не должно быть пустым.")
     if ((len(soil_description) > 3000)):
         raise HTTPException(status_code=400, detail="Ошибка: описание почвы должно иметь длину не более 3000 символов.")
     x = update_soil_description(conn, soil_id, soil_description)

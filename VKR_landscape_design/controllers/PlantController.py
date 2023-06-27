@@ -86,12 +86,16 @@ async def plants_post_delete(plant_id: int):
 async def plants_post_insert(plant_name: str, plant_description: str, plant_isFodder: int):
     """
       Описание: добавление растения. На ввод подаются название, описание и то, является ли растение кормовым.
-      Ограничения: 1) название растения должно иметь длину не более 50 символов;
-                   2) описание растения должно иметь длину не более 3000 символов;
+      Ограничения: 1) название растения должно иметь длину не более 50 символов, и название не должно быть пустым;
+                   2) описание растения должно иметь длину не более 3000 символов, и описание не должно быть пустым;
                    3) растение может быть только или некормовым (0), или кормовым (1);
                    4) название растения должно быть уникальным (повторы не допускаются).
     """
     conn = get_db_connection()
+    if ((len(plant_name) == 0)):
+        raise HTTPException(status_code=400, detail="Ошибка: название растения не должно быть пустым.")
+    if ((len(plant_description) == 0)):
+        raise HTTPException(status_code=400, detail="Ошибка: описание растения не должно быть пустым.")
     if ((len(plant_name) > 50)):
         raise HTTPException(status_code=400, detail="Ошибка: название растения должно иметь длину не более 50 символов.")
     if ((len(plant_description) > 3000)):
@@ -108,9 +112,11 @@ async def plants_post_insert(plant_name: str, plant_description: str, plant_isFo
 async def plants_post_update_name(plant_id: int, plant_name: str):
     """
       Описание: изменение названия растения.
-      Ограничения: длина названия растения должна быть <= 50 символов.
+      Ограничения: длина названия растения должна быть <= 50 символов, и название не должно быть пустым.
     """
     conn = get_db_connection()
+    if ((len(plant_name) == 0)):
+        raise HTTPException(status_code=400, detail="Ошибка: название почвы не должно быть пустым.")
     if ((len(plant_name) > 50)):
         raise HTTPException(status_code=400, detail="Ошибка: название растения должно иметь длину не более 50 символов.")
     x = update_plant_name(conn, plant_id, plant_name)
@@ -120,9 +126,11 @@ async def plants_post_update_name(plant_id: int, plant_name: str):
 async def plants_post_update_description(plant_id: int, plant_description: str):
     """
       Описание: изменение описания почвы.
-      Ограничения: длина описания почвы должна быть <= 3000 символов.
+      Ограничения: длина описания почвы должна быть <= 3000 символов, и описание не должно быть пустым.
     """
     conn = get_db_connection()
+    if ((len(plant_description) == 0)):
+        raise HTTPException(status_code=400, detail="Ошибка: описание почвы не должно быть пустым.")
     if ((len(plant_description) > 3000)):
         raise HTTPException(status_code=400, detail="Ошибка: описание растения должно иметь длину не более 3000 символов.")
     x = update_plant_description(conn, plant_id, plant_description)

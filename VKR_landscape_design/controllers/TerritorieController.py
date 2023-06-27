@@ -109,9 +109,11 @@ async def territories_post_insert(territorie_coord_x: float, territorie_coord_y:
       Описание: добавление территории. На ввод подаются координата x (широта), координата y (долгота) и адрес.
       Ограничения: 1) координата x (широта) точки должна принадлежать интервалу [-90; 90];
                    2) координата y (долгота) точки должна принадлежать полуинтервалу (-180; 180];
-                   3) адрес территории должен иметь длину не более 500 символов.
+                   3) адрес территории должен иметь длину не более 500 символов и не быть пустым.
     """
     conn = get_db_connection()
+    if ((len(territorie_address) == 0)):
+        raise HTTPException(status_code=400, detail="Ошибка: адрес территории не должен быть пустым.")
     if ((territorie_coord_x < -90) or (territorie_coord_x > 90)):
         raise HTTPException(status_code=400, detail="Ошибка: координата x (широта) точки должна принадлежать интервалу [-90; 90].")
     if ((territorie_coord_y <= -180) or (territorie_coord_y > 180)):
@@ -162,9 +164,11 @@ async def territories_post_update_coord_y(territorie_id: int, territorie_coord_y
 async def territories_post_update_address(territorie_id: int, territorie_address: str):
     """
       Описание: изменение адреса территории.
-      Ограничения: адрес территории должен иметь длину не более 500 символов.
+      Ограничения: адрес территории должен иметь длину не более 500 символов и не быть пустым.
     """
     conn = get_db_connection()
+    if ((len(territorie_address) == 0)):
+        raise HTTPException(status_code=400, detail="Ошибка: адрес территории не должен быть пустым.")
     if (len(territorie_address) > 500):
         raise HTTPException(status_code=400, detail="Ошибка: адрес территории должен иметь длину не более 500 символов.")
     x = update_territorie_address(conn, territorie_id, territorie_address)
