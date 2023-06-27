@@ -45,11 +45,15 @@ async def animals_post_delete(animal_id: int):
 async def animals_post_insert(animal_name: str, animal_description: str):
     """
       Описание: добавление животного. На ввод подаются название и описание.
-      Ограничения: 1) длина названия животного должна быть <= 30 символов;
-                   2) длина описания животного должна быть <= 3000 символов;
+      Ограничения: 1) длина названия животного должна быть <= 30 символов, и название не должно быть пустым;
+                   2) длина описания животного должна быть <= 3000 символов, и описание не должно быть пустым;
                    3) название животного должно быть уникальным (повторы не допускаются).
     """
     conn = get_db_connection()
+    if ((len(animal_name) == 0)):
+        raise HTTPException(status_code=400, detail="Ошибка: название животного не должно быть пустым.")
+    if ((len(animal_description) == 0)):
+        raise HTTPException(status_code=400, detail="Ошибка: описание животного не должно быть пустым.")
     if ((len(animal_name) > 30)):
         raise HTTPException(status_code=400, detail="Ошибка: название животного должно иметь длину не более 30 символов.")
     if ((len(animal_description) > 3000)):
@@ -64,9 +68,11 @@ async def animals_post_insert(animal_name: str, animal_description: str):
 async def animals_post_update_name(animal_id: int, animal_name: str):
     """
       Описание: изменение названия животного.
-      Ограничения: длина названия животного должна быть <= 30 символов.
+      Ограничения: длина названия животного должна быть <= 30 символов, и название не должно быть пустым.
     """
     conn = get_db_connection()
+    if ((len(animal_name) == 0)):
+        raise HTTPException(status_code=400, detail="Ошибка: название почвы не должно быть пустым.")
     if ((len(animal_name) > 30)):
         raise HTTPException(status_code=400, detail="Ошибка: название животного должно иметь длину не более 30 символов.")
     x = update_animal_name(conn, animal_id, animal_name)
@@ -76,9 +82,11 @@ async def animals_post_update_name(animal_id: int, animal_name: str):
 async def animals_post_update_description(animal_id: int, animal_description: str):
     """
       Описание: изменение описания животного.
-      Ограничения: длина описания животного должна быть <= 30 символов.
+      Ограничения: длина описания животного должна быть <= 3000 символов, и описание не должно быть пустым.
     """
     conn = get_db_connection()
+    if ((len(animal_description) == 0)):
+        raise HTTPException(status_code=400, detail="Ошибка: описание почвы не должно быть пустым.")
     if ((len(animal_description) > 3000)):
         raise HTTPException(status_code=400, detail="Ошибка: описание животного должно иметь длину не более 3000 символов.")
     x = update_animal_description(conn, animal_id, animal_description)

@@ -95,13 +95,19 @@ async def users_post_delete(user_id: int):
 async def users_post_insert(user: User.UserRegister):
     """
       Описание: добавление пользователя. На ввод подаются логин, пароль и электронная почта.
-      Ограничения: 1) логин пользователя должен иметь длину не более 20 символов;
-                   2) пароль пользователя должен иметь длину не более 20 символов;
-                   3) электронная почта пользователя должна иметь длину не более 30 символов и содержать символ @;
+      Ограничения: 1) логин пользователя должен иметь длину не более 20 символов и не быть пустым;
+                   2) пароль пользователя должен иметь длину не более 20 символов и не быть пустым;
+                   3) электронная почта пользователя должна иметь длину не более 30 символов, и содержать символ @, и не быть пустой;
                    4) логин пользователя должен быть уникален (повторы не допускаются);
                    5) электронная почта пользователя должна быть уникальна (повторы не допускаются).
     """
     conn = get_db_connection()
+    if ((len(user.user_login) == 0)):
+        raise HTTPException(status_code=400, detail="Ошибка: логин пользователя не должен быть пустым.")
+    if ((len(user.user_password) == 0)):
+        raise HTTPException(status_code=400, detail="Ошибка: пароль пользователя не должен быть пустым.")
+    if ((len(user.user_email) == 0)):
+        raise HTTPException(status_code=400, detail="Ошибка: электронная почта пользователя не должна быть пустой.")
     if ((len(user.user_login) > 20)):
         raise HTTPException(status_code=400, detail="Ошибка: логин пользователя должен иметь длину не более 20 символов.")
     if ((len(user.user_password) > 20)):
@@ -115,16 +121,18 @@ async def users_post_insert(user: User.UserRegister):
     if len(z) != 0:
         raise HTTPException(status_code=400, detail="Ошибка: на эту электронную почту уже был зарегистрирован аккаунт пользователя. Введите другую электронную почту.")
     x = insert_user(conn, user.user_login, user.user_password, user.user_email)
-    return Response("{'messinsert':'Пользователь создан.'}", status_code=200)
+    return Response("{'messinsert':'Пользователь зарегистрирован.'}", status_code=200)
 
 @router.post("/users/update/login")
 async def users_post_update_login(user_id: int, user_login: str):
     """
       Описание: изменение логина пользователя.
-      Ограничения: 1) длина логина пользователя должна быть <= 20 символов;
+      Ограничения: 1) логин пользователя должен иметь длину не более 20 символов и не быть пустым;
                    2) логин пользователя должен быть уникален (повторы не допускаются).
     """
     conn = get_db_connection()
+    if ((len(user_login) == 0)):
+        raise HTTPException(status_code=400, detail="Ошибка: логин пользователя не должен быть пустым.")
     if ((len(user_login) > 20)):
         raise HTTPException(status_code=400, detail="Ошибка: логин пользователя должен иметь длину не более 20 символов.")
     y = find_user_login(conn, user_login)
@@ -137,9 +145,11 @@ async def users_post_update_login(user_id: int, user_login: str):
 async def users_post_update_password(user_id: int, user_password: str):
     """
       Описание: изменение пароля пользователя.
-      Ограничения: длина пароля пользователя должна быть <= 20 символов.
+      Ограничения: пароль пользователя должен иметь длину не более 20 символов и не быть пустым;
     """
     conn = get_db_connection()
+    if ((len(user_password) == 0)):
+        raise HTTPException(status_code=400, detail="Ошибка: пароль пользователя не должен быть пустым.")
     if ((len(user_password) > 20)):
         raise HTTPException(status_code=400, detail="Ошибка: пароль пользователя должен иметь длину не более 20 символов.")
     x = update_user_password(conn, user_id, user_password)
@@ -149,10 +159,12 @@ async def users_post_update_password(user_id: int, user_password: str):
 async def users_post_update_email(user_id: int, user_email: str):
     """
       Описание: изменение электронной почты пользователя.
-      Ограничения: 1) длина электронной почты пользователя должна быть <= 30 символов;
+      Ограничения: 1) электронная почта пользователя должна иметь длину не более 30 символов, и содержать символ @, и не быть пустой;
                    2) электронная почта пользователя должна быть уникальна (повторы не допускаются).
     """
     conn = get_db_connection()
+    if ((len(user_email) == 0)):
+        raise HTTPException(status_code=400, detail="Ошибка: электронная почта пользователя не должна быть пустой.")
     if ((len(user_email) > 30) or (not('@' in user_email))):
         raise HTTPException(status_code=400, detail="Ошибка: электронная почта пользователя должна иметь длину не более 30 символов и содержать символ @.")
     z = find_user_email(conn, user_email)
