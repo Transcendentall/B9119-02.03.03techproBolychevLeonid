@@ -80,7 +80,6 @@ CREATE TABLE IF NOT EXISTS animals(
     animal_species VARCHAR(20),
     animal_picture VARCHAR
  );
-
 CREATE TABLE IF NOT EXISTS connection_territories_soils(
     connection_territories_soils_id INTEGER PRIMARY KEY AUTOINCREMENT,
     territorie_id INTEGER NOT NULL,
@@ -101,6 +100,62 @@ CREATE TABLE IF NOT EXISTS connection_plants_animals(
     plant_id INTEGER NOT NULL,
     animal_id INTEGER NOT NULL
  );
+ 
+CREATE TABLE IF NOT EXISTS foundations(
+    foundation_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    foundation_name VARCHAR(30) NOT NULL,
+    foundation_description VARCHAR NOT NULL,
+    foundation_picture VARCHAR
+ ); 
+CREATE TABLE IF NOT EXISTS reliefs(
+    relief_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    relief_name VARCHAR(30) NOT NULL,
+    relief_description VARCHAR NOT NULL,
+    relief_picture VARCHAR
+ ); 
+CREATE TABLE IF NOT EXISTS landscapes(
+    landscape_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    landscape_name VARCHAR(30) NOT NULL,
+    landscape_description VARCHAR NOT NULL,
+    landscape_picture VARCHAR
+ ); 
+CREATE TABLE IF NOT EXISTS climats(
+    climat_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    climat_name VARCHAR(30) NOT NULL,
+    climat_description VARCHAR NOT NULL
+ ); 
+CREATE TABLE IF NOT EXISTS waters(
+    water_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    water_name VARCHAR(30) NOT NULL,
+    water_description VARCHAR NOT NULL
+ );
+CREATE TABLE IF NOT EXISTS connection_territories_foundations(
+    connection_territories_foundations_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    territorie_id INTEGER NOT NULL,
+    foundation_id INTEGER NOT NULL
+ );
+CREATE TABLE IF NOT EXISTS connection_territories_reliefs(
+    connection_territories_reliefs_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    territorie_id INTEGER NOT NULL,
+    relief_id INTEGER NOT NULL
+ );
+CREATE TABLE IF NOT EXISTS connection_territories_landscapes(
+    connection_territories_landscapes_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    territorie_id INTEGER NOT NULL,
+    landscape_id INTEGER NOT NULL
+ );
+CREATE TABLE IF NOT EXISTS connection_territories_climats(
+    connection_territories_climats_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    territorie_id INTEGER NOT NULL,
+    climat_id INTEGER NOT NULL
+ );
+CREATE TABLE IF NOT EXISTS connection_territories_waters(
+    connection_territories_waters_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    territorie_id INTEGER NOT NULL,
+    water_id INTEGER NOT NULL
+ );
+ 
+ 
 
 INSERT INTO users (user_login, user_password, user_email, user_surname, user_name, user_fathername, user_age, user_isFemale, user_picture, user_isAdmin)
 VALUES
