@@ -11,6 +11,16 @@ from controllers import ConnectionPlantsAnimalsController
 from controllers import ConnectionSoilsPlantsController
 from controllers import ConnectionSoilsGroundsController
 from controllers import ConnectionTerritoriesSoilsController
+from controllers import FoundationController
+from controllers import LandscapeController
+from controllers import ReliefController
+from controllers import ClimatController
+from controllers import WaterController
+from controllers import ConnectionTerritoriesFoundationsController
+from controllers import ConnectionTerritoriesLandscapesController
+from controllers import ConnectionTerritoriesReliefsController
+from controllers import ConnectionTerritoriesClimatsController
+from controllers import ConnectionTerritoriesWatersController
 from fastapi import FastAPI
 from pydantic import BaseModel
 
@@ -32,3 +42,13 @@ app.include_router(ConnectionPlantsAnimalsController.router)
 app.include_router(ConnectionSoilsPlantsController.router)
 app.include_router(ConnectionSoilsGroundsController.router)
 app.include_router(ConnectionTerritoriesSoilsController.router)
+app.include_router(FoundationController.router)
+app.include_router(LandscapeController.router)
+app.include_router(ReliefController.router)
+app.include_router(ClimatController.router)
+app.include_router(WaterController.router)
+app.include_router(ConnectionTerritoriesFoundationsController.router)
+app.include_router(ConnectionTerritoriesLandscapesController.router)
+app.include_router(ConnectionTerritoriesReliefsController.router)
+app.include_router(ConnectionTerritoriesClimatsController.router)
+app.include_router(ConnectionTerritoriesWatersController.router)
