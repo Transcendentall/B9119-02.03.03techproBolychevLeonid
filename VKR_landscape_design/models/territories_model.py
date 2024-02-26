@@ -80,6 +80,45 @@ def byterritorie_animal(conn, user_territorie_id):
     JOIN animals ON (connection_plants_animals.animal_id = animals.animal_id)
     WHERE territories.territorie_id = ''' + str(user_territorie_id), conn)
 
+def byterritorie_foundations(conn, user_territorie_id):
+    return pandas.read_sql('''
+    SELECT DISTINCT territories.territorie_id, foundations.foundation_id, foundation_name, foundation_description, foundation_picture 
+    FROM territories 
+    JOIN connection_territories_foundations ON (territories.territorie_id = connection_territories_foundations.territorie_id) 
+    JOIN foundations ON (connection_territories_foundations.foundation_id = foundations.foundation_id) 
+    WHERE territories.territorie_id = ''' + str(user_territorie_id), conn)
+
+def byterritorie_landscapes(conn, user_territorie_id):
+    return pandas.read_sql('''
+    SELECT DISTINCT territories.territorie_id, landscapes.landscape_id, landscape_name, landscape_description, landscape_picture 
+    FROM territories 
+    JOIN connection_territories_landscapes ON (territories.territorie_id = connection_territories_landscapes.territorie_id) 
+    JOIN landscapes ON (connection_territories_landscapes.landscape_id = landscapes.landscape_id) 
+    WHERE territories.territorie_id = ''' + str(user_territorie_id), conn)
+
+def byterritorie_reliefs(conn, user_territorie_id):
+    return pandas.read_sql('''
+    SELECT DISTINCT territories.territorie_id, reliefs.relief_id, relief_name, relief_description, relief_picture 
+    FROM territories 
+    JOIN connection_territories_reliefs ON (territories.territorie_id = connection_territories_reliefs.territorie_id) 
+    JOIN reliefs ON (connection_territories_reliefs.relief_id = reliefs.relief_id) 
+    WHERE territories.territorie_id = ''' + str(user_territorie_id), conn)
+
+def byterritorie_climats(conn, user_territorie_id):
+    return pandas.read_sql('''
+    SELECT DISTINCT territories.territorie_id, climats.climat_id, climat_name, climat_description 
+    FROM territories 
+    JOIN connection_territories_climats ON (territories.territorie_id = connection_territories_climats.territorie_id) 
+    JOIN climats ON (connection_territories_climats.climat_id = climats.climat_id) 
+    WHERE territories.territorie_id = ''' + str(user_territorie_id), conn)
+
+def byterritorie_waters(conn, user_territorie_id):
+    return pandas.read_sql('''
+    SELECT DISTINCT territories.territorie_id, waters.water_id, water_name, water_description 
+    FROM territories 
+    JOIN connection_territories_waters ON (territories.territorie_id = connection_territories_waters.territorie_id) 
+    JOIN waters ON (connection_territories_waters.water_id = waters.water_id) 
+    WHERE territories.territorie_id = ''' + str(user_territorie_id), conn)
 
 def insert_territorie(conn, user_territorie_coord_x, user_territorie_coord_y, user_territorie_address):
     cur = conn.cursor()

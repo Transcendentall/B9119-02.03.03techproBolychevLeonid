@@ -103,6 +103,66 @@ async def territories_byterritorie_plant(user_territorie_id: int):
     x = byterritorie_plant(conn, user_territorie_id)
     return Response((json.dumps(x.to_dict(orient="records")).replace(": NaN", ": null")).replace(".0,", ","), status_code=200)
 
+@router.get("/territories/byterritoriefoundations")
+async def territories_byterritorie_foundations(user_territorie_id: int):
+    """
+      Описание: получение данных о присутствующих в данной точке фундаментах.
+    """
+    conn = get_db_connection()
+    y = get_one_territorie(conn, user_territorie_id)
+    if len(y) == 0:
+        raise HTTPException(status_code=404, detail="Ошибка: такой точки нет в базе данных, поэтому получить перечень присутствующих в ней фундаментов невозможно.")
+    x = byterritorie_foundations(conn, user_territorie_id)
+    return Response((json.dumps(x.to_dict(orient="records")).replace(": NaN", ": null")).replace(".0,", ","), status_code=200)
+
+@router.get("/territories/byterritoriereliefs")
+async def territories_byterritorie_reliefs(user_territorie_id: int):
+    """
+      Описание: получение данных о присутствующих в данной точке рельефах.
+    """
+    conn = get_db_connection()
+    y = get_one_territorie(conn, user_territorie_id)
+    if len(y) == 0:
+        raise HTTPException(status_code=404, detail="Ошибка: такой точки нет в базе данных, поэтому получить перечень присутствующих в ней рельефов невозможно.")
+    x = byterritorie_reliefs(conn, user_territorie_id)
+    return Response((json.dumps(x.to_dict(orient="records")).replace(": NaN", ": null")).replace(".0,", ","), status_code=200)
+
+@router.get("/territories/byterritorielandscapes")
+async def territories_byterritorie_landscapes(user_territorie_id: int):
+    """
+      Описание: получение данных о присутствующих в данной точке ландшафтах.
+    """
+    conn = get_db_connection()
+    y = get_one_territorie(conn, user_territorie_id)
+    if len(y) == 0:
+        raise HTTPException(status_code=404, detail="Ошибка: такой точки нет в базе данных, поэтому получить перечень присутствующих в ней ландшафтов невозможно.")
+    x = byterritorie_landscapes(conn, user_territorie_id)
+    return Response((json.dumps(x.to_dict(orient="records")).replace(": NaN", ": null")).replace(".0,", ","), status_code=200)
+
+@router.get("/territories/byterritorieclimats")
+async def territories_byterritorie_climats(user_territorie_id: int):
+    """
+      Описание: получение данных о присутствующих в данной точке климатах.
+    """
+    conn = get_db_connection()
+    y = get_one_territorie(conn, user_territorie_id)
+    if len(y) == 0:
+        raise HTTPException(status_code=404, detail="Ошибка: такой точки нет в базе данных, поэтому получить перечень присутствующих в ней климатов невозможно.")
+    x = byterritorie_climats(conn, user_territorie_id)
+    return Response((json.dumps(x.to_dict(orient="records")).replace(": NaN", ": null")).replace(".0,", ","), status_code=200)
+
+@router.get("/territories/byterritoriewaters")
+async def territories_byterritorie_waters(user_territorie_id: int):
+    """
+      Описание: получение данных о присутствующих в данной точке водах.
+    """
+    conn = get_db_connection()
+    y = get_one_territorie(conn, user_territorie_id)
+    if len(y) == 0:
+        raise HTTPException(status_code=404, detail="Ошибка: такой точки нет в базе данных, поэтому получить перечень присутствующих в ней вод невозможно.")
+    x = byterritorie_waters(conn, user_territorie_id)
+    return Response((json.dumps(x.to_dict(orient="records")).replace(": NaN", ": null")).replace(".0,", ","), status_code=200)
+
 @router.post("/territories/insert")
 async def territories_post_insert(territorie_coord_x: float, territorie_coord_y: float, territorie_address: str):
     """
